@@ -1,0 +1,113 @@
+    {% load static %}
+    {% get_static_prefix as STATIC_URL %}
+    {% include 'header.html' %}
+    {% load markup %}
+    {% load markitup_tags %}
+    {{ usinfo }}
+
+    <style>
+        .markItUp { width: 967px; }
+    </style>
+
+    <div class="container">
+        <div class="row span10 offset1 trad" style="margin-top:55px;">
+            <div class="receivers" >
+                {% if receivers %}
+                Направлено:
+                {% for receiver in receivers %}
+                {{ receiver }},
+                {% endfor %}
+                {% else %}
+                Общее задание
+            {% endif %}
+            </div>
+            <table class="table table-bordered trad-data">
+                {% include 'trad_block.html' %}
+                {% if trad.text %}
+                <tr>
+                    <td class="description-cell" style="padding:16px;" colspan="8">
+                        <span class='trad-text'>
+                            {{ trad.text|markdown }}
+                        </span>
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+            {% if user_status = 'author' %}
+            <div class="edit-trad" >
+                <a href="{{trad.id }}/edit"> Редактировать</a>
+            </div>
+            {% endif %}
+            <div>
+                <div class="change-status">
+                {% if user_status == 'receiver' and trad.status == 'new' %}
+                    <form action="" method="post">
+                        <input type="submit" class="btn btn-large btn-primary" name="take" value="Принять">
+                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="Отказаться">
+                    </form>
+                    {% endif %}
+                    {% if user_status == 'receiver' and trad.status == 'taken' %}
+                    <form action="" method="post">
+                        <input type="submit" class="btn btn-large btn-success" name="done" value="Выполнено">
+                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="Отказаться">
+                    </form>
+                    {% endif %}
+
+                    {% if user_status == 'group_task_receiver' and trad.status == 'new' %}
+                    <form action="" method="post">
+                        <input type="submit" class="btn btn-large btn-primary" name="take" value="Принять">
+                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="Отказаться">
+                    </form>
+                    {% endif %}
+                    {% if user_status == 'group_task_receiver' and trad.status == 'taken' %}
+                    <form action="" method="post">
+                        <input type="submit" class="btn btn-large btn-success" name="done" value="Выполнено">
+                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="Отказаться">
+                    </form>
+                    {% endif %}
+                    {% if user_status == 'author' and trad.status == 'taken' or user_status == 'author' and trad.status == 'new' %}
+                    <form action="" method="post">
+                        <input type="submit" name="success" class="btn btn-large btn-success" value="Выполнено успешно">
+                        <input type="submit" class="btn btn-large" name="close" value="Закрыть задание">
+                    </form>
+                    {% endif %}
+                    {% if user_status == 'author' and trad.status == 'refused' %}
+                    <form action="" method="post">
+                        <input type="submit" class="btn btn-large btn-primary" name="setback" value="Дать заново">
+                    </form>
+                    {% endif %}
+                    {% if user_status == 'author' and trad.status == 'done' %}
+                    <form action="" method="post">
+                        <input type="submit" name="success" class="btn btn-large btn-success" value="Успешно">
+                        <input type="submit" name="setback" class="btn btn-large" value="Нужно переделать">
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+            {% if comments %}
+            <h2> Комментарии: </h2>
+            {% endif %}
+
+            {% for comment in comments %}
+            <div class="well comment-form">
+                <span>
+                {{comment.text|markdown}}
+                </span>
+                <span class="comment-info">
+                    <div>
+                        <h3> {{comment.author}} </h3>
+                    </div>
+                    <div>
+                        {{comment.date|date:"m" }}/{{comment.date|date:"d" }}
+                        {{comment.date|date:"H" }}:{{comment.date|date:"i" }}
+                    </div>
+                </span>
+            </div>
+            {% endfor %}
+            <form action="" method="post">
+                <br>
+                {{ form.text }}
+                <button type="submit" class="btn btn-large" name="comment"> <i class="icon-comment"></i> Добавить комментарий </button>
+            </form>
+        </div>
+    </div>

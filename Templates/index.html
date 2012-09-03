@@ -1,0 +1,103 @@
+    {% load static %}
+    {% get_static_prefix as STATIC_URL %}
+    {% include 'header.html' %}
+    {% if add_task %}
+    <script>
+        $(document).ready(function () {
+            $('#add-task').show()
+        })
+    </script>
+    {% endif %}
+    <script>
+        function defineTzOffset() {
+            var userDate = new Date()
+            var offset = userDate.getTimezoneOffset()
+            return offset
+        }
+
+        $(document).ready(function () {
+            offsetInput = document.getElementById('timezoneOffset')
+            offsetInput.value = defineTzOffset()
+        })
+
+        function redirect(id) {
+            document.location.href=id;
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.timepick').timepicker(        {
+                minuteStep: 15,
+                showInputs: false,
+                modalBackdrop: true,
+                showMeridian: false});
+        })
+    </script>
+            <div id="add-task">
+                <div class="container">
+                    <div class="row span10 offset1">
+                    {% if form.errors %}
+                        <script>
+                            $(document).ready(function(){
+                                $('#add-task').show()
+                            })
+                        </script>
+                     <div class="alert alert-message">
+                    <p style="color: red;">
+                            Пожалуйста, правильно заполните все необходимые поля:  {{ form.errors }}
+                        </p>
+                     </div>
+                    {% endif %}
+                        <form action="" method="post" style="" >
+                               <div class="task-name-descr form-header">
+                                    <div>
+                                        Название: <br>
+                                        {{ form.label }}
+                                    </div>
+                                    <div>
+                                        Описание: <br>
+                                        {{ form.text }}
+                                    </div>
+                               </div>
+                               <div class="issue-receivers form-header">
+                                    Кому <span class="task-common">(удерживайте Ctrl при нажатии) </span>:
+                                    Общее
+                                    <input type="checkbox" id="receivers_all" name="receivers_all" onchange="disableReceivers()">
+                                    {{ form.receiver }}
+                               </div>
+                               <div class="form-datetime form-header">
+                                    Установить срок выполнения
+                                        <input type="checkbox" id="no-datetime" name="no_date" onchange="disableExpiration()">
+                                        <br>
+                                    <input data-datepicker="datepicker" id="expiration-date" name="expdate" class="small" type="text" value="{{ tomorrow }}" disabled="disabled" />
+                                    <div class="input-append bootstrap-timepicker-component">
+                                        <div>
+                                            <input class="timepick" id="expiration-time" name="exptime" type="text" disabled="disabled" />
+                                            <i class="icon-time"></i>
+                                        </div>
+                                        <input id="timezoneOffset" type="hidden" name="timezone_offset" />
+                                    </div>
+                               </div>
+                               <div class="challenge-task" >
+                                    <a href="#" class="btn btn-large" data-dismiss="modal" onclick="hideModal()">Закрыть</a>
+                                    <input class="btn btn-primary btn-large"  type="submit" value="Добавить задание">
+                               </div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row span10 offset1" style="margin-top:55px;">
+                    <table class="table table-bordered edits-dump-hidden table-trads">
+                        {% for trad in trads reversed %}
+                            {% include 'trad_block.html' %}
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div class="logo-box" style="background: url({{ STATIC_URL  }}css/images/your-logo.png);">
+            </div>
+        </body>
+    </head>
+</html>
