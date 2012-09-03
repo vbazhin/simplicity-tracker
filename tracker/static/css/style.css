@@ -1,5 +1,13 @@
 
-.task-properies { position: relative; float:left; width: 24%; text-align: left; padding-left: 24px; color: #898383; font-weight: normal; }
+.task-properties { 
+	position: relative; 
+	float:left; 
+	width: 24%; 
+	text-align: left; 
+	padding-left: 24px; 
+	color: #898383; 
+	font-weight: normal;
+}
 
 .issue-info {
     position:relative;

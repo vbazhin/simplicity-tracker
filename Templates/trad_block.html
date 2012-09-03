@@ -24,18 +24,18 @@
                                 </div>
                             {% endif %}
                              <div class="issue-info">
-                                <div class='task-properies condition' >
+                                <div class='task-properties condition' >
                                     Состояние:
                                     {{trad.condition}}
                                 </div>
-                                <div class='task-properies'>
+                                <div class='task-properties'>
                                     Задано:
                                     {{trad.given|date:"m" }}/{{trad.given|date:"d" }}
                                     в {{trad.given|date:"H" }}:{{trad.given|date:"i" }}
                                 </div>
                                 {% if trad.status != 'success' and trad.status != 'closed' and trad.status != 'refused' %}
                                 {% if trad.is_expiration = 'Yes' %}
-                                <div class='task-properies left-time' >
+                                <div class='task-properties left-time' >
                                     {% if trad.leftdays >= 0 %}
                                         Осталось:
                                         {% if trad.leftdays > 1 %}
@@ -56,7 +56,7 @@
                                 {% endif %}
                                 {% endif %}
                                 {% if trad.comments_num > 0 %}
-                               <div class='task-properies comments'>
+                               <div class='task-properties comments'>
                                     {{trad.comments_num}}
                                     <i class="icon-comment"> </i>
                                </div>
