@@ -4,12 +4,14 @@
     <list default="true" id="b728d5e1-dbdb-4a34-a7bc-8a10c91ff2fd" name="Default" comment="">
       <change type="DELETED" beforePath="C:\Python27\tracker04\.idea\.name" afterPath="" />
       <change type="DELETED" beforePath="C:\Python27\tracker04\.idea\encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Python27\tracker04\.idea\inspectionProfiles\profiles_settings.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Python27\tracker04\.idea\misc.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Python27\tracker04\.idea\modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Python27\tracker04\.idea\scopes\scope_settings.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Python27\tracker04\.idea\tracker04.iml" afterPath="" />
       <change type="DELETED" beforePath="C:\Python27\tracker04\.idea\vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Python27\tracker04\.idea\workspace.xml" afterPath="" />
       <change type="DELETED" beforePath="C:\Python27\tracker04\tracker\static\bootstrap\less\datepicker.less" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tracker04.iws" />
     <ignored path=".idea/workspace.xml" />
