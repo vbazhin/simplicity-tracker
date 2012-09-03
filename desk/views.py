@@ -57,9 +57,11 @@ def index(request, fltr = 'all', add_task = None): # Фильтруем по с�
     elif fltr == 'current':
         trads = Trad.objects.filter(receiver = request.user, status = 'new') | Trad.objects.filter(receiver = request.user, status = 'taken') | Trad.objects.filter(receiver = request.user, status = 'done') | Trad.objects.filter(receiver = None, status = 'new') | Trad.objects.filter(receiver = None, status = 'taken') | Trad.objects.filter(receiver = None, status = 'done')
     elif fltr == 'check':
-        trads = Trad.objects.filter(author = request.user, status = 'done') | Trad.objects.filter(author = request.user, status = 'done')
+        trads = Trad.objects.filter(author = request.user, status = 'done')
     elif fltr == 'givenbyme':
         trads = Trad.objects.filter(author = request.user)
+    elif fltr == 'error':
+        trads = Trad.objects.filter(receiver = request.user, status = 'error') | Trad.objects.filter(receiver = None, status = 'error') | Trad.objects.filter(author = request.user, status = 'error')
     else:
         trads = Trad.objects.filter(receiver = request.user, status = fltr) | Trad.objects.filter(receiver = None, status = fltr)
     for trad in trads:
