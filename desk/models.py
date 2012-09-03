@@ -1,13 +1,12 @@
+#author: v.bazhin
 #coding: utf-8
 from django.db import models
-from django.http import QueryDict
-from markitup.fields import MarkupField
-from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.models import User
 import datetime
 import random
 import md5
 from django.utils import unittest
+from django.core.mail import send_mail
 
 # Todo
     # Нужно сделать поддержку проектов
@@ -29,8 +28,6 @@ class Project(models.Model):
     crew = models.ManyToManyField(User, blank=True, null=True)
     def __unicode__(self):
         return self.name
-
-
 
 
 # Пакет тестов объекта Trad
@@ -127,8 +124,6 @@ class Trad(models.Model):
                 return 'Ошибка сохранения комментария'
 
 
-
-
     def define_condition (self):
         if self.status == 'done':
             self.condition = 'На проверке'
@@ -182,9 +177,6 @@ class Trad(models.Model):
         return self.label
 
 
-
-
-        
 class Comment(models.Model):
     text = models.TextField(max_length=1000, verbose_name='Текст')
     date = models.DateTimeField(verbose_name="Дата")
@@ -194,7 +186,7 @@ class Comment(models.Model):
     def __unicode__(self):
         return self.text
 
-from django.core.mail import send_mail
+
 
 
 class DelegatedNames(models.Model):

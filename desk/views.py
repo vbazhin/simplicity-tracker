@@ -1,4 +1,6 @@
+#author: v.bazhin
 #coding: utf-8
+
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
@@ -31,7 +33,6 @@ def get_tomorrow():
     today = datetime.date.today()
     tomorrow = datetime.date(today.year, today.month, today.day + 1).isoformat()
     return tomorrow
-
 # Далее идут вьюшки
 
 def logout(request):
