@@ -1,0 +1,21 @@
+<div class="dropdown select-language">
+    <a href="#" class="brand" data-toggle="dropdown">
+        <h3>
+            {{ LANGUAGE_CODE }}
+            <b class="caret"></b>
+        </h3>
+    </a>
+    <ul class="dropdown-menu select-language-menu" role="menu" aria-labelledby="dLabel">
+        {% for lang in LANGUAGES %}
+        {% if LANGUAGE_CODE != lang.0 %}
+        <li>
+            <form action="/i18n/setlang/" method="POST">
+                {% csrf_token %}
+                <button class="select-language-item" type="submit" name="language" value="{{ lang.0 }}">{{ lang.0 }}</input>
+            </form>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    </ul>
+</div>

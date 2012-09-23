@@ -2,6 +2,10 @@
     {% get_static_prefix as STATIC_URL %}
     {% include 'header.html' %}
     {% if add_task %}
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_current_language_bidi as LANGUAGE_BIDI %}
     <script>
         $(document).ready(function () {
             $('#add-task').show()
@@ -45,29 +49,29 @@
                         </script>
                      <div class="alert alert-message">
                     <p style="color: red;">
-                            Пожалуйста, правильно заполните все необходимые поля:  {{ form.errors }}
+                            {% trans 'Please correct the errors below:' %}   {{ form.errors }}
                         </p>
                      </div>
                     {% endif %}
                         <form action="" method="post" style="" >
                                <div class="task-name-descr form-header">
                                     <div>
-                                        Название: <br>
+                                        {% trans 'Header:' %} <br>
                                         {{ form.label }}
                                     </div>
                                     <div>
-                                        Описание: <br>
+                                        {% trans 'Description:' %} <br>
                                         {{ form.text }}
                                     </div>
                                </div>
                                <div class="issue-receivers form-header">
-                                    Кому <span class="task-common">(удерживайте Ctrl при нажатии) </span>:
+                                    Кому <span class="task-common">({% trans 'hold Ctrl while selecting' %}) </span>:
                                     Общее
                                     <input type="checkbox" id="receivers_all" name="receivers_all" onchange="disableReceivers()">
                                     {{ form.receiver }}
                                </div>
                                <div class="form-datetime form-header">
-                                    Установить срок выполнения
+                                    {% trans 'Set an expiration' %}
                                         <input type="checkbox" id="no-datetime" name="no_date" onchange="disableExpiration()">
                                         <br>
                                     <input data-datepicker="datepicker" id="expiration-date" name="expdate" class="small" type="text" value="{{ tomorrow }}" disabled="disabled" />
@@ -80,8 +84,8 @@
                                     </div>
                                </div>
                                <div class="challenge-task" >
-                                    <a href="#" class="btn btn-large" data-dismiss="modal" onclick="hideModal()">Закрыть</a>
-                                    <input class="btn btn-primary btn-large"  type="submit" value="Добавить задание">
+                                    <a href="#" class="btn btn-large" data-dismiss="modal" onclick="hideModal()"> {% trans 'Close' %} </a>
+                                    <input class="btn btn-primary btn-large"  type="submit" value="{% trans 'Add issue' %} ">
                                </div>
                          </form>
                     </div>

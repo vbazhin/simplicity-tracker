@@ -3,8 +3,13 @@
 
     {% load static %}
     {% get_static_prefix as STATIC_URL %}
-
-    <title> Задания \ 404 </title>
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_current_language_bidi as LANGUAGE_BIDI %}
+    
+    
+    <title> {% trans "Issues" %} \ 404 </title>
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" type="text/css" media="screen" />
@@ -20,9 +25,7 @@
         .log-in-block { position:relative; float: left; width: 80%%; }
         .log-in-block div { margin-right: 50px; }
         .hero-unit { padding: 60px 60px 30px 60px; }
-
         .inp { position: relative; float: left;  width: 20%; min-width:200px; margin-right:60px; }
-
     </style>
 
 </head>
@@ -31,6 +34,6 @@
 <div style="position: relative;">
     <div class="hero-unit" style="position: relative; min-height:160px;">
         <div style="min-height:100px; margin-right:160px; margin-top:36px; position: relative; float:left;">
-            <h1> 404 <small> страница не найдена </small> </h1>
+            <h1> 404 <small> {% trans "Page not found" %} </small> </h1>
         </div>
 

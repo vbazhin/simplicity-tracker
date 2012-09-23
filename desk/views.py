@@ -98,32 +98,33 @@ def index(request, fltr = 'all', add_task = None): # Фильтруем по с�
 
 
 def show_trad(request, related_trad,  user_status = 'group_task_receiver'):
-    try:
-        trad = Trad.objects.get(pk = related_trad)
-        trad.comments_num = Comment.objects.filter(trad = trad).count() # Cчитаем комментарии
-        trad.define_condition()
-        new_num, taken_num, check_num, oncheck_num = count_issues(request)
-        comments = Comment.objects.filter(trad = trad).order_by('date')
-        if request.user in trad.receiver.all():
-            user_status = 'receiver'
-        if request.user == trad.author:
-            user_status = 'author'
-            # escape - html символы
-        if request.method == 'POST':
-            if 'comment' in request.POST:
-                form = CommentForm(request.POST)
-                if form.is_valid():
-                    cd = form.cleaned_data
-                    comment = Comment(text = escape(cd['text']), date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
-                    comment.save()
-            else:
-                trad.renew_status(request.POST, request.user) # Новый статус (объеденить метод с комментированием)
-                return HttpResponseRedirect("")
+    trad = Trad.objects.get(pk = related_trad)
+    trad.comments_num = Comment.objects.filter(trad = trad).count() # Cчитаем комментарии
+    trad.define_condition()
+    new_num, taken_num, check_num, oncheck_num = count_issues(request)
+    comments = Comment.objects.filter(trad = trad).order_by('date')
+    for comment in comments:
+        if comment.type == 'status_cmt':
+            comment.get_text()
+    if request.user in trad.receiver.all():
+        user_status = 'receiver'
+    if request.user == trad.author:
+        user_status = 'author'
+        # escape - html символы
+    if request.method == 'POST':
+        if 'comment' in request.POST:
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                cd = form.cleaned_data
+                comment = Comment(text = escape(cd['text']), date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
+                comment.save()
         else:
-            form = CommentForm()
-        return render_to_response('trad.html', {'form': form, 'user' : request.user, 'trad': trad, 'comments': comments, 'user_status': user_status, 'receivers' : trad.receiver.all(), 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num, 'oncheck_num': oncheck_num })
-    except:
-        raise Http404
+            trad.renew_status(request.POST, request.user) # Новый статус (объеденить метод с комментированием)
+        return HttpResponseRedirect("")
+    else:
+        form = CommentForm()
+    return render_to_response('trad.html', {'form': form, 'user' : request.user, 'trad': trad, 'comments': comments, 'user_status': user_status, 'receivers' : trad.receiver.all(), 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num, 'oncheck_num': oncheck_num })
+
 
 
 def edit_trad(request, trad_id):
@@ -202,6 +203,7 @@ def register(request, hashlink=None):
     except:
         raise Http404
 
+from django.utils.translation import gettext as _
 
 def generate_link(request):
     if request.is_ajax():
@@ -209,21 +211,19 @@ def generate_link(request):
             try:
                 link = InviteLink.objects.create()
                 link.generate() # Метод создает хеш md5, делает запись в таблицу
-                path = request.build_absolute_uri('../register/') + link.link
-                welcome = '<div class="modal-header"> <h2> Приглашение №' + str(link.id) + "</h2> </div>  <br> <h3> Ссылка на регистрацию (действует 1 раз): </h3> <br>  <code>" + path + "</code>"
+                path = request.build_absolute_uri('../register') + link.link
+                welcome = "<div class='modal-header'> <h2>" + _("Invite ") + "№ " + str(link.id) + " </h2> </div>  <br> <h3>" + _("Registration link (can be used only once):") + "</h3> <br>  <code>" + path + "</code>"
                 return  HttpResponse(welcome)
             except:
-                return HttpResponse('Произошла ошибка')
+                return HttpResponse(_('Error occured'))
         else:
-            return HttpResponse("Вы не администратор, а только притворяетесь")
-
-
+            return HttpResponse(_('You are not administrator'))
 
 
 # Не имеет смысла выносить формы в отдельный файл
 class AddTrad(forms.Form):
 
-    label = forms.CharField(widget=forms.TextInput(attrs={'style':'width:597px;'}))
+    label = forms.CharField(widget=forms.TextInput(attrs={'style':'width:597px;г'}))
     text = forms.CharField(required=False, widget=MarkItUpWidget(attrs={'style':'width: 99%; height:105px;'}))
     receiver = forms.ModelMultipleChoiceField(required=False, queryset=User.objects.all(), widget=forms.SelectMultiple(attrs={'style':'width:300px; height:200px;'}))
     expdate = forms.DateField(required=False)

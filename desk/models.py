@@ -7,6 +7,10 @@ import random
 import md5
 from django.utils import unittest
 from django.core.mail import send_mail
+from django.utils.translation import pgettext
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy
+
 
 # Todo
     # Нужно сделать поддержку проектов
@@ -24,10 +28,15 @@ from django.core.mail import send_mail
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Название проекта")
+    name = models.CharField(max_length=100, verbose_name=gettext_lazy("Project name"))
     crew = models.ManyToManyField(User, blank=True, null=True)
+
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        verbose_name = gettext_lazy('Project')
+        verbose_name_plural = gettext_lazy('Projects')
 
 
 # Пакет тестов объекта Trad
@@ -52,33 +61,35 @@ class TradTestCase(unittest.TestCase):
         '''Returns current status'''
         self.assertEqual(self.trad.define_condition(), 'new')
 
+
 class Trad(models.Model):
 
     STATUS_VALUES = (
-        ('new', 'Новое'),
-        ('taken', 'В работе'),
-        ('refused', 'Отменено'),
-        ('closed', 'Закрыто'),
-        ('done', 'Сделано'),
-        ('success', 'Завершено'),
+        ('new', pgettext('issue condition', 'New')),
+        ('taken', pgettext('issue condition', 'In progress')),
+        ('refused', pgettext('issue condition', 'Rejected')),
+        ('closed', pgettext('issue condition', 'Closed')),
+        ('done', pgettext('issue condition', 'Done')),
+        ('success', pgettext('issue condition', 'Success'))
     )
 
     TYPES = ( # Чтобы не дропать базу для следующей версии, когда будет поддержка проектов
-        ('task', 'Задание'),
-        ('notification', 'Уведомление'),
+        ('tassk', pgettext('Type of issue', 'Task')),
+        ('notification', pgettext('Type of issue', 'Notification')),
         )
-    project = models.ForeignKey(Project, blank=True, null=True)
-    label = models.CharField(max_length=100, verbose_name="Название")
-    text = models.TextField(blank=True, max_length=5000, verbose_name="Описание")
-    given = models.DateTimeField(auto_now_add=True, verbose_name="Дата назначения")
-    is_expiration = models.CharField(blank=True,  max_length=3, verbose_name="Установить дату")
-    expiration = models.DateTimeField(blank=True, null=True, verbose_name="Дата истечения")
-    change_date = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
+    project = models.ForeignKey(Project, blank=True, null=True, verbose_name=gettext_lazy('Project'))
+    label = models.CharField(max_length=100, verbose_name=gettext_lazy('Label'))
+    text = models.TextField(blank=True, max_length=5000, verbose_name=gettext_lazy('Description'))
+    given = models.DateTimeField(auto_now_add=True, verbose_name=gettext_lazy('Occurrence time'))
+    is_expiration = models.CharField(blank=True,  max_length=3, verbose_name=gettext_lazy('Expiration'))
+    expiration = models.DateTimeField(blank=True, null=True, verbose_name=gettext_lazy('Expiration date'))
+    change_date = models.DateTimeField(auto_now=True, verbose_name=gettext_lazy('Change date'))
     # кое-что тут http://stackoverflow.com/questions/38601/using-django-time-date-widgets-in-custom-form
-    status = models.CharField(blank=True, max_length=10, choices=STATUS_VALUES, verbose_name="Текущий статус")
-    receiver = models.ManyToManyField(User, blank=True, null=True, related_name = 'receiver')
-    author = models.ForeignKey(User, related_name = 'author')
-    type = models.CharField(blank=True, null=True, max_length=12, choices=TYPES, verbose_name="Тип") # Чтобы не дропать базу для следующей версии, когда будет поддержка проектов
+    status = models.CharField(blank=True, max_length=10, choices=STATUS_VALUES, verbose_name=gettext_lazy('Current status'))
+    receiver = models.ManyToManyField(User, blank=True, null=True, related_name = 'receiver', verbose_name=gettext_lazy('Receiver') )
+    author = models.ForeignKey(User, related_name = 'author', verbose_name = gettext_lazy('Author'))
+    type = models.CharField(blank=True, null=True, max_length=12, choices=TYPES, verbose_name=gettext_lazy("Type")) # Чтобы не дропать базу для следующей версии, когда будет поддержка проектов
+    is_deleted = models.CharField(blank=True, null=True, max_length=3, verbose_name=gettext_lazy('Is deleted'))
 
     def time_left(self):
         if self.is_expiration == 'Yes':
@@ -86,33 +97,29 @@ class Trad(models.Model):
             return time_left
 
     def renew_status(self, new_data, current_user):
-        if 'take' in new_data:
-            comment = Comment(text = u'Задание принято пользователем ' + current_user.username, date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
-            self.status = 'taken'
-        elif 'refuse' in new_data:
-            comment = Comment(text = u'Пользователь ' + current_user.username + u' отказался от задания', date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
-            self.status = 'refused'
-        elif 'done' in new_data:
-            comment = Comment(text = u'Пользователь ' + current_user.username + u' выполнил задание', date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
-            self.status = 'done'
-        elif 'success' in new_data:
-            comment = Comment(text = u'Задание выполнено. Закрыто пользователем ' + current_user.username, date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
-            self.status = 'success'
-        elif 'close' in new_data:
-            comment = Comment(text = u'Задание закрыто пользователем ' + current_user.username, date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
-            self.status = 'closed'
-        elif 'setback' in new_data:
-            comment = Comment(text = u'Задание не принято пользователем ' + current_user.username, date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
-            self.status = 'new'
-        elif 'delete' in new_data:
+        if not 'delete' in 'new_data':
+            if 'take' in new_data:
+                self.status = 'taken'
+            elif 'refuse' in new_data:
+                self.status = 'refused'
+            elif 'done' in new_data:
+                self.status = 'done'
+            elif 'success' in new_data:
+                self.status = 'success'
+            elif 'close' in new_data:
+                self.status = 'closed'
+            elif 'setback' in new_data:
+                self.status = 'new'
+            comment = Comment(type='status_cmt', text = self.status, date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
+        else:
             try:
                 self.delete()
             except:
-                return 'Невозможно удалить'
+                return _('Can`t delete')
         try:
             self.save()
         except:
-            return 'Ошибка сохранения объекта'
+            return _('Issue saving error')
         try:
             comment
         except:
@@ -121,18 +128,18 @@ class Trad(models.Model):
             try:
                 comment.save()
             except:
-                return 'Ошибка сохранения комментария'
+                return _('Comment saving error')
 
 
     def define_condition (self):
         if self.status == 'done':
-            self.condition = 'На проверке'
+            self.condition = pgettext('issue condition', 'On check')
         elif self.status == 'success':
-            self.condition = 'Успешно'
+            self.condition = pgettext('issue condition', 'Success')
         elif self.status == 'closed':
-            self.condition = 'Закрыто'
+            self.condition = pgettext('issue condition', 'Closed')
         elif self.status == 'refused':
-            self.condition = 'Не принято'
+            self.condition = pgettext('issue condition', 'Rejected')
         else:
             if self.is_expiration == 'Yes':
                 self.left = self.time_left()
@@ -141,19 +148,19 @@ class Trad(models.Model):
                 self.leftminutes = self.left.seconds/60
                 if self.left > datetime.timedelta(0):
                     if self.status == 'taken':
-                        self.condition = 'В работе'
+                        self.condition = 'In progress'
                     elif self.status == 'new':
-                        self.condition = 'Новое'
+                        self.condition = pgettext('issue condition', 'New')
                 else:
-                    self.condition = 'Не выполнено'
+                    self.condition = pgettext('issue condition', 'Failed')
                     if self.status != 'error':
                         self.status = 'error'
                         self.save()
             else:
                 if self.status == 'taken':
-                    self.condition = 'В работе'
+                    self.condition = pgettext('issue condition', 'In progress')
                 elif self.status == 'new':
-                    self.condition = 'Новое'
+                    self.condition = pgettext('issue condition', 'New')
         status_attrs = {
             'done' : {'icon' : 'ok', 'alert' : 'success'},
             'success': {'icon' : 'ok', 'alert' : 'success'},
@@ -172,34 +179,54 @@ class Trad(models.Model):
 
         return self.status
 
+    def delete(self):
+        if self.is_deleted != 'Yes':
+            try:
+                self.is_deleted = 'Yes'
+                self.save()
+            except:
+                pass
 
     def __unicode__(self):
         return self.label
 
+    class Meta:
+        verbose_name = gettext_lazy('Issue')
+        verbose_name_plural = gettext_lazy('Issues')
+
 
 class Comment(models.Model):
-    text = models.TextField(max_length=1000, verbose_name='Текст')
-    date = models.DateTimeField(verbose_name="Дата")
+    text = models.TextField(max_length=1000, verbose_name=gettext_lazy('Text'))
+    type = models.TextField(max_length=10, blank=True, null=True, verbose_name=gettext_lazy('Type'))
+    date = models.DateTimeField(verbose_name=gettext_lazy('Occurrence time'))
     trad = models.ForeignKey(Trad)
     author = models.ForeignKey(User)
+
+    def get_text(self):
+        text_messages = {
+            'done' : gettext_lazy('The task is done, send for check'),
+            'success': gettext_lazy('Done successfully'),
+            'closed':  gettext_lazy('Closed'),
+            'refused': gettext_lazy('Refused'),
+            'taken': gettext_lazy( 'Accepted'),
+            'new': gettext_lazy( 'Given again'),
+        }
+
+        self.text = text_messages[self.text]
+        return self.text
 
     def __unicode__(self):
         return self.text
 
+    class Meta:
+        verbose_name = gettext_lazy('Comment')
+        verbose_name_plural = gettext_lazy('Comments')
 
 
-
-class DelegatedNames(models.Model):
-    name = models.CharField(max_length=40, verbose_name='Имя')
-    email = models.EmailField(max_length=80)
-    
-    def send_invite(self):
-        send_mail('Subject here', 'Here is the message.', 'v.bazhin@gmail.com', ['v.bazhin@gmail.com'], fail_silently=False)
-        
 class InviteLink(models.Model):
-    link = models.CharField(max_length=100, verbose_name="Ссылка")
-    valid_status = models.CharField(max_length=10, verbose_name="Валидность")
-    delegated_time = models.DateTimeField(auto_now_add=True, verbose_name="Делегирована")
+    link = models.CharField(max_length=100, verbose_name=gettext_lazy('Link'))
+    valid_status = models.CharField(max_length=10, verbose_name=gettext_lazy('Is valid'))
+    delegated_time = models.DateTimeField(auto_now_add=True, verbose_name=gettext_lazy('Delegated at'))
 
     def generate(self):
         hash = md5.md5(str(random.getrandbits(128))).hexdigest() # Генерируем хеш
@@ -210,3 +237,7 @@ class InviteLink(models.Model):
 
     #def __unicode__(self):
         #return self.id
+
+    class Meta:
+        verbose_name = gettext_lazy('Invite link')
+        verbose_name_plural = gettext_lazy('Invite links')

@@ -28,4 +28,6 @@ urlpatterns = patterns('',
     url(r'^register/(\w{0,32})$',  register),
     url(r'^register_link/$',  generate_link),
     url(r'^admin', include(admin.site.urls)),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^grappelli/', include('grappelli.urls')),
 )

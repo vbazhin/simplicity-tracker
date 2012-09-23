@@ -1,3 +1,8 @@
+        {% load i18n %}
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_current_language_bidi as LANGUAGE_BIDI %}
+                
             <tr class="alert alert-{{trad.attrs.alert}} trad-info">
                 <td>
                     <a href="{{trad.pk}}"> <!-- Чтобы избежать наличия "div" в "a", можно <div  class='trad-base' onclick="redirect({{trad.pk}})">, в целом не так важно -->
@@ -11,7 +16,7 @@
                             <h3> {{trad.label}}
                                 <small>
                                     <span>
-                                        Автор: {{trad.author}}
+                                        {% trans 'Author' %}: {{trad.author}}
                                     </span>
                                 </small>
                             </h3>
@@ -25,11 +30,11 @@
                             {% endif %}
                              <div class="issue-info">
                                 <div class='task-properties condition' >
-                                    Состояние:
+                                    {% trans 'Condition: ' %}
                                     {{trad.condition}}
                                 </div>
                                 <div class='task-properties'>
-                                    Задано:
+                                    {% trans 'Given' %}
                                     {{trad.given|date:"m" }}/{{trad.given|date:"d" }}
                                     в {{trad.given|date:"H" }}:{{trad.given|date:"i" }}
                                 </div>
@@ -37,19 +42,19 @@
                                 {% if trad.is_expiration = 'Yes' %}
                                 <div class='task-properties left-time' >
                                     {% if trad.leftdays >= 0 %}
-                                        Осталось:
+                                        {% trans 'Left' %}:
                                         {% if trad.leftdays > 1 %}
-                                            {{trad.leftdays }} дн
+                                            {{trad.leftdays }} {% trans 'd' %}
                                         {% else %}
                                             {% if trad.lefthours > 1 %}
-                                                {{ trad.lefthours }} ч
+                                                {{ trad.lefthours }} {% trans 'h' %}
                                             {% else %}
-                                                {{ trad.leftminutes }} минут
+                                                {{ trad.leftminutes }} {% trans 'min' %}
                                             {% endif %}
                                         {% endif %}
                                     {% endif %}
                                     {% if trad.leftdays < 0 %}
-                                    Время вышло  {{trad.expiration|date:"m" }}/{{trad.expiration|date:"d" }}
+                                    {% trans 'Expires' %} {{trad.expiration|date:"m" }}/{{trad.expiration|date:"d" }}
                                     в {{trad.expiration|date:"H" }}:{{trad.expiration|date:"i" }}
                                     {% endif %}
                                 </div>

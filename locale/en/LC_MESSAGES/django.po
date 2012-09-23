@@ -1,0 +1,737 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-18 20:58+1100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: Templates/404.html:12 Templates/500.html:12 Templates/header.html:120
+#: Templates/registration/login.html:40
+#: Templates/registration/register.html:47 desk/models.py:187
+msgid "Issues"
+msgstr ""
+
+#: Templates/404.html:37 Templates/admin/404.html:4
+#: Templates/admin/404.html.py:8
+msgid "Page not found"
+msgstr ""
+
+#: Templates/500.html:39
+msgid "server error"
+msgstr ""
+
+#: Templates/header.html:124 Templates/admin/base.html:50
+msgid "Log out"
+msgstr ""
+
+#: Templates/header.html:130 Templates/header.html.py:134
+#: Templates/admin/change_form.html:22 Templates/admin/index.html:29
+msgid "Add"
+msgstr ""
+
+#: Templates/header.html:139
+msgid "Invite"
+msgstr ""
+
+#: Templates/header.html:149 Templates/index.html:87
+msgid "Close"
+msgstr ""
+
+#: Templates/header.html:161
+msgid "All"
+msgstr ""
+
+#: Templates/header.html:162
+msgid "Current"
+msgstr ""
+
+#: Templates/header.html:163
+msgid "New"
+msgstr ""
+
+#: Templates/header.html:164
+msgid "In progress"
+msgstr ""
+
+#: Templates/header.html:165
+msgid "To check"
+msgstr ""
+
+#: Templates/header.html:168
+msgid "Other"
+msgstr ""
+
+#: Templates/header.html:172
+msgid "Send for check"
+msgstr ""
+
+#: Templates/header.html:173
+msgid "Given by me"
+msgstr ""
+
+#: Templates/header.html:174 Templates/trad.html:75 desk/models.py:200
+msgid "Done successfully"
+msgstr ""
+
+#: Templates/header.html:175
+msgid "Failed"
+msgstr ""
+
+#: Templates/index.html:52
+msgid "Please correct the errors below:"
+msgstr ""
+
+#: Templates/index.html:59
+msgid "Header:"
+msgstr ""
+
+#: Templates/index.html:63
+msgid "Description:"
+msgstr ""
+
+#: Templates/index.html:68
+msgid "hold Ctrl while selecting"
+msgstr ""
+
+#: Templates/index.html:74
+msgid "Set an expiration"
+msgstr ""
+
+#: Templates/index.html:88
+msgid "Add issue"
+msgstr ""
+
+#: Templates/trad.html:50 Templates/trad.html.py:63
+msgid "Accept"
+msgstr ""
+
+#: Templates/trad.html:51 Templates/trad.html.py:64
+msgid "Refuse"
+msgstr ""
+
+#: Templates/trad.html:56 Templates/trad.html.py:69 Templates/trad.html:86
+msgid "Done"
+msgstr ""
+
+#: Templates/trad.html:57 Templates/trad.html.py:70
+msgid "Reject"
+msgstr ""
+
+#: Templates/trad.html:76
+msgid "Close issue"
+msgstr ""
+
+#: Templates/trad.html:81
+msgid "Set back"
+msgstr ""
+
+#: Templates/trad.html:87
+msgid "Need to be redone"
+msgstr ""
+
+#: Templates/trad.html:93
+msgid "Comments:"
+msgstr ""
+
+#: Templates/trad.html:119
+msgid "Add comment"
+msgstr ""
+
+#: Templates/trad_block.html:19 desk/models.py:90
+msgid "Author"
+msgstr ""
+
+#: Templates/trad_block.html:33
+msgid "Condition: "
+msgstr ""
+
+#: Templates/trad_block.html:37
+msgid "Given"
+msgstr ""
+
+#: Templates/trad_block.html:45
+msgid "Left"
+msgstr ""
+
+#: Templates/trad_block.html:47
+msgid "d"
+msgstr ""
+
+#: Templates/trad_block.html:50
+msgid "h"
+msgstr ""
+
+#: Templates/trad_block.html:52
+msgid "min"
+msgstr ""
+
+#: Templates/trad_block.html:57
+msgid "Expires"
+msgstr ""
+
+#: Templates/admin/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: Templates/admin/500.html:4 Templates/admin/app_index.html:8
+#: Templates/admin/base.html:57 Templates/admin/change_form.html:19
+#: Templates/admin/change_list.html:42
+#: Templates/admin/delete_confirmation.html:6
+#: Templates/admin/delete_selected_confirmation.html:6
+#: Templates/admin/invalid_setup.html:4 Templates/admin/object_history.html:6
+#: Templates/admin/auth/user/change_password.html:12
+#: Templates/auth/user/change_password.html:15
+msgid "Home"
+msgstr ""
+
+#: Templates/admin/500.html:4
+msgid "Server error"
+msgstr ""
+
+#: Templates/admin/500.html:6
+msgid "Server error (500)"
+msgstr ""
+
+#: Templates/admin/500.html:9
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: Templates/admin/500.html:10
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: Templates/admin/actions.html:4
+msgid "Run the selected action"
+msgstr ""
+
+#: Templates/admin/actions.html:4
+msgid "Go"
+msgstr ""
+
+#: Templates/admin/actions.html:11
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: Templates/admin/actions.html:11
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: Templates/admin/actions.html:13
+msgid "Clear selection"
+msgstr ""
+
+#: Templates/admin/app_index.html:10 Templates/admin/index.html:19
+#, python-format
+msgid "%(name)s"
+msgstr ""
+
+#: Templates/admin/base.html:30
+msgid "Welcome,"
+msgstr ""
+
+#: Templates/admin/base.html:35
+msgid "Documentation"
+msgstr ""
+
+#: Templates/admin/base.html:43
+#: Templates/admin/auth/user/change_password.html:16
+#: Templates/admin/auth/user/change_password.html:49
+#: Templates/auth/user/change_password.html:19
+#: Templates/auth/user/change_password.html:53
+msgid "Change password"
+msgstr ""
+
+#: Templates/admin/base_site.html:4
+msgid "Вход"
+msgstr ""
+
+#: Templates/admin/base_site.html:7
+msgid "Задания"
+msgstr ""
+
+#: Templates/admin/change_form.html:31 Templates/admin/object_history.html:10
+msgid "History"
+msgstr ""
+
+#: Templates/admin/change_form.html:32
+#: Templates/admin/edit_inline/stacked.html:9
+#: Templates/admin/edit_inline/tabular.html:28
+msgid "View on site"
+msgstr ""
+
+#: Templates/admin/change_form.html:43 Templates/admin/change_list.html:73
+#: Templates/admin/login.html:17
+#: Templates/admin/auth/user/change_password.html:25
+#: Templates/auth/user/change_password.html:29
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Templates/admin/change_list.html:64
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: Templates/admin/change_list.html:84
+msgid "Filter"
+msgstr ""
+
+#: Templates/admin/delete_confirmation.html:10
+#: Templates/admin/submit_line.html:4
+msgid "Delete"
+msgstr ""
+
+#: Templates/admin/delete_confirmation.html:17
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: Templates/admin/delete_confirmation.html:25
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: Templates/admin/delete_confirmation.html:33
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: Templates/admin/delete_confirmation.html:38
+#: Templates/admin/delete_selected_confirmation.html:43
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: Templates/admin/delete_selected_confirmation.html:9
+msgid "Delete multiple objects"
+msgstr ""
+
+#: Templates/admin/delete_selected_confirmation.html:16
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: Templates/admin/delete_selected_confirmation.html:24
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: Templates/admin/delete_selected_confirmation.html:32
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: Templates/admin/filter.html:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: Templates/admin/index.html:18
+#, python-format
+msgid "Models available in the %(name)s application."
+msgstr ""
+
+#: Templates/admin/index.html:35
+msgid "Change"
+msgstr ""
+
+#: Templates/admin/index.html:45
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: Templates/admin/index.html:53
+msgid "Recent Actions"
+msgstr ""
+
+#: Templates/admin/index.html:54
+msgid "My Actions"
+msgstr ""
+
+#: Templates/admin/index.html:58
+msgid "None available"
+msgstr ""
+
+#: Templates/admin/index.html:72
+msgid "Unknown content"
+msgstr ""
+
+#: Templates/admin/invalid_setup.html:7
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: Templates/admin/login.html:33
+msgid "Username:"
+msgstr ""
+
+#: Templates/admin/login.html:37
+msgid "Password:"
+msgstr ""
+
+#: Templates/admin/login.html:42
+msgid "Log in"
+msgstr ""
+
+#: Templates/admin/object_history.html:22
+msgid "Date/time"
+msgstr ""
+
+#: Templates/admin/object_history.html:23
+msgid "User"
+msgstr ""
+
+#: Templates/admin/object_history.html:24
+msgid "Action"
+msgstr ""
+
+#: Templates/admin/object_history.html:38
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: Templates/admin/pagination.html:10
+msgid "Show all"
+msgstr ""
+
+#: Templates/admin/pagination.html:11 Templates/admin/submit_line.html:3
+msgid "Save"
+msgstr ""
+
+#: Templates/admin/search_form.html:8
+msgid "Search"
+msgstr ""
+
+#: Templates/admin/search_form.html:10
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Templates/admin/search_form.html:10
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: Templates/admin/submit_line.html:5
+msgid "Save as new"
+msgstr ""
+
+#: Templates/admin/submit_line.html:6
+msgid "Save and add another"
+msgstr ""
+
+#: Templates/admin/submit_line.html:7
+msgid "Save and continue editing"
+msgstr ""
+
+#: Templates/admin/auth/user/add_form.html:6
+#: Templates/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: Templates/admin/auth/user/add_form.html:8
+#: Templates/auth/user/add_form.html:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: Templates/admin/auth/user/change_password.html:29
+#: Templates/auth/user/change_password.html:33
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: Templates/admin/auth/user/change_password.html:36
+#: Templates/auth/user/change_password.html:40
+#: Templates/registration/login.html:49
+#: Templates/registration/register.html:56
+msgid "Password"
+msgstr ""
+
+#: Templates/admin/auth/user/change_password.html:42
+#: Templates/auth/user/change_password.html:46
+msgid "Password (again)"
+msgstr ""
+
+#: Templates/admin/auth/user/change_password.html:43
+#: Templates/auth/user/change_password.html:47
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: Templates/admin/edit_inline/stacked.html:67
+#: Templates/admin/edit_inline/tabular.html:113
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: Templates/admin/edit_inline/stacked.html:70
+#: Templates/admin/edit_inline/tabular.html:116
+msgid "Remove"
+msgstr ""
+
+#: Templates/admin/edit_inline/tabular.html:15
+msgid "Delete?"
+msgstr ""
+
+#: Templates/registration/login.html:8
+msgid "Issues \\ Sign in"
+msgstr ""
+
+#: Templates/registration/login.html:34
+#: Templates/registration/register.html:41
+msgid "Please correct the errors below."
+msgstr ""
+
+#: Templates/registration/login.html:46
+msgid "Name:"
+msgstr ""
+
+#: Templates/registration/login.html:54
+msgid "Sign in"
+msgstr ""
+
+#: Templates/registration/register.html:12
+msgid "Issues \\ Registration"
+msgstr ""
+
+#: Templates/registration/register.html:53
+msgid "Name"
+msgstr ""
+
+#: Templates/registration/register.html:57
+msgid "Password again"
+msgstr ""
+
+#: Templates/registration/register.html:60
+msgid "Register"
+msgstr ""
+
+#: desk/models.py:31
+msgid "Project name"
+msgstr ""
+
+#: desk/models.py:38 desk/models.py:80
+msgid "Project"
+msgstr ""
+
+#: desk/models.py:39
+msgid "Projects"
+msgstr ""
+
+#: desk/models.py:68 desk/models.py:152 desk/models.py:162
+msgctxt "issue condition"
+msgid "New"
+msgstr ""
+
+#: desk/models.py:69 desk/models.py:160
+msgctxt "issue condition"
+msgid "In progress"
+msgstr ""
+
+#: desk/models.py:70 desk/models.py:141
+msgctxt "issue condition"
+msgid "Rejected"
+msgstr ""
+
+#: desk/models.py:71 desk/models.py:139
+msgctxt "issue condition"
+msgid "Closed"
+msgstr ""
+
+#: desk/models.py:72
+msgctxt "issue condition"
+msgid "Done"
+msgstr ""
+
+#: desk/models.py:73 desk/models.py:137
+msgctxt "issue condition"
+msgid "Success"
+msgstr ""
+
+#: desk/models.py:77
+msgctxt "Type of issue"
+msgid "Task"
+msgstr ""
+
+#: desk/models.py:78
+msgctxt "Type of issue"
+msgid "Notification"
+msgstr ""
+
+#: desk/models.py:81
+msgid "Label"
+msgstr ""
+
+#: desk/models.py:82
+msgid "Description"
+msgstr ""
+
+#: desk/models.py:83 desk/models.py:193
+msgid "Occurrence time"
+msgstr ""
+
+#: desk/models.py:84
+msgid "Expiration"
+msgstr ""
+
+#: desk/models.py:85
+msgid "Expiration date"
+msgstr ""
+
+#: desk/models.py:86
+msgid "Change date"
+msgstr ""
+
+#: desk/models.py:88
+msgid "Current status"
+msgstr ""
+
+#: desk/models.py:89
+msgid "Receiver"
+msgstr ""
+
+#: desk/models.py:91 desk/models.py:192
+msgid "Type"
+msgstr ""
+
+#: desk/models.py:117
+msgid "Can`t delete"
+msgstr ""
+
+#: desk/models.py:121
+msgid "Issue saving error"
+msgstr ""
+
+#: desk/models.py:130
+msgid "Comment saving error"
+msgstr ""
+
+#: desk/models.py:135
+msgctxt "issue condition"
+msgid "On check"
+msgstr ""
+
+#: desk/models.py:154
+msgctxt "issue condition"
+msgid "Failed"
+msgstr ""
+
+#: desk/models.py:186
+msgid "Issue"
+msgstr ""
+
+#: desk/models.py:191
+msgid "Text"
+msgstr ""
+
+#: desk/models.py:199
+msgid "The task is done, send for check"
+msgstr ""
+
+#: desk/models.py:201
+msgid "Closed"
+msgstr ""
+
+#: desk/models.py:202
+msgid "Refused"
+msgstr ""
+
+#: desk/models.py:203
+msgid "Accepted"
+msgstr ""
+
+#: desk/models.py:204
+msgid "Given again"
+msgstr ""
+
+#: desk/models.py:214
+msgid "Comment"
+msgstr ""
+
+#: desk/models.py:215
+msgid "Comments"
+msgstr ""
+
+#: desk/models.py:219
+msgid "Link"
+msgstr ""
+
+#: desk/models.py:220
+msgid "Is valid"
+msgstr ""
+
+#: desk/models.py:221
+msgid "Delegated at"
+msgstr ""
+
+#: desk/models.py:234
+msgid "Invite link"
+msgstr ""
+
+#: desk/models.py:235
+msgid "Invite links"
+msgstr ""
+
+#: desk/views.py:216
+msgid "Invite "
+msgstr ""
+
+#: desk/views.py:216
+msgid "Registration link (can be used only once):"
+msgstr ""
+
+#: desk/views.py:219
+msgid "Error occured"
+msgstr ""
+
+#: desk/views.py:221
+msgid "You are not administrator"
+msgstr ""
+
+#: tracker/settings.py:47
+msgid "Russian"
+msgstr ""
+
+#: tracker/settings.py:48
+msgid "English"
+msgstr ""
+
+#~ msgid "Ответ"
+#~ msgstr "Answer"
+
+#~ msgid "Задания v0.4"
+#~ msgstr "Issues 0.4"

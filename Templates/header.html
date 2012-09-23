@@ -16,6 +16,11 @@
         {% load markup %}
         {% load markitup_tags %}
         {% markitup_media "no-jquery" %}
+        {% load i18n %}.
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_current_language_bidi as LANGUAGE_BIDI %}
+
         <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
         <script>
             function hideModal() {
@@ -106,34 +111,42 @@
         </div>
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
+
+                {% csrf_token %}
+
                 <div class="container">
                     <div>
                         <a class="brand" href="/">
-                            Задания v0.4
+                            {% trans "Issues" %} v0.45
                         </a>
+                        {% include 'select-language.html' %}
                         <div class="user-logout" >
-                            {{ user.username }} <a href='logout/'> Выйти </a>
+                            {{ user.username }} <a href='logout/'> {% trans 'Log out' %} </a>
                         </div>
+
+
                         {% if page_type == 'index' %}
                         <div class="add-user">
-                            <a href="#" class="btn" onclick="showModal()"> <i class="icon-plus"> </i> Добавить  </a>
+                            <a href="#" class="btn" onclick="showModal()"> <i class="icon-plus"> </i> {% trans 'Add' %}  </a>
                         </div>
                         {% else %}
                         <div class="add-user" >
-                                <a href="/add_task" name="add_task" class="btn"> <i class="icon-plus"> </i> Добавить </a>
+                                <a href="/add_task" name="add_task" class="btn"> <i class="icon-plus"> </i> {% trans 'Add' %} </a>
                         </div>
                         {% endif %}
                         {% if user.username == 'admin' %}
                         <div class="invite-user" >
-                            <a href="#" class="btn" onclick="generate_reg_link()" > Приглашение </a>
+                            <a href="#" class="btn" onclick="generate_reg_link()" > {% trans 'Invite' %} </a>
                         </div>
+
+
                         <div>
                             <div id="link-modal" class="modal" style="display:none;">
                                 <a class="close" data-dismiss="modal" onclick="hideLink()" style="margin:8px 10px;" >×</a>
                                 <div class="modal-body">
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="#" class="btn" onclick="hideLink()">Закрыть</a>
+                                    <a href="#" class="btn" onclick="hideLink()"> {% trans 'Close' %} </a>
                                 </div>
                             </div>
                         </div>
@@ -145,21 +158,21 @@
                         </button>
                         <div class="nav-collapse issue-navigation">
                             <ul class="nav">
-                                <li><a href="/">Все</a></li>
-                                <li><a href="/current">Текущие</a></li>
-                                <li><a href="/new">Новые <span class="badge badge-warning">{{ new_num }}</span></a></li>
-                                <li><a href="/taken">В работе <span class="badge badge-info">{{ taken_num }}</span> </a></li>
-                                <li><a href="/check">На проверку <span class="badge badge-success">{{ check_num }}</span></a></li>
+                                <li><a href="/">{% trans 'All' %}</a></li>
+                                <li><a href="/current">{% trans 'Current' %}</a></li>
+                                <li><a href="/new"> {% trans 'New' %} <span class="badge badge-warning">{{ new_num }}</span></a></li>
+                                <li><a href="/taken"> {% trans 'In progress' %} <span class="badge badge-info">{{ taken_num }}</span> </a></li>
+                                <li><a href="/check"> {% trans 'To check' %} <span class="badge badge-success">{{ check_num }}</span></a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        Остальные
+                                        {% trans 'Other' %}
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/done">Отправленные на проверку <span class="badge badge-success">{{ oncheck_num }}</span></a></li>
-                                        <li><a href="/givenbyme">Заданные мной </a></li>
-                                        <li><a href="/success">Выполненные успешно</a></li>
-                                        <li><a href="/failed">Невыполенные</a></li>
+                                        <li><a href="/done"> {% trans 'Send for check' %} <span class="badge badge-success">{{ oncheck_num }}</span></a></li>
+                                        <li><a href="/givenbyme"> {% trans 'Given by me' %} </a></li>
+                                        <li><a href="/success"> {% trans 'Done successfully' %} </a></li>
+                                        <li><a href="/failed"> {% trans 'Failed' %} </a></li>
                                     </ul>
                                 </li>
                             </ul>

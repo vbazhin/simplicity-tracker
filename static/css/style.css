@@ -1,0 +1,274 @@
+
+.task-properties { 
+	position: relative; 
+	float:left; 
+	width: 24%; 
+	text-align: left; 
+	padding-left: 24px; 
+	color: #898383; 
+	font-weight: normal;
+}
+
+.issue-info {
+    position:relative;
+    float: right;
+    width:100%;
+}
+.issue-info .condition { width: 24%; }
+.issue-info .left-time { width:24%; }
+.issue-info .comments { width:40px; float:right; }
+
+
+.markItUp { width:600px;}
+
+#time-icon { margin-top: -9px; margin-left:-20px; }
+
+.trad-info a { color:#000; }
+
+.table td { padding: 4px; }
+
+.table td div { position:relative; }
+
+.block-icon {
+    float: left;
+    height:100%;
+    margin:20px 5px 0  5px;
+}
+
+.bar-block {
+    position: relative; height:100%; left:-25px;
+}
+
+.progress { height: 12px; }
+
+h3 { line-height: 21px; }
+
+.trad-text {  }
+.trad-text p { font-size: 14px; }
+.description-cell { paddin:16px; }
+
+.alert-new { background: #FFF6CB; }
+
+.stripe-bar {
+    border-radius: 5px;
+    background-color: #468847;
+    position: relative;
+    float:left;
+    opacity: 0.3;
+    height:56px;
+    width:5px;
+    margin-left:4px;
+    margin-bottom:-23px;
+    margin-top:0;
+}
+
+.left-time-bar {
+    opacity: 0.3;
+    position: relative;
+    height: 60px;
+    background-size: 64px 64px;
+    border-radius: 0 5px 5px 0;
+    background-color: #468847;
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    margin: -25px 0 -64px -2px;
+    left:25px;
+    min-width: 48px;
+    max-width: 98.5%;
+}
+
+.arrow-right {
+
+
+}
+.arrow-right {
+    border-bottom: 27px solid transparent;
+    border-left: 20px solid #468847;
+    border-top: 27px solid transparent;
+    float: right;
+    height: 0;
+    left: 20px;
+    margin-bottom: -29px;
+    margin-top: 1px;
+    opacity: 0.86;
+    position: relative;
+    width: 0;
+}
+
+small span {
+    position:absolute;
+    top:0;
+    right:5px;
+}
+
+.user-logout {
+    float:right;
+    margin:10px;
+}
+
+.icon-plus { margin-top: 2px; }
+
+.add-user {
+    float:left;
+    margin-top:3px;
+    margin-left:20px;
+}
+
+.invite-user {
+    float:right;
+    margin:3px 5px 0 10px;
+}
+
+.add-user a { font-size: 15px; }
+
+.issue-navigation {
+    position: relative;
+    float: right;
+}
+
+@-moz-document url-prefix() {
+    .left-time-bar {
+         margin: -25px 0 -64px -2px;
+    }
+   .arrow-right {
+    border-bottom: 27px solid transparent;
+    border-left: 20px solid #468847;
+    border-top: 27px solid transparent;
+    float: right;
+    height: 0;
+    left: 20px;
+    margin-bottom: -29px;
+    margin-top: 1px;
+    opacity: 0.86;
+    position: relative;
+    width: 0;
+    }
+}
+
+form { margin:0; }
+
+.comment-form { margin-bottom: 7px; }
+
+.comment-form span { position: relative; float: left; }
+
+.comment-form .comment-info { position: relative; float: right; margin-top:-10px; }
+
+.change-status { margin:-10px 0 10px 0; }
+
+.trad-data { margin-bottom:34px; }
+
+
+.trad .receivers {
+    position: relative;
+    float:right;
+}
+
+.edit-trad {
+    position: relative;
+    float: right;
+    margin: -35px 3px 0 0;
+}
+
+.icon-comment { margin-top:2px; }
+
+
+#add-task { background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.4); margin-bottom:0; display: none;  }
+
+#add-task { min-width: 500px; }
+
+#add-task .well { background: #fff; border-width: 0; margin-bottom: 0; padding-bottom: 0; }
+
+#add-task form { border-width: 0; }
+
+#add-task form .well { box-shadow: 0 0 0; }
+
+#add-task .row { margin-top:55px; }
+
+.alert-none { background:#eee; }
+
+.task-name-descr {
+    position: relative;
+    float: left;
+    margin-right:10px;
+}
+
+.task-common {
+    font-size:10px;
+    color: #777;
+}
+
+#expiration-date {
+    position:relative;
+    float: left;
+    margin-right: 10px;
+
+}
+
+#expiration-time {
+    width: 75px;
+}
+
+.icon-time {
+    margin: -2px 0 0 -30px;
+    pointer-events: none;
+    position: relative;
+}
+
+.challenge-task {
+    position: relative;
+    float: right;
+    margin: -50px 52px 20px 0;
+}
+
+.issue-receivers {
+    width:300px;
+    position:relative;
+    float: left;
+    margin-top: -2px;
+}
+
+.form-datetime { width: 400px; }
+
+.form-header { }
+
+.logo-box {
+    position: fixed;
+    width:400px;
+    height:600px;
+    top:160px;
+    left: 20px;
+    z-index:-1;
+}
+
+.bootstrap-timepicker { width: 160px; }
+
+.trad-base { color:#333; cursor:pointer; }
+
+.select-language { 
+    position: relative;
+    float: left;
+}
+
+.select-language-menu {
+    min-width:36px;
+    margin-left:-5px;
+
+}
+
+.open {}
+
+.select-language-item {
+    background: transparent;
+    border: 0;
+    font-size: 20px;
+    padding:5px;
+}
+
+.brand .caret {
+    border-top: 4px solid #fff;
+    margin:10px 0 0 0;
+}

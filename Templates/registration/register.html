@@ -3,12 +3,18 @@
 
     {% load static %}
     {% get_static_prefix as STATIC_URL %}
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_current_language_bidi as LANGUAGE_BIDI %
 
-    <title> Задания \ Регистрация </title>
+
+    <title> {% trans 'Issues \ Registration' %} </title>
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-1.8.18.custom.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ STATIC_URL }}jq/jquery-1.7.2.min.js"> </script>
     <script src="{{ STATIC_URL }}jq/jquery-ui-1.8.18.custom.min.js"> </script>
@@ -32,25 +38,25 @@
     {% if form.errors %}
     <div class="alert alert-message">
         <p style="color: red;">
-            Пожалуйста, правильно заполните все необходимые поля:  {{ form.errors }}
+            {% trans 'Please correct the errors below.' %}  {{ form.errors }}
         </p>
     </div>
     {% endif %}
     <div class="hero-unit" style="position: relative; min-height:160px;">
         <div style="min-height:100px; margin-right:160px; margin-top:36px; position: relative; float:left; width:15%;">
-            <h1> Задания {{ hash }} </h1>
+            <h1> {% trans 'Issues' %} </h1>
         </div>
 
 
   <form action="{{hash}}" method="post">
     <div class="inp" style="margin-top:12px;" >
-        <label for="id_username"> <h2> Логин: </h2> </label> {{ form.username }}
+        <label for="id_username"> <h2> {% trans 'Name' %}  </h2> </label> {{ form.username }}
     </div>
     <div class="inp">
-        <label for="id_password1">Пароль:</label> {{ form.password1 }}
-        <label for="id_password2">Пароль (снова):</label> {{ form.password2 }}
+        <label for="id_password1"> {% trans 'Password' %} </label> {{ form.password1 }}
+        <label for="id_password2"> {% trans 'Password again' %} </label> {{ form.password2 }}
     </div>
     <div class="inp">
-        <input type="submit" class="btn" value="Зарегистрироваться"  style="font-size: 20px; height: 90px; margin-top: 23px; " />
+        <input type="submit" class="btn" value="{% trans 'Register' %} style="font-size: 20px; height: 90px; margin-top: 23px; " />
     </div>
   </form>

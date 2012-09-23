@@ -1,21 +1,25 @@
 <html>
 <head>
-    <title> Задания \ Вход </title>
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_current_language_bidi as LANGUAGE_BIDI %}
 
-
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
+    <title> {% trans 'Issues \ Sign in' %} </title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-1.8.18.custom.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ STATIC_URL }}jq/jquery-1.7.2.min.js"> </script>
     <script src="{{ STATIC_URL }}jq/jquery-ui-1.8.18.custom.min.js"> </script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"> </script>
 
+
     <style>
         input { height: 30px; }
         label { font-size:20px }
-        .log-in-block { position:relative; float: left; width: 80%%; }
+        .log-in-block { position:relative; float: left; width: 80%; }
         .log-in-block div { margin-right: 50px; }
         .hero-unit { padding: 60px 60px 50px 60px; }
     </style>
@@ -27,31 +31,30 @@
         {% if form.errors %}
         <div class="alert alert-message">
             <p style="color: red;">
-                Пожалуйста, правильно заполните все необходимые поля:  {{ form.errors }}
+                {% trans 'Please correct the errors below.' %} {{ form.errors }}
             </p>
         </div>
         {% endif %}
         <div class="hero-unit" style="position: relative; min-height:160px;">
             <div style="min-height:100px; margin-right:160px; margin-top:36px; position: relative; float:left; width:15%;">
-                <h1> Задания </h1>
+                <h1> {% trans 'Issues' %} </h1>
+                    {% include 'select-language.html' %}
             </div>
-
             <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
                 <div id="content-main"  style="position: relative; float: left;  width: 20%; min-width:200px; margin-right:160px;">
                     <div class="form-row">
-                        <label for="id_username" class="required">Имя:</label> {{ form.username }}
+                        <label for="id_username" class="required"> {% trans 'Name:' %} </label> {{ form.username }}
                     </div>
                     <div class="form-row">
-                        <label for="id_password" class="required">Пароль:</label> {{ form.password }}
+                        <label for="id_password" class="required"> {% trans 'Password' %} </label> {{ form.password }}
                     </div>
                 </div>
                 <div style="position: relative; float: left; width: 30%;">
                     <div class="submit-row" style="potition:relative; float: left; width: 20%; min-width:200px; margin-right:140px;">
-                        <label>&nbsp;</label><input type="submit" class="btn" value="Войти" style="font-size: 70px; height: 90px;" />
+                        <label>&nbsp;</label><input type="submit" class="btn" value="{% trans 'Sign in' %}" style="font-size: 60px; height: 90px;" />
                     </div>
                 </div>
             </form>
-
             <script type="text/javascript">
             document.getElementById('id_username').focus()
             </script>

@@ -3,6 +3,11 @@
     {% include 'header.html' %}
     {% load markup %}
     {% load markitup_tags %}
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_current_language_bidi as LANGUAGE_BIDI %}
+    
     {{ usinfo }}
 
     <style>
@@ -42,56 +47,60 @@
                 <div class="change-status">
                 {% if user_status == 'receiver' and trad.status == 'new' %}
                     <form action="" method="post">
-                        <input type="submit" class="btn btn-large btn-primary" name="take" value="Принять">
-                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="Отказаться">
+                        <input type="submit" class="btn btn-large btn-primary" name="take" value="{% trans 'Accept' %}">
+                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="{% trans 'Refuse' %}">
                     </form>
                     {% endif %}
                     {% if user_status == 'receiver' and trad.status == 'taken' %}
                     <form action="" method="post">
-                        <input type="submit" class="btn btn-large btn-success" name="done" value="Выполнено">
-                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="Отказаться">
+                        <input type="submit" class="btn btn-large btn-success" name="done" value="{% trans 'Done' %}">
+                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="{% trans 'Reject' %}">
                     </form>
                     {% endif %}
 
                     {% if user_status == 'group_task_receiver' and trad.status == 'new' %}
                     <form action="" method="post">
-                        <input type="submit" class="btn btn-large btn-primary" name="take" value="Принять">
-                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="Отказаться">
+                        <input type="submit" class="btn btn-large btn-primary" name="take" value="{% trans 'Accept' %}">
+                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="{% trans 'Refuse' %}">
                     </form>
                     {% endif %}
                     {% if user_status == 'group_task_receiver' and trad.status == 'taken' %}
                     <form action="" method="post">
-                        <input type="submit" class="btn btn-large btn-success" name="done" value="Выполнено">
-                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="Отказаться">
+                        <input type="submit" class="btn btn-large btn-success" name="done" value="{% trans 'Done' %} ">
+                        <input type="submit" class="btn btn-large btn-danger" name="refuse" value="{% trans 'Reject' %}">
                     </form>
                     {% endif %}
                     {% if user_status == 'author' and trad.status == 'taken' or user_status == 'author' and trad.status == 'new' %}
                     <form action="" method="post">
-                        <input type="submit" name="success" class="btn btn-large btn-success" value="Выполнено успешно">
-                        <input type="submit" class="btn btn-large" name="close" value="Закрыть задание">
+                        <input type="submit" name="success" class="btn btn-large btn-success" value="{% trans 'Done successfully' %}">
+                        <input type="submit" class="btn btn-large" name="close" value="{% trans 'Close issue' %}">
                     </form>
                     {% endif %}
                     {% if user_status == 'author' and trad.status == 'refused' %}
                     <form action="" method="post">
-                        <input type="submit" class="btn btn-large btn-primary" name="setback" value="Дать заново">
+                        <input type="submit" class="btn btn-large btn-primary" name="setback" value="{% trans 'Set back' %}">
                     </form>
                     {% endif %}
                     {% if user_status == 'author' and trad.status == 'done' %}
                     <form action="" method="post">
-                        <input type="submit" name="success" class="btn btn-large btn-success" value="Успешно">
-                        <input type="submit" name="setback" class="btn btn-large" value="Нужно переделать">
+                        <input type="submit" name="success" class="btn btn-large btn-success" value="{% trans 'Done' %}">
+                        <input type="submit" name="setback" class="btn btn-large" value="{% trans 'Need to be redone' %}">
                     </form>
                 </div>
                 {% endif %}
             </div>
             {% if comments %}
-            <h2> Комментарии: </h2>
+            <h2> {% trans 'Comments:' %} </h2>
             {% endif %}
 
             {% for comment in comments %}
             <div class="well comment-form">
                 <span>
+                {% if comment.type == 'status_cmt' %}
+                <h3> {{ comment.text }} </h3>
+                {% else %}
                 {{comment.text|markdown}}
+                {% endif %}
                 </span>
                 <span class="comment-info">
                     <div>
@@ -107,7 +116,7 @@
             <form action="" method="post">
                 <br>
                 {{ form.text }}
-                <button type="submit" class="btn btn-large" name="comment"> <i class="icon-comment"></i> Добавить комментарий </button>
+                <button type="submit" class="btn btn-large" name="comment"> <i class="icon-comment"></i> {% trans 'Add comment' %} </button>
             </form>
         </div>
     </div>
