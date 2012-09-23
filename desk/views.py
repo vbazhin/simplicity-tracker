@@ -62,6 +62,8 @@ def index(request, fltr = 'all', add_task = None): # Фильтруем по с�
         trads = Trad.objects.filter(author = request.user)
     elif fltr == 'error':
         trads = Trad.objects.filter(receiver = request.user, status = 'error') | Trad.objects.filter(receiver = None, status = 'error') | Trad.objects.filter(author = request.user, status = 'error')
+    elif fltr == 'new':
+        trads = Trad.objects.filter(receiver = request.user, status = 'new').exclude(author=request.user)
     else:
         trads = Trad.objects.filter(receiver = request.user, status = fltr) | Trad.objects.filter(receiver = None, status = fltr)
     for trad in trads:

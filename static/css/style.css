@@ -29,6 +29,16 @@
 
 .table td div { position:relative; }
 
+.table-trads {
+    background: #fff;
+    border: 0 #fff ;
+    padding: 5px 3px 3px 3px;
+    box-shadow: 0 0 7px #aaa; }
+
+.table-trads td {
+   border:  2px solid #fff;
+}
+
 .block-icon {
     float: left;
     height:100%;
