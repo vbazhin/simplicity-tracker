@@ -30,8 +30,9 @@ def count_issues(request): # Считаем задания с разными с�
     return iss_num('new'), iss_num('taken'), for_check, iss_num('done')
 
 def get_tomorrow():
-    today = datetime.date.today()
-    tomorrow = datetime.date(today.year, today.month, today.day + 1).isoformat()
+    today_dt = datetime.date.today()
+    tomorrow_dt = today_dt + datetime.timedelta(days=1)
+    tomorrow= tomorrow_dt.isoformat()
     return tomorrow
 # Далее идут вьюшки
 
