@@ -87,7 +87,7 @@ def index(request, fltr = 'all', add_task = None): # Фильтруем по с�
                 exp = datetime.datetime.combine(expdate, exptime) # Соединяем дату и время
             #if exptime == None:
                 #is_exp = 'No'
-            new_trad = Trad(label = escape(cd['label']), text = escape(cd['text']), given=datetime.datetime.now(), is_expiration = exp_value, expiration=exp, status='new', author = request.user) # Поменять date - now(), expiration - забивается
+            new_trad = Trad(label = cd['label'], text = escape(cd['text']), given=datetime.datetime.now(), is_expiration = exp_value, expiration=exp, status='new', author = request.user) # Поменять date - now(), expiration - забивается
             new_trad.save()
             receivers = cd['receiver']
             #if not receivers:
