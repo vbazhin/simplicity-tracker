@@ -16,6 +16,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import gettext as _
+
 
 
 # Вспомогательные функции (не возвращают HttpResponse, но участвуют в сборке view)
@@ -206,7 +208,6 @@ def register(request, hashlink=None):
     except:
         raise Http404
 
-from django.utils.translation import gettext as _
 
 def generate_link(request):
     if request.is_ajax():
