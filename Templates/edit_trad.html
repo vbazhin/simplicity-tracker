@@ -1,8 +1,7 @@
-    {% load markup %}
-    {% load static %}
-    {% get_static_prefix as STATIC_URL %}
-    {% include 'header.html' %}
-
+{% extends 'base.html' %}
+{% load i18n %}
+{% load markup %}
+{% block content %}
 <style>
 
     form { margin:0; }
@@ -14,186 +13,127 @@
     .comment-form .comment-info { position: relative; float: right; margin-top:-10px; }
 
 </style>
-<div class="container">
-        <div class="row span10 offset1" style="margin-top:55px;">
-            {% if form.errors %}
-             <div class="alert alert-message">
-            <p style="color: red;">
-                Пожалуйста, правильно заполните все необходимые поля:  {{ form.errors }}
-            </p>
-             </div>
-            {% endif %}
-            <div id="edit-task">
-                <div class="modal-header">
-                    <h3>Редактирование задания </h3>
-                    <br>
-                    <div style="position: relative; float:right; margin-top:-12px;" >
-                        {% if receivers %}
-                        Направлено:
-                        {% for receiver in receivers %}
-                        {{ receiver }},
-                        {% endfor %}
-                        {% else %}
-                        Общее задание
-                        {% endif %}
-                    </div>
-                </div>
-                <form action="" method="post" style="" >
-                    <div class="well">
-                        <div style="position: relative; float: left; margin-right:10px;">
-                            <div>
-                                Название: <br>
-                                {{ form.label }}
-                            </div>
-                            <div>
-                                Описание: <br>
-                                {{ form.text }}
-                            </div>
-                        </div>
-                        <div>
-                            Кому <span style="font-size:10px; color: #777;" >(удерживайте Ctrl при нажатии) </span>: 
-                            Общее
-                            <input type="checkbox" id="receivers_all" name="receivers_all" onchange="disableReceivers()">
-                            {{ form.receiver }}
-                        </div>
-                        <div>
-                            Установить срок выполнения:
-                            {% if expiration_date %}
-                            <input type="checkbox" id="no-datetime" name="no_date" checked onchange="disableExpiration()">
-                            <br>
-                            <input data-datepicker="datepicker" id="expiration-date" name="expdate" style="position:relative; float: left; margin-right: 10px;" class="small" type="text" value="{{ expiration_date }}" />
-                            <div class="input-append bootstrap-timepicker-component">
-                                <div>
-                                    <script>
-                                        $(document).ready(function () {
-                                            $('.timepick').timepicker(        {
-                                                minuteStep: 15,
-                                                showInputs: false,
-                                                modalBackdrop: true,
-                                                defaultTime: '{{ expiration_time }}',
-                                                showMeridian: false});
-                                        })
-                                    </script>
-                                    <input class="timepick" id="expiration-time" name="exptime" type="text" style="width: 75px;" value="{{ expiration_time }}" />
-                                    <i class="icon-time" style="margin: -2px 0 0 -30px; pointer-events: none; position: relative;"></i>                                  
-                                </div>
-                            </div>
-                            {% else %}
-                            <input type="checkbox" id="no-datetime" name="no_date"  onchange="disableExpiration()">
-                            <br>
-                            <input data-datepicker="datepicker" id="expiration-date" name="expdate" style="position:relative; float: left; margin-right: 10px;" class="small" type="text" value="{{ tomorrow }}" disabled="disabled" />
-                            <div class="input-append bootstrap-timepicker-component">
-                                <div>
-                                    <script>
-                                        $(document).ready(function () {
-                                            $('.timepick').timepicker(        {
-                                                minuteStep: 15,
-                                                showInputs: false,
-                                                modalBackdrop: true,
-                                                showMeridian: false});
-                                        })
-                                    </script>
-                                    <input class="timepick" id="expiration-time" name="exptime" type="text" style="width: 75px;" disabled="disabled" />
-                                    <i class="icon-time" style="margin: -2px 0 0 -30px; pointer-events: none; position: relative;"></i>
-                                </div>
-                            </div>
-                            {% endif %}
-                        </div>
-                        <div style="position: relative; float: right; margin: -50px 20px;" >
-                            <a href="/{{ trad_id }}" class="btn btn-large" data-dismiss="modal">Отмена</a>
-                            <input class="btn btn-primary btn-large"  type="submit" value="Сохранить">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <table class="table table-bordered edits-dump-hidden">
-                {% for trad in trads reversed %}
-                <tr class="alert alert-{{trad.alert}}">
-                    <td>
-                        <div style="position: relative;  float: left; height:100%; margin:20px 5px 0  5px; ">
-                            <span>
-                                <i class="icon-{{trad.icon}}"></i>
-                            </span>
-                        </div>
-                        <div>
-                            <span>
-                                <a href="{{trad.pk}}">
-                                    <h3> {{trad.label}}
-                                        <small>
-                                            <span style="position:relative; float: right;">
-                                                Автор: {{trad.author}}
-                                            </span>
-                                        </small>
-                                    </h3>
-                                </a>
-                            </span>
-                            {% if trad.status == 'new' and trad.is_expiration = 'Yes' or trad.status == 'taken' and trad.is_expiration == 'Yes' %}
-                            <div class="progress progress-striped" style="margin-bottom:0;">
-                                <div class="bar"
-                                     style="width:{{trad.time}}%;"></div>
-                            </div>
-                            {% endif %}
-                            <div style="position:relative; float: right; width:100%;">
-                                <div class='task-properies'>
-                                    Состояние:
-                                    {{trad.condition}}
-                                </div>
-                                <div class='task-properies'>
-                                    Дано:
-                                    {{trad.given}}
-                                </div>
-                                {% if trad.is_expiration = 'Yes' %}
-                                <div class='task-properies'>
-                                    {% if trad.leftdays >= 0 %}
-                                    Осталось
-                                    {% if trad.leftdays > 1 %}
-                                    дней : {{trad.leftdays}}
-                                    {% endif %}
-                                    {% if trad.leftdays <= 1 %}
-                                    часов: {{trad.lefthours}}
-                                    {% endif %}
-                                    {% endif %}
-                                    {% if trad.leftdays < 0 %}
-                                        Время вышло {{trad.expiration|date:"m" }}/{{trad.expiration|date:"d" }}
-                                        в {{trad.expiration|date:"H" }}:{{trad.expiration|date:"i" }}
-                                    {% endif %}
-                                </div>
-                                {% endif %}
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-            </table>
 
-            {% if comments %}
-            <h2> Комментарии: </h2>
-            {% endif %}
+{% if expiration_date %}
+<script>
+    $(document).ready(function () {
 
-            {% for comment in comments  %}
-            <div class="well comment-form">
-                <span>
-                {{comment.text|markdown}}
-                </span>
-                <span class="comment-info">
-                    <div>
-                        <h3> {{comment.author}} </h3>
-                    </div>
-                    <div>
-                        {{comment.date|date:"m" }}/{{comment.date|date:"d" }}
-                        {{comment.date|date:"H" }}:{{comment.date|date:"i" }}
-                    </div>
-                </span>
-            </div>
-            {% endfor %}
+        document.getElementById('no-datetime').checked = true
+        document.getElementById('expiration-date').value= '{{ expiration_date }}'
 
+        $('.timepick').timepicker( {
+            minuteStep: 15,
+            showInputs: false,
+            modalBackdrop: true,
+            defaultTime: '{{ expiration_time }}',
+            showMeridian: false})
 
+    })
+</script>
+{% else %}
+<script>
+    $(document).ready(function () {
+        document.getElementById('expiration-date').disabled = true
+        document.getElementById('expiration-time').disabled = true
+        document.getElementById('expiration-date').value= '{{ tomorrow }}'
 
+        $('.timepick').timepicker( {
+            minuteStep: 15,
+            showInputs: false,
+            modalBackdrop: true,
+            showMeridian: false})
+    })
+</script>
+{% endif %}
 
+{% if receivers %}
+<script>
+    // Выделить получателей
+</script>
 
+{% else %}
+<script>
+    $(document).ready(function () {
+        document.getElementById('id_receiver').disabled = true
+        document.getElementById('receivers_all').checked = true
+    })
+</script>
 
-        </div>
+{% endif %}
+
+{% if form.errors %}
+<div class="alert alert-message">
+    <p style="color: red;">
+        {% trans 'Please correct the errors below:' %}   {{ form.errors }}
+    </p>
+</div>
+{% endif %}
+<div id="edit-task">
+    <div class="modal-header">
+        <h3> {% trans 'Edit issue' %} </h3>
+        <br>
+
     </div>
-</body>
-</head>
-</html>
+    <form action="" method="post" style="" >
+        <div class="task-name-descr form-header">
+            <div>
+                {% trans 'Header:' %} <br>
+                {{ form.label }}
+            </div>
+            <div>
+                {% trans 'Description:' %} <br>
+                {{ form.text }}
+            </div>
+        </div>
+        <div class="issue-receivers form-header">
+            {% trans 'Receivers' %} <span class="task-common">({% trans 'hold Ctrl while selecting' %}) </span>:
+            {% trans 'Common' %}
+            <input type="checkbox" id="receivers_all" name="receivers_all" onchange="disableReceivers()">
+            {{ form.receiver }}
+        </div>
+        <div class="form-datetime form-header">
+            {% trans 'Set an expiration: ' %}
+            <input type="checkbox" id="no-datetime"name="no_date" onchange="disableExpiration()">
+            <br>
+            <input data-datepicker="datepicker" id="expiration-date" name="expdate" class="small" type="text" />
+            <div class="input-append bootstrap-timepicker-component">
+                <div>
+                    <input class="timepick" id="expiration-time" name="exptime" type="text" />
+                    <i class="icon-time"></i>
+                </div>
+                <input id="timezoneOffset" type="hidden" name="timezone_offset" />
+            </div>
+        </div>
+        <div class="challenge-task" >
+            <a href="#" class="btn btn-large" data-dismiss="modal" onclick="hideModal()"> {% trans 'Close' %} </a>
+            <input class="btn btn-primary btn-large"  type="submit" value="{% trans 'Save issue' %} ">
+        </div>
+    </form>
+
+
+
+
+</div>
+{% if comments %}
+<h2> Комментарии: </h2>
+{% endif %}
+{% for comment in comments  %}
+<div class="well comment-form">
+        <span>
+        {{comment.text|markdown}}
+        </span>
+        <span class="comment-info">
+            <div>
+                <h3> {{comment.author}} </h3>
+            </div>
+            <div>
+                {{comment.date|date:"m" }}/{{comment.date|date:"d" }}
+                {{comment.date|date:"H" }}:{{comment.date|date:"i" }}
+            </div>
+        </span>
+</div>
+{% endfor %}
+{% endblock %}
+
+
+

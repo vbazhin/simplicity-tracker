@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% get_static_prefix as STATIC_URL %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" type="text/css" media="screen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"> </script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-modal.js"> </script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-datepicker.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-timepicker.js"></script>
+    {% load markup %}
+    {% load markitup_tags %}
+    {% markitup_media "no-jquery" %}
+    {% load i18n %}.
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_current_language_bidi as LANGUAGE_BIDI %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
+    <title> {% block title %}  {% trans 'Issues' %} {% endblock %} </title>
+
+    <script>
+        function hideModal() {
+            $('#add-task').hide()
+        }
+        function showModal() {
+            $('#add-task').slideToggle()
+        }
+    </script>
+
+    <script>
+        function generate_reg_link() {
+            $.ajax({
+                type: "POST",
+                url: "/register_link/",
+                data: {
+                },
+                success: function(result) {
+                    $('#link-modal .modal-body').empty()
+                    $('#link-modal .modal-body').append(result)
+                    showLink(result)
+                }
+            })
+        }
+    </script>
+
+    <script>
+        function hideLink() {
+            $('#link-modal').hide()
+        }
+
+        function showLink() {
+            $('#link-modal').show()
+        }
+    </script>
+    <script>
+        /* Update datepicker plugin so that MM/DD/YYYY format is used. НЕ МОЙ КОД */
+        $.extend($.fn.datepicker.defaults, {
+            parse: function (string) {
+                var matches;
+                if ((matches = string.match(/^(\d{2,2})\/(\d{2,2})\/(\d{4,4})$/))) {
+                    return new Date(matches[3], matches[1] - 1, matches[2]);
+                } else {
+                    return null;
+                }
+            },
+            format: function (date) {
+                var
+                        month = (date.getMonth() + 1).toString(),
+                        dom = date.getDate().toString();
+                if (month.length === 1) {
+                    month = "0" + month;
+                }
+                if (dom.length === 1) {
+                    dom = "0" + dom;
+                }
+                return month + "/" + dom + "/" + date.getFullYear();
+            }
+        });
+    </script>
+
+    <script>
+        function disableReceivers() {
+            if (document.getElementById('id_receiver').disabled == false) {
+                document.getElementById('id_receiver').disabled = true
+            }
+            else {
+                document.getElementById('id_receiver').disabled = false
+            }
+            // Переделать с атирибутами
+        }
+
+        function disableExpiration() {
+            if (document.getElementById('expiration-date').disabled == false) {
+                document.getElementById('expiration-date').disabled = true
+                document.getElementById('expiration-time').disabled = true
+            }
+            else {
+                document.getElementById('expiration-date').disabled = false
+                document.getElementById('expiration-time').disabled = false
+            }
+            // Переделать с атирибутами
+        }
+    </script>
+
+</head>
+<body>
+<div class="hero">
+</div>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+
+        {% csrf_token %}
+
+        <div class="container">
+            <div>
+                <a class="brand" href="/">
+                    {% trans "Issues" %} v0.45
+                </a>
+                {% include 'select-language.html' %}
+                <div class="user-logout" >
+                    {{ user.username }} <a href='logout/'> {% trans 'Log out' %} </a>
+                </div>
+
+
+                {% if page_type == 'index' %}
+                <div class="add-user">
+                    <a href="#" class="btn" onclick="showModal()"> <i class="icon-plus"> </i> {% trans 'Add' %}  </a>
+                </div>
+                {% else %}
+                <div class="add-user" >
+                    <a href="/add_task" name="add_task" class="btn"> <i class="icon-plus"> </i> {% trans 'Add' %} </a>
+                </div>
+                {% endif %}
+                {% if user.username == 'admin' %}
+                <div class="invite-user" >
+                    <a href="#" class="btn" onclick="generate_reg_link()" > {% trans 'Invite' %} </a>
+                </div>
+
+
+                <div>
+                    <div id="link-modal" class="modal" style="display:none;">
+                        <a class="close" data-dismiss="modal" onclick="hideLink()" style="margin:8px 10px;" >×</a>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn" onclick="hideLink()"> {% trans 'Close' %} </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="nav-collapse issue-navigation">
+                    <ul class="nav">
+                        <li><a href="/">{% trans 'All' %}</a></li>
+                        <li><a href="/current">{% trans 'Current' %}</a></li>
+                        <li><a href="/new"> {% trans 'New' %} <span class="badge badge-warning">{{ new_num }}</span></a></li>
+                        <li><a href="/taken"> {% trans 'In progress' %} <span class="badge badge-info">{{ taken_num }}</span> </a></li>
+                        <li><a href="/check"> {% trans 'To check' %} <span class="badge badge-success">{{ check_num }}</span></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                {% trans 'Other' %}
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/done"> {% trans 'Send for check' %} <span class="badge badge-success">{{ oncheck_num }}</span></a></li>
+                                <li><a href="/givenbyme"> {% trans 'Given by me' %} </a></li>
+                                <li><a href="/success"> {% trans 'Done successfully' %} </a></li>
+                                <li><a href="/failed"> {% trans 'Failed' %} </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% if add_task %}
+    <script>
+        $(document).ready(function () {
+            $('#add-task').show()
+        })
+    </script>
+    {% endif %}
+    <script>
+        function defineTzOffset() {
+            var userDate = new Date()
+            var offset = userDate.getTimezoneOffset()
+            return offset
+        }
+
+        $(document).ready(function () {
+            offsetInput = document.getElementById('timezoneOffset')
+            offsetInput.value = defineTzOffset()
+        })
+
+        function redirect(id) {
+            document.location.href=id;
+        }
+    </script>
+
+            <div id="add-task">
+                <div class="container">
+                    <div class="row span10 offset1">
+                    {% if form.errors %}
+                        <script>
+                            $(document).ready(function(){
+                                $('#add-task').show()
+                            })
+                        </script>
+                     <div class="alert alert-message">
+                    <p style="color: red;">
+                            {% trans 'Please correct the errors below:' %}   {{ form.errors }}
+                        </p>
+                     </div>
+                    {% endif %}
+                    {% block hidden_form %}
+                    {% endblock %}
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row span10 offset1" style="margin-top:55px;">
+            {% block content %}
+            {% endblock %}
+                </div>
+            </div>
+            <div class="logo-box" style="background: url({{ STATIC_URL  }}css/images/your-logo.png);">
+            </div>
+        </body>
+    </head>
+</html>
