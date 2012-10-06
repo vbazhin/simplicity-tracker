@@ -48,63 +48,58 @@ def login(request):
     # Перенаправление на страницу.
     return HttpResponseRedirect("/")
 
-@login_required
-def index(request, fltr = 'all', add_task = None): # Фильтруем по статусу
+
+def filter_issues(fltr, request_user):
     if fltr == 'all':
-        trads = list(Trad.objects.filter(receiver = request.user))
-        trads += list(Trad.objects.filter(receiver = None).exclude(author = request.user) )
+        trads = list(Trad.objects.filter(receiver = request_user))
+        trads += list(Trad.objects.filter(receiver = None).exclude(author = request_user) )
         #trads += list(Trad.objects.filter( Q(receiver = None) & ~Q(author = request.user)))
-        trads += list(Trad.objects.filter(author = request.user))
+        trads += list(Trad.objects.filter(author = request_user))
         trads = sorted(trads, key=lambda trad: trad.given)
         #Делаю list, а не queryset т.к. при совместном запрсое разможножает объекты, созданные request.user, упорядочиваю
     elif fltr == 'current':
-        trads = Trad.objects.filter(receiver = request.user, status = 'new') | Trad.objects.filter(receiver = request.user, status = 'taken') | Trad.objects.filter(receiver = request.user, status = 'done') | Trad.objects.filter(receiver = None, status = 'new') | Trad.objects.filter(receiver = None, status = 'taken') | Trad.objects.filter(receiver = None, status = 'done')
+        trads = Trad.objects.filter(receiver = request_user, status = 'new') | Trad.objects.filter(receiver = request_user, status = 'taken') | Trad.objects.filter(receiver = request.user, status = 'done') | Trad.objects.filter(receiver = None, status = 'new') | Trad.objects.filter(receiver = None, status = 'taken') | Trad.objects.filter(receiver = None, status = 'done')
     elif fltr == 'check':
-        trads = Trad.objects.filter(author = request.user, status = 'done')
+        trads = Trad.objects.filter(author = request_user, status = 'done')
     elif fltr == 'givenbyme':
-        trads = Trad.objects.filter(author = request.user)
+        trads = Trad.objects.filter(author = request_user)
     elif fltr == 'error':
-        trads = Trad.objects.filter(receiver = request.user, status = 'error') | Trad.objects.filter(receiver = None, status = 'error') | Trad.objects.filter(author = request.user, status = 'error')
+        trads = Trad.objects.filter(receiver = request_user, status = 'error') | Trad.objects.filter(receiver = None, status = 'error') | Trad.objects.filter(author = request_user, status = 'error')
     elif fltr == 'new':
-        trads = Trad.objects.filter(receiver = request.user, status = 'new').exclude(author=request.user)
+        trads = Trad.objects.filter(receiver = request_user, status = 'new').exclude(author=request_user)
     else:
-        trads = Trad.objects.filter(receiver = request.user, status = fltr) | Trad.objects.filter(receiver = None, status = fltr)
+        trads = Trad.objects.filter(receiver = request_user, status = fltr) | Trad.objects.filter(receiver = None, status = fltr)
     for trad in trads:
         trad.comments_num = Comment.objects.filter(trad = trad).count() # Cчитаем комментарии
         trad.define_condition()
+
+    return trads
+
+
+@login_required
+def index(request, fltr = 'all', add_task = None): # Фильтруем по статусу
     new_num, taken_num, check_num, oncheck_num = count_issues(request)
     # Добавляем задание
+    trads = filter_issues(fltr, request.user)
     if request.method == 'POST': # Если сабмичена форма добавления сообщений
-        form = AddTrad(request.POST)
+        form = TradForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            tz_offset = cd['timezone_offset']
-            expdate = cd['expdate']
-            exptime = cd['exptime']
-            if expdate == None:
-                exp_value = 'No'
-                exp = None
-            else:
-                exp_value = 'Yes'
-                exp = datetime.datetime.combine(expdate, exptime) # Соединяем дату и время
-            #if exptime == None:
-                #is_exp = 'No'
-            new_trad = Trad(label = cd['label'], text = escape(cd['text']), given=datetime.datetime.now(), is_expiration = exp_value, expiration=exp, status='new', author = request.user) # Поменять date - now(), expiration - забивается
-            new_trad.save()
-            receivers = cd['receiver']
-            #if not receivers:
-                #receivers = User.objects.exclude(id = request.user.id)
-            new_trad.receiver = receivers
-            return HttpResponseRedirect("/")
+            try:
+                trad = Trad()
+                trad.add(cd, request.user)
+                return HttpResponseRedirect("/")
+            except:
+                return 'Some error occurred'
     else:
-        form = AddTrad()
+        form = TradForm()
         form.fields['receiver'].queryset = User.objects.exclude(id = request.user.id) # Нормальный ход (все польщователи кроме меня)
     return render_to_response('index.html', {'trads': trads, 'form': form, 'user' : request.user, 'tomorrow' : get_tomorrow(), 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num, 'oncheck_num': oncheck_num, 'page_type' : 'index', 'add_task': add_task })
 
 
 def show_trad(request, related_trad,  user_status = 'group_task_receiver'):
     trad = Trad.objects.get(pk = related_trad)
-    trad.comments_num = Comment.objects.filter(trad = trad).count() # Cчитаем комментарии
+    trad.count_comments()
     trad.define_condition()
     new_num, taken_num, check_num, oncheck_num = count_issues(request)
     comments = Comment.objects.filter(trad = trad).order_by('date')
@@ -121,8 +116,8 @@ def show_trad(request, related_trad,  user_status = 'group_task_receiver'):
             form = CommentForm(request.POST)
             if form.is_valid():
                 cd = form.cleaned_data
-                comment = Comment(text = escape(cd['text']), date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
-                comment.save()
+                comment = Comment()
+                comment.add(cd, request.user, trad.id)
         else:
             trad.renew_status(request.POST, request.user) # Новый статус (объеденить метод с комментированием)
         return HttpResponseRedirect("")
@@ -137,37 +132,23 @@ def edit_trad(request, trad_id):
         trad = Trad.objects.get(id= trad_id)
         if trad.author.id == request.user.id:
             if request.method == 'POST':
-                form = AddTrad(request.POST)
+                form = TradForm(request.POST)
                 if form.is_valid():
                     cd = form.cleaned_data
-                    expdate = cd['expdate']
-                    exptime = cd['exptime']
-                    if expdate == None:
-                        exp_value = 'No'
-                        exp = None
-                    else:
-                        exp_value = 'Yes'
-                        exp = datetime.datetime.combine(expdate, exptime)
-                        #if exptime == None:
-                        #is_exp = 'No'
-                    trad = Trad(pk = trad_id, label = cd['label'], text = cd['text'], given=datetime.datetime.now(),
-                    is_expiration = exp_value, expiration=exp, status='new', author = request.user) # Поменять date - now(), expiration - забивается
-                    trad.save()
-                    receivers = cd['receiver']
-                    if not receivers:
-                        receivers = User.objects.exclude(id = request.user.id)
-                    trad.receiver = receivers
-                    comment = Comment(text = u'Задание изменено пользователем ' + request.user.username, date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
-                    comment.save()
-                    return HttpResponseRedirect("/" + str(trad.id))
+                    try:
+                        trad = Trad(pk = trad_id) # Поменять date - now(), expiration - забивается
+                        trad.save_edited(cd, request.user)
+                        comment = Comment(text = u'Задание изменено пользователем ' + request.user.username, date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
+                        comment.save()
+                        return HttpResponseRedirect("/" + str(trad.id))
+                    except:
+                        return 'some error occurred'
             else:
-                form = AddTrad(
+                form = TradForm(
                     initial={'label':trad.label , 'text':trad.text, 'expiration':trad.expiration}
                 )
                 form.fields['receiver'].queryset = User.objects.exclude(id = request.user.id) # Нормальный ход (все польщователи кроме меня)
-
             comments = Comment.objects.filter(trad = trad).order_by('date')
-
             if trad.expiration:
                 expiration_time = str(trad.expiration.time().hour) + ":" + str(trad.expiration.time().minute)
                 expiration_date = trad.expiration.date().isoformat()
@@ -181,6 +162,7 @@ def edit_trad(request, trad_id):
             return HttpResponseRedirect("/")
     except:
         raise Http404
+
 
 def register(request, hashlink=None):
     try:
@@ -208,7 +190,6 @@ def register(request, hashlink=None):
     except:
         raise Http404
 
-
 def generate_link(request):
     if request.is_ajax():
         if request.user.is_superuser == 1:
@@ -225,8 +206,7 @@ def generate_link(request):
 
 
 # Не имеет смысла выносить формы в отдельный файл
-class AddTrad(forms.Form):
-
+class TradForm(forms.Form):
     label = forms.CharField(widget=forms.TextInput(attrs={'style':'width:597px;г'}))
     text = forms.CharField(required=False, widget=MarkItUpWidget(attrs={'style':'width: 99%; height:105px;'}))
     receiver = forms.ModelMultipleChoiceField(required=False, queryset=User.objects.all(), widget=forms.SelectMultiple(attrs={'style':'width:300px; height:200px;'}))

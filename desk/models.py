@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 from django.utils.translation import pgettext
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
-
+from django.utils.html import escape
 
 # Todo
     # Нужно сделать поддержку проектов
@@ -96,6 +96,51 @@ class Trad(models.Model):
             time_left = self.expiration - datetime.datetime.now()
             return time_left
 
+    def add(self, data, request_user):
+
+        tz_offset = data['timezone_offset']
+        expdate = data['expdate']
+        exptime = data['exptime']
+        if expdate == None:
+            exp_value = 'No'
+            exp = None
+        else:
+            exp_value = 'Yes'
+            exp = datetime.datetime.combine(expdate, exptime) # Соединяем дату и время
+            #if exptime == None:
+            #is_exp = 'No'
+        self = Trad(label = data['label'], text = escape(data['text']), given=datetime.datetime.now(), is_expiration = exp_value, expiration=exp, status='new', author = request_user) # Поменять date - now(), expiration - забивается
+        self.save()
+        receivers = data['receiver']
+        #if not receivers:
+        #receivers = User.objects.exclude(id = request.user.id)
+        self.receiver = receivers
+
+    def save_edited(self, data, request_user):
+        expdate = data['expdate']
+        exptime = data['exptime']
+        if expdate == None:
+            exp_value = 'No'
+            exp = None
+        else:
+            exp_value = 'Yes'
+            exp = datetime.datetime.combine(expdate, exptime)
+            #if exptime == None:
+            #is_exp = 'No'
+        self.label = data['label']
+        self.text = data['text']
+        self.given=datetime.datetime.now()
+        self.is_expiration = exp_value
+        self.expiration=exp
+        self.status='new'
+        self.author = request_user # Поменять date - now(), expiration - забивается
+        self.save()
+        receivers = data['receiver']
+        if not receivers:
+            receivers = User.objects.exclude(id = request_user.id)
+        self.receiver = receivers
+
+
     def renew_status(self, new_data, current_user):
         if not 'delete' in 'new_data':
             if 'take' in new_data:
@@ -176,8 +221,10 @@ class Trad(models.Model):
             self.delta1 = datetime.datetime.now() - self.given
             self.time = (self.delta1.total_seconds()/self.delta0.total_seconds())*100
             self.given_time = self.given.time()
-
         return self.status
+
+    def count_comments(self):
+        self.comments_num = Comment.objects.filter(trad = self).count()
 
     def delete(self):
         if self.is_deleted != 'Yes':
@@ -214,6 +261,10 @@ class Comment(models.Model):
 
         self.text = text_messages[self.text]
         return self.text
+
+    def add(self, data, request_user, related_trad_id):
+        self = Comment(text = escape(data['text']), date = datetime.datetime.now(), trad_id = related_trad_id,  author = request_user)
+        self.save()
 
     def __unicode__(self):
         return self.text
