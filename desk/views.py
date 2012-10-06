@@ -138,7 +138,7 @@ def edit_trad(request, trad_id):
                     try:
                         trad = Trad(pk = trad_id) # Поменять date - now(), expiration - забивается
                         trad.save_edited(cd, request.user)
-                        comment = Comment(text = u'Задание изменено пользователем ' + request.user.username, date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
+                        comment = Comment(text = _('The task was changed by user ') + request.user.username, date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
                         comment.save()
                         return HttpResponseRedirect("/" + str(trad.id))
                     except:
