@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"> </script>
-    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-modal.js"> </script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-datepicker.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-timepicker.js"></script>
     {% load markup %}
@@ -21,7 +20,7 @@
     {% get_available_languages as LANGUAGES %}
     {% get_current_language_bidi as LANGUAGE_BIDI %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
-    <title> {% block title %}  {% trans 'Issues' %} {% endblock %} </title>
+    {% block title %} <title>  {% trans 'Issues' %} </title> {% endblock %}
 
     <script>
         function hideModal() {
@@ -223,7 +222,7 @@
                         </p>
                      </div>
                     {% endif %}
-                    {% block hidden_form %}
+                    {% block    hidden_form %}
                     {% endblock %}
                     </div>
                 </div>

@@ -163,9 +163,9 @@ form { margin:0; }
 
 .comment-form { margin-bottom: 7px; }
 
-.comment-form span { position: relative; float: left; }
+.comment-form .comment-info { position: relative; float: right; margin-top:-30px; }
 
-.comment-form .comment-info { position: relative; float: right; margin-top:-10px; }
+.comment-form span p { margin-bottom: 2px; }
 
 .change-status { margin:-10px 0 10px 0; }
 

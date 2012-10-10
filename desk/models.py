@@ -62,6 +62,17 @@ class TradTestCase(unittest.TestCase):
         self.assertEqual(self.trad.define_condition(), 'new')
 
 
+status_attrs = {
+    'done' : {'icon' : 'ok', 'alert' : 'success'},
+    'success': {'icon' : 'ok', 'alert' : 'success'},
+    'closed': {'icon' : 'ban-circle', 'alert' : 'none'},
+    'refused': {'icon' : 'ban-circle', 'alert' : 'error'},
+    'taken': {'icon' : 'cog', 'alert' : 'info'},
+    'new': {'icon' : 'exclamation-sign', 'alert' : 'new'},
+    'error': {'icon' : 'remove', 'alert' : 'error'}
+}
+
+
 class Trad(models.Model):
 
     STATUS_VALUES = (
@@ -142,25 +153,8 @@ class Trad(models.Model):
 
 
     def renew_status(self, new_data, current_user):
-        if not 'delete' in 'new_data':
-            if 'take' in new_data:
-                self.status = 'taken'
-            elif 'refuse' in new_data:
-                self.status = 'refused'
-            elif 'done' in new_data:
-                self.status = 'done'
-            elif 'success' in new_data:
-                self.status = 'success'
-            elif 'close' in new_data:
-                self.status = 'closed'
-            elif 'setback' in new_data:
-                self.status = 'new'
-            comment = Comment(type='status_cmt', text = self.status, date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
-        else:
-            try:
-                self.delete()
-            except:
-                return _('Can`t delete')
+        self.status = new_data
+        comment = Comment(type='status_cmt', text = self.status, date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
         try:
             self.save()
         except:
@@ -206,15 +200,6 @@ class Trad(models.Model):
                     self.condition = pgettext('issue condition', 'In progress')
                 elif self.status == 'new':
                     self.condition = pgettext('issue condition', 'New')
-        status_attrs = {
-            'done' : {'icon' : 'ok', 'alert' : 'success'},
-            'success': {'icon' : 'ok', 'alert' : 'success'},
-            'closed': {'icon' : 'ban-circle', 'alert' : 'none'},
-            'refused': {'icon' : 'ban-circle', 'alert' : 'none'},
-            'taken': {'icon' : 'cog', 'alert' : 'info'},
-            'new': {'icon' : 'exclamation-sign', 'alert' : 'new'},
-            'error': {'icon' : 'remove', 'alert' : 'error'}
-        }
         self.attrs = status_attrs[self.status]
         if self.is_expiration == "Yes":
             self.delta0 = self.expiration - self.given
@@ -250,6 +235,10 @@ class Comment(models.Model):
     author = models.ForeignKey(User)
 
     def get_text(self):
+        def __init__(self):
+            if self.type == 'status_cmt':
+                self.status_attrs = status_attrs[self.text]
+
         text_messages = {
             'done' : gettext_lazy('The task is done, send for check'),
             'success': gettext_lazy('Done successfully'),
@@ -257,8 +246,10 @@ class Comment(models.Model):
             'refused': gettext_lazy('Refused'),
             'taken': gettext_lazy( 'Accepted'),
             'new': gettext_lazy( 'Given again'),
+            'deleted': gettext_lazy( 'Deleted'),
         }
 
+        self.status_attr = status_attrs[self.text]
         self.text = text_messages[self.text]
         return self.text
 

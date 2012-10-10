@@ -51,10 +51,10 @@ def login(request):
 
 def filter_issues(fltr, request_user):
     if fltr == 'all':
-        trads = list(Trad.objects.filter(receiver = request_user))
-        trads += list(Trad.objects.filter(receiver = None).exclude(author = request_user) )
+        trads = list(Trad.objects.filter(receiver = request_user, status='deleted'))
+        trads += list(Trad.objects.filter(receiver = None).exclude(author = request_user, status='deleted') )
         #trads += list(Trad.objects.filter( Q(receiver = None) & ~Q(author = request.user)))
-        trads += list(Trad.objects.filter(author = request_user))
+        trads += list(Trad.objects.filter(author = request_user, status='deleted'))
         trads = sorted(trads, key=lambda trad: trad.given)
         #Делаю list, а не queryset т.к. при совместном запрсое разможножает объекты, созданные request.user, упорядочиваю
     elif fltr == 'current':
@@ -62,7 +62,7 @@ def filter_issues(fltr, request_user):
     elif fltr == 'check':
         trads = Trad.objects.filter(author = request_user, status = 'done')
     elif fltr == 'givenbyme':
-        trads = Trad.objects.filter(author = request_user)
+        trads = Trad.objects.filter(author = request_user).exclude(status='deleted')
     elif fltr == 'error':
         trads = Trad.objects.filter(receiver = request_user, status = 'error') | Trad.objects.filter(receiver = None, status = 'error') | Trad.objects.filter(author = request_user, status = 'error')
     elif fltr == 'new':
@@ -99,67 +99,73 @@ def index(request, fltr = 'all', add_task = None): # Фильтруем по с�
 
 def show_trad(request, related_trad,  user_status = 'group_task_receiver'):
     trad = Trad.objects.get(pk = related_trad)
-    trad.count_comments()
-    trad.define_condition()
-    new_num, taken_num, check_num, oncheck_num = count_issues(request)
-    comments = Comment.objects.filter(trad = trad).order_by('date')
-    for comment in comments:
-        if comment.type == 'status_cmt':
-            comment.get_text()
-    if request.user in trad.receiver.all():
-        user_status = 'receiver'
-    if request.user == trad.author:
-        user_status = 'author'
-        # escape - html символы
-    if request.method == 'POST':
-        if 'comment' in request.POST:
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                cd = form.cleaned_data
-                comment = Comment()
-                comment.add(cd, request.user, trad.id)
+    if trad.status != 'deleted':
+        trad.count_comments()
+        trad.define_condition()
+        new_num, taken_num, check_num, oncheck_num = count_issues(request)
+        comments = Comment.objects.filter(trad = trad).order_by('date')
+        for comment in comments:
+            if comment.type == 'status_cmt':
+                comment.get_text()
+        if request.user in trad.receiver.all():
+            user_status = 'receiver'
+        if request.user == trad.author:
+            user_status = 'author'
+            # escape - html символы
+        if request.method == 'POST':
+            if 'comment' in request.POST:
+                form = CommentForm(request.POST)
+                if form.is_valid():
+                    cd = form.cleaned_data
+                    comment = Comment()
+                    comment.add(cd, request.user, trad.id)
+            else:
+                status = [ key for key in request.POST ]
+                trad.renew_status(status[0], request.user) # Новый статус (объеденить метод с комментированием)
+            return HttpResponseRedirect("")
         else:
-            trad.renew_status(request.POST, request.user) # Новый статус (объеденить метод с комментированием)
-        return HttpResponseRedirect("")
+            form = CommentForm()
+        return render_to_response('trad.html', {'form': form, 'user' : request.user, 'trad': trad, 'comments': comments, 'user_status': user_status, 'receivers' : trad.receiver.all(), 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num, 'oncheck_num': oncheck_num })
     else:
-        form = CommentForm()
-    return render_to_response('trad.html', {'form': form, 'user' : request.user, 'trad': trad, 'comments': comments, 'user_status': user_status, 'receivers' : trad.receiver.all(), 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num, 'oncheck_num': oncheck_num })
-
+        raise Http404
 
 
 def edit_trad(request, trad_id):
     try:
         trad = Trad.objects.get(id= trad_id)
-        if trad.author.id == request.user.id:
-            if request.method == 'POST':
-                form = TradForm(request.POST)
-                if form.is_valid():
-                    cd = form.cleaned_data
-                    try:
-                        trad = Trad(pk = trad_id) # Поменять date - now(), expiration - забивается
-                        trad.save_edited(cd, request.user)
-                        comment = Comment(text = _('The task was changed by user ') + request.user.username, date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
-                        comment.save()
-                        return HttpResponseRedirect("/" + str(trad.id))
-                    except:
-                        return 'some error occurred'
+        if trad.status != 'deleted':
+            if trad.author.id == request.user.id:
+                if request.method == 'POST':
+                    form = TradForm(request.POST)
+                    if form.is_valid():
+                        cd = form.cleaned_data
+                        try:
+                            trad = Trad(pk = trad_id) # Поменять date - now(), expiration - забивается
+                            trad.save_edited(cd, request.user)
+                            comment = Comment(text = _('The task was changed by user ') + request.user.username, date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
+                            comment.save()
+                            return HttpResponseRedirect("/" + str(trad.id))
+                        except:
+                            return 'some error occurred'
+                else:
+                    form = TradForm(
+                        initial={'label':trad.label , 'text':trad.text, 'expiration':trad.expiration}
+                    )
+                    form.fields['receiver'].queryset = User.objects.exclude(id = request.user.id) # Нормальный ход (все польщователи кроме меня)
+                comments = Comment.objects.filter(trad = trad).order_by('date')
+                if trad.expiration:
+                    expiration_time = str(trad.expiration.time().hour) + ":" + str(trad.expiration.time().minute)
+                    expiration_date = trad.expiration.date().isoformat()
+                else:
+                    expiration_date = None
+                    expiration_time = None
+                new_num, taken_num, check_num, oncheck_num = count_issues(request)
+                # Разобраться, почему не возвращает count_values(request)
+                return render_to_response('edit_trad.html', { 'form': form, 'user' : request.user, 'expiration_date' : expiration_date , 'expiration_time' : expiration_time, 'comments' : comments, 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num, 'oncheck_num': oncheck_num, 'trad_id': trad.id, 'tomorrow': get_tomorrow() })
             else:
-                form = TradForm(
-                    initial={'label':trad.label , 'text':trad.text, 'expiration':trad.expiration}
-                )
-                form.fields['receiver'].queryset = User.objects.exclude(id = request.user.id) # Нормальный ход (все польщователи кроме меня)
-            comments = Comment.objects.filter(trad = trad).order_by('date')
-            if trad.expiration:
-                expiration_time = str(trad.expiration.time().hour) + ":" + str(trad.expiration.time().minute)
-                expiration_date = trad.expiration.date().isoformat()
-            else:
-                expiration_date = None
-                expiration_time = None
-            new_num, taken_num, check_num, oncheck_num = count_issues(request)
-            # Разобраться, почему не возвращает count_values(request)
-            return render_to_response('edit_trad.html', { 'form': form, 'user' : request.user, 'expiration_date' : expiration_date , 'expiration_time' : expiration_time, 'comments' : comments, 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num, 'oncheck_num': oncheck_num, 'trad_id': trad.id, 'tomorrow': get_tomorrow() })
+                return HttpResponseRedirect("/")
         else:
-            return HttpResponseRedirect("/")
+            raise Http404
     except:
         raise Http404
 
@@ -200,7 +206,7 @@ def generate_link(request):
                 welcome = "<div class='modal-header'> <h2>" + _("Invite ") + "№ " + str(link.id) + " </h2> </div>  <br> <h3>" + _("Registration link (can be used only once):") + "</h3> <br>  <code>" + path + "</code>"
                 return  HttpResponse(welcome)
             except:
-                return HttpResponse(_('Error occured'))
+                return HttpResponse(_('Error occurred'))
         else:
             return HttpResponse(_('You are not administrator'))
 

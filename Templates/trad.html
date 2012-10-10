@@ -1,16 +1,33 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load markup %}
-{% block content %}
 {{ usinfo }}
+
+{% block title %}
+<title>
+    {{ trad.label }}
+</title>
+{% endblock %}
+
+{% block content %}
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
+{% load markitup_tags %}
+{% markitup_media "no-jquery" %}
 <style>
     .markItUp { width: 967px; }
 </style>
+
+
+{{ usinfo }}
 <div class="receivers" >
     {% if receivers %}
-    {% trans 'Receivers' %}
+    {% trans 'Receivers: ' %}
     {% for receiver in receivers %}
+    {% if forloop.last %}
+    {{ receiver }}.
+    {% else %}
     {{ receiver }},
+    {% endif %}
     {% endfor %}
     {% else %}
     {% trans 'Common issue' %}
@@ -37,44 +54,44 @@
     <div class="change-status">
         {% if user_status == 'receiver' and trad.status == 'new' %}
         <form action="" method="post">
-            <input type="submit" class="btn btn-large btn-primary" name="take" value="{% trans 'Accept' %}">
-            <input type="submit" class="btn btn-large btn-danger" name="refuse" value="{% trans 'Refuse' %}">
+            <input type="submit" class="btn btn-large btn-primary" name="taken" value="{% trans 'Accept' %}">
+            <input type="submit" class="btn btn-large btn-danger" name="refused" value="{% trans 'Refuse' %}">
         </form>
         {% endif %}
         {% if user_status == 'receiver' and trad.status == 'taken' %}
         <form action="" method="post">
             <input type="submit" class="btn btn-large btn-success" name="done" value="{% trans 'Done' %}">
-            <input type="submit" class="btn btn-large btn-danger" name="refuse" value="{% trans 'Reject' %}">
+            <input type="submit" class="btn btn-large btn-danger" name="refused" value="{% trans 'Reject' %}">
         </form>
         {% endif %}
 
         {% if user_status == 'group_task_receiver' and trad.status == 'new' %}
         <form action="" method="post">
-            <input type="submit" class="btn btn-large btn-primary" name="take" value="{% trans 'Accept' %}">
-            <input type="submit" class="btn btn-large btn-danger" name="refuse" value="{% trans 'Refuse' %}">
+            <input type="submit" class="btn btn-large btn-primary" name="taken" value="{% trans 'Accept' %}">
+            <input type="submit" class="btn btn-large btn-danger" name="refused" value="{% trans 'Refuse' %}">
         </form>
         {% endif %}
         {% if user_status == 'group_task_receiver' and trad.status == 'taken' %}
         <form action="" method="post">
             <input type="submit" class="btn btn-large btn-success" name="done" value="{% trans 'Done' %} ">
-            <input type="submit" class="btn btn-large btn-danger" name="refuse" value="{% trans 'Reject' %}">
+            <input type="submit" class="btn btn-large btn-danger" name="refused" value="{% trans 'Reject' %}">
         </form>
         {% endif %}
         {% if user_status == 'author' and trad.status == 'taken' or user_status == 'author' and trad.status == 'new' %}
         <form action="" method="post">
             <input type="submit" name="success" class="btn btn-large btn-success" value="{% trans 'Done successfully' %}">
-            <input type="submit" class="btn btn-large" name="close" value="{% trans 'Close issue' %}">
+            <input type="submit" class="btn btn-large" name="closed" value="{% trans 'Close issue' %}">
         </form>
         {% endif %}
         {% if user_status == 'author' and trad.status == 'refused' %}
         <form action="" method="post">
-            <input type="submit" class="btn btn-large btn-primary" name="setback" value="{% trans 'Set back' %}">
+            <input type="submit" class="btn btn-large btn-primary" name="new" value="{% trans 'Set back' %}">
         </form>
         {% endif %}
         {% if user_status == 'author' and trad.status == 'done' %}
         <form action="" method="post">
             <input type="submit" name="success" class="btn btn-large btn-success" value="{% trans 'Done' %}">
-            <input type="submit" name="setback" class="btn btn-large" value="{% trans 'Need to be redone' %}">
+            <input type="submit" name="new" class="btn btn-large" value="{% trans 'Need to be redone' %}">
         </form>
     </div>
     {% endif %}
@@ -84,7 +101,7 @@
 {% endif %}
 
 {% for comment in comments %}
-<div class="well comment-form">
+<div class="well comment-form {% if comment.type == 'status_cmt' %} alert-{{comment.status_attr.alert}} {% endif %} ">
         <span>
         {% if comment.type == 'status_cmt' %}
         <h3> {{ comment.text }} </h3>
@@ -103,6 +120,8 @@
         </span>
 </div>
 {% endfor %}
+
+
 <form action="" method="post">
     <br>
     {{ form.text }}
