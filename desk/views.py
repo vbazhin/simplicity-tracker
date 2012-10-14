@@ -58,7 +58,8 @@ def filter_issues(fltr, request_user):
         trads = sorted(trads, key=lambda trad: trad.given)
         #Делаю list, а не queryset т.к. при совместном запрсое разможножает объекты, созданные request.user, упорядочиваю
     elif fltr == 'current':
-        trads = Trad.objects.filter(receiver = request_user, status = 'new') | Trad.objects.filter(receiver = request_user, status = 'taken') | Trad.objects.filter(receiver = request.user, status = 'done') | Trad.objects.filter(receiver = None, status = 'new') | Trad.objects.filter(receiver = None, status = 'taken') | Trad.objects.filter(receiver = None, status = 'done')
+        trads = Trad.objects.filter(receiver = request_user, status = 'new') | Trad.objects.filter(receiver = request_user, status = 'taken') | Trad.objects.filter(receiver = request_user, status = 'done') | Trad.objects.filter(receiver = None, status = 'new') | Trad.objects.filter(receiver = None, status = 'taken') | Trad.objects.filter(receiver = None, status = 'done')
+        trads = trads.exclude(author= request_user)
     elif fltr == 'check':
         trads = Trad.objects.filter(author = request_user, status = 'done')
     elif fltr == 'givenbyme':

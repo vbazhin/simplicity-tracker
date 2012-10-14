@@ -150,8 +150,7 @@ class Trad(models.Model):
         self.author = request_user # Поменять date - now(), expiration - забивается
         self.save()
         receivers = data['receiver']
-        if not receivers:
-            receivers = User.objects.exclude(id = request_user.id)
+
         self.receiver = receivers
 
 
