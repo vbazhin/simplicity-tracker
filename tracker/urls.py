@@ -1,6 +1,6 @@
 #coding: utf-8
 from django.conf.urls.defaults import patterns, include, url
-from desk.views import index, show_trad, edit_trad, register, generate_link
+from desk.views import index, show_trad, edit_trad, remove_trad, register, generate_link
 from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url('^$', index),
     url('^/$', index),
     url('(\d{0,6})/edit$', edit_trad),
+    url('(\d{0,6})/remove$', remove_trad),
     url('^current$', index, {'fltr' : 'current'}),
     url('^failed$', index, {'fltr' : 'error'}),
     url('^done$', index, {'fltr' : 'done'}),

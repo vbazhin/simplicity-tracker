@@ -51,10 +51,10 @@ def login(request):
 
 def filter_issues(fltr, request_user):
     if fltr == 'all':
-        trads = list(Trad.objects.filter(receiver = request_user, status='deleted'))
-        trads += list(Trad.objects.filter(receiver = None).exclude(author = request_user, status='deleted') )
+        trads = list(Trad.objects.filter(receiver = request_user).exclude(status='deleted'))
+        trads += list(Trad.objects.filter(receiver = None).exclude(author = request_user).exclude(status='deleted'))
         #trads += list(Trad.objects.filter( Q(receiver = None) & ~Q(author = request.user)))
-        trads += list(Trad.objects.filter(author = request_user, status='deleted'))
+        trads += list(Trad.objects.filter(author = request_user).exclude(status='deleted'))
         trads = sorted(trads, key=lambda trad: trad.given)
         #Делаю list, а не queryset т.к. при совместном запрсое разможножает объекты, созданные request.user, упорядочиваю
     elif fltr == 'current':
@@ -118,7 +118,10 @@ def show_trad(request, related_trad,  user_status = 'group_task_receiver'):
                 if form.is_valid():
                     cd = form.cleaned_data
                     comment = Comment()
-                    comment.add(cd, request.user, trad.id)
+                    if len(cd['text']) > 0:
+                        comment.add(cd, request.user, trad.id)
+
+
             else:
                 status = [ key for key in request.POST ]
                 trad.renew_status(status[0], request.user) # Новый статус (объеденить метод с комментированием)
@@ -168,6 +171,12 @@ def edit_trad(request, trad_id):
             raise Http404
     except:
         raise Http404
+
+def remove_trad(request, trad_id):
+    trad = Trad.objects.get(id= trad_id)
+    trad.status='deleted'
+    trad.save()
+    return HttpResponseRedirect("/")
 
 
 def register(request, hashlink=None):
@@ -222,4 +231,4 @@ class TradForm(forms.Form):
 
 
 class CommentForm(forms.Form):
-    text = forms.CharField(required=False, widget=MarkItUpWidget(attrs={'style':'width: 99%; height:105px;'}))
+    text = forms.CharField(required=False, min_length=1, widget=MarkItUpWidget(attrs={'style':'width: 99%; height:105px;'}))

@@ -69,7 +69,8 @@ status_attrs = {
     'refused': {'icon' : 'ban-circle', 'alert' : 'error'},
     'taken': {'icon' : 'cog', 'alert' : 'info'},
     'new': {'icon' : 'exclamation-sign', 'alert' : 'new'},
-    'error': {'icon' : 'remove', 'alert' : 'error'}
+    'error': {'icon' : 'remove', 'alert' : 'error'},
+    'deleted': {'icon' : 'remove', 'alert' : 'error'}
 }
 
 
@@ -81,7 +82,9 @@ class Trad(models.Model):
         ('refused', pgettext('issue condition', 'Rejected')),
         ('closed', pgettext('issue condition', 'Closed')),
         ('done', pgettext('issue condition', 'Done')),
-        ('success', pgettext('issue condition', 'Success'))
+        ('success', pgettext('issue condition', 'Success')),
+        ('deleted', pgettext('issue condition', 'Deleted'))
+
     )
 
     TYPES = ( # Чтобы не дропать базу для следующей версии, когда будет поддержка проектов
@@ -179,6 +182,8 @@ class Trad(models.Model):
             self.condition = pgettext('issue condition', 'Closed')
         elif self.status == 'refused':
             self.condition = pgettext('issue condition', 'Rejected')
+        elif self.status == 'deleted':
+            self.condition = pgettext('issue condition', 'Deleted')
         else:
             if self.is_expiration == 'Yes':
                 self.left = self.time_left()
