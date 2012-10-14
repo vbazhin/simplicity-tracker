@@ -161,7 +161,13 @@ small span {
 
 form { margin:0; }
 
-.comment-form { margin-bottom: 7px; }
+.comment-form {
+    border-color: #fff;
+    border-width: 5px;
+    box-shadow: 0 0 7px #bbb;
+    margin-bottom: 10px;
+    padding: 15px;
+}
 
 .comment-form .comment-info { position: relative; float: right; margin-top:-30px; }
 
@@ -180,7 +186,7 @@ form { margin:0; }
 .edit-trad {
     position: relative;
     float: right;
-    margin: -35px 3px 0 0;
+    margin: -32px 3px 0 0;
 }
 
 .icon-comment { margin-top:2px; }
@@ -281,4 +287,27 @@ form { margin:0; }
 .brand .caret {
     border-top: 4px solid #fff;
     margin:10px 0 0 0;
+}
+
+#issue-receivers {
+    position: relative;
+    float:left;
+    margin-top:6px;
+    color:#999;
+    font-size:11px;
+    background:#F5F5F5;
+    border-radius:4px;
+    padding:0 6px;
+}
+
+
+.navbar-inner {
+    background-color: #333;
+    background-repeat: repeat-x;
+    border-color: #FFFFFF;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 0 0 0 0;
+    box-shadow: 0 0 7px #aaa;
+    color: #FFFFFF;
 }

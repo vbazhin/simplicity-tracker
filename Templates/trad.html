@@ -17,23 +17,30 @@
     .markItUp { width: 967px; }
 </style>
 
+<script>
+    function hideTip() {
+        $('#remove-insurance').hide()
+    }
+    function showTip() {
+        $('#remove-insurance').show()
+    }
+</script>
+
+
+
+<div id='remove-insurance' class="modal" style="display: none;">
+    <div class="modal-header">
+        <p> <h1>{% trans 'Are you sure?' %} </h1>  </p>
+    </div>
+
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="hideTip()" > {% trans 'Cancel' %} </a>
+        <a href="{{trad.id }}/remove" class="btn btn-primary">{% trans 'Remove' %} </a>
+    </div>
+</div>
 
 {{ usinfo }}
-<div class="receivers" >
-    {% if receivers %}
-    {% trans 'Receivers: ' %}
-    {% for receiver in receivers %}
-    {% if forloop.last %}
-    {{ receiver }}.
-    {% else %}
-    {{ receiver }},
-    {% endif %}
-    {% endfor %}
-    {% else %}
-    {% trans 'Common issue' %}
-    {% endif %}
-</div>
-<table class="table table-bordered trad-data">
+<table class="table table-trads table-bordered trad-data">
     {% include 'trad_block.html' %}
     {% if trad.text %}
     <tr>
@@ -44,11 +51,29 @@
         </td>
     </tr>
     {% endif %}
+    <tr>
+        <td>
+            <div id="issue-receivers">
+                {% if receivers %}
+                <b> {% trans 'Receivers: ' %} </b>
+                {% for receiver in receivers %}
+                {% if forloop.last %}
+                {{ receiver }}.
+                {% else %}
+                {{ receiver }},
+                {% endif %}
+                {% endfor %}
+                {% else %}
+                {% trans 'Common issue' %}
+                {% endif %}
+            </div>
+        </td>
+    </tr>
 </table>
 {% if user_status = 'author' %}
-<div class="edit-trad" >
-    <a href="{{trad.id }}/edit"> {% trans 'Edit' %} </a>
-</div>
+<span class="edit-trad" >
+     <a href="{{trad.id }}/edit"> {% trans 'Edit' %} </a> | <a href="#" onclick="showTip()"  > {% trans 'Remove' %} </a>
+</span>
 {% endif %}
 <div>
     <div class="change-status">

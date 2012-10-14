@@ -28,6 +28,8 @@
         }
         function showModal() {
             $('#add-task').slideToggle()
+            $('#id_label').focus();
+
         }
     </script>
 
@@ -143,7 +145,6 @@
 
                 <div>
                     <div id="link-modal" class="modal" style="display:none;">
-                        <a class="close" data-dismiss="modal" onclick="hideLink()" style="margin:8px 10px;" >×</a>
                         <div class="modal-body">
                         </div>
                         <div class="modal-footer">
