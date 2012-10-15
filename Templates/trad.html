@@ -128,21 +128,24 @@
 {% for comment in comments %}
 <div class="well comment-form {% if comment.type == 'status_cmt' %} alert-{{comment.status_attr.alert}} {% endif %} ">
         <span>
-        {% if comment.type == 'status_cmt' %}
-        <h3> {{ comment.text }} </h3>
-        {% else %}
-        {{comment.text|markdown}}
-        {% endif %}
+            {% if comment.type == 'status_cmt' %}
+            <h3> {{ comment.text }} </h3>
+            {% else %}
+            <span>
+            {{comment.text|markdown}}
+            {% endif %}
+            </span>
+                <span class="comment-info">
+                <div>
+                    <h3> {{comment.author}} </h3>
+                </div>
+                <div>
+                    {{comment.date|date:"m" }}/{{comment.date|date:"d" }}
+                    {{comment.date|date:"H" }}:{{comment.date|date:"i" }}
+                </div>
+            </span>
         </span>
-        <span class="comment-info">
-            <div>
-                <h3> {{comment.author}} </h3>
-            </div>
-            <div>
-                {{comment.date|date:"m" }}/{{comment.date|date:"d" }}
-                {{comment.date|date:"H" }}:{{comment.date|date:"i" }}
-            </div>
-        </span>
+
 </div>
 {% endfor %}
 

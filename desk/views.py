@@ -67,7 +67,7 @@ def filter_issues(fltr, request_user):
     elif fltr == 'error':
         trads = Trad.objects.filter(receiver = request_user, status = 'error') | Trad.objects.filter(receiver = None, status = 'error') | Trad.objects.filter(author = request_user, status = 'error')
     elif fltr == 'new':
-        trads = Trad.objects.filter(receiver = request_user, status = 'new').exclude(author=request_user)
+        trads = Trad.objects.filter(receiver = request_user, status = 'new').exclude(author=request_user) | Trad.objects.filter(receiver = None, status = fltr).exclude(author=request_user)
     else:
         trads = Trad.objects.filter(receiver = request_user, status = fltr) | Trad.objects.filter(receiver = None, status = fltr)
     for trad in trads:
