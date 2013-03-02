@@ -218,7 +218,7 @@ def generate_link(request):
             try:
                 link = InviteLink.objects.create()
                 link.generate() # Метод создает хеш md5, делает запись в таблицу
-                path = request.build_absolute_uri('../register') + link.link
+                path = request.build_absolute_uri('../register/') + link.link
                 welcome = "<div class='modal-header'> <h2>" + _("Invite ") + "№ " + str(link.id) + " </h2> </div>  <br> <h3>" + _("Registration link (can be used only once):") + "</h3> <br>  <code>" + path + "</code>"
                 return  HttpResponse(welcome)
             except:

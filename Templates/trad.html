@@ -128,14 +128,7 @@
 {% for comment in comments %}
 <div class="well comment-form {% if comment.type == 'status_cmt' %} alert-{{comment.status_attr.alert}} {% endif %} ">
         <span>
-            {% if comment.type == 'status_cmt' %}
-            <h3> {{ comment.text }} </h3>
-            {% else %}
-            <span>
-            {{comment.text|markdown}}
-            {% endif %}
-            </span>
-                <span class="comment-info">
+               <span class="comment-info">
                 <div>
                     <h3> {{comment.author}} </h3>
                 </div>
@@ -144,6 +137,10 @@
                     {{comment.date|date:"H" }}:{{comment.date|date:"i" }}
                 </div>
             </span>
+            <span>
+            {{comment.text|markdown}}
+            </span>
+
         </span>
 
 </div>

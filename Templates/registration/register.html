@@ -6,7 +6,7 @@
     {% load i18n %}
     {% get_current_language as LANGUAGE_CODE %}
     {% get_available_languages as LANGUAGES %}
-    {% get_current_language_bidi as LANGUAGE_BIDI %
+    {% get_current_language_bidi as LANGUAGE_BIDI %}
 
 
     <title> {% trans 'Issues \ Registration' %} </title>
@@ -17,46 +17,78 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{{ STATIC_URL }}jq/jquery-1.7.2.min.js"> </script>
-    <script src="{{ STATIC_URL }}jq/jquery-ui-1.8.18.custom.min.js"> </script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"> </script>
 
     <style>
-        input { height: 30px; }
-        label { font-size:20px }
-        .log-in-block { position:relative; float: left; width: 80%%; }
-        .log-in-block div { margin-right: 50px; }
-        .hero-unit { padding: 60px 60px 30px 60px; }
+        input {
+            height: 30px;
+        }
 
-        .inp { position: relative; float: left;  width: 20%; min-width:200px; margin-right:60px; }
+        label {
+            font-size:20px;
+        }
+
+        .log-in-block {
+            position:relative;
+            float: left;
+            width: 80%;
+        }
+
+        .log-in-block div {
+            margin-right: 50px;
+        }
+
+        .hero-unit {
+            position: relative;
+            float: left;
+            font-size: 40px;;
+        }
+
+        .inp {
+            position: relative;
+            float: right;
+            width: 20%;
+            min-width: 200px;
+            margin-right: 60px;
+        }
+
+        .submit-registration {
+            position: relative;
+            float: right;
+            font-size: 32px;
+            height: 90px;
+            padding: 38px;
+            margin: 20px 35px 0 0;
+        }
+
+        .form-field {
+            background: #333;
+        }
 
     </style>
 
 </head>
-
 <body>
-<div style="position: relative;">
-    {% if form.errors %}
-    <div class="alert alert-message">
-        <p style="color: red;">
-            {% trans 'Please correct the errors below.' %}  {{ form.errors }}
-        </p>
-    </div>
-    {% endif %}
-    <div class="hero-unit" style="position: relative; min-height:160px;">
-        <div style="min-height:100px; margin-right:160px; margin-top:36px; position: relative; float:left; width:15%;">
-            <h1> {% trans 'Issues' %} </h1>
+
+{% if form.errors %}
+<div class="alert alert-message">
+    <p>
+        {% trans 'Please correct the errors below.' %}  {{ form.errors }}
+    </p>
+</div>
+{% endif %}
+<div class="form-field">
+    <div class="hero-unit">
+        {% trans 'Issues' %}
+     </div>
+    <form action="{{hash}}" method="post">
+        <input type="submit" class="btn submit-registration" value="{% trans 'Register' %}" />
+        <div class="inp">
+            <label for="id_password1"> {% trans 'Password' %} </label> {{ form.password1 }}
+            <label for="id_password2"> {% trans 'Password again' %} </label> {{ form.password2 }}
         </div>
-
-
-  <form action="{{hash}}" method="post">
-    <div class="inp" style="margin-top:12px;" >
-        <label for="id_username"> <h2> {% trans 'Name' %}  </h2> </label> {{ form.username }}
-    </div>
-    <div class="inp">
-        <label for="id_password1"> {% trans 'Password' %} </label> {{ form.password1 }}
-        <label for="id_password2"> {% trans 'Password again' %} </label> {{ form.password2 }}
-    </div>
-    <div class="inp">
-        <input type="submit" class="btn" value="{% trans 'Register' %} style="font-size: 20px; height: 90px; margin-top: 23px; " />
-    </div>
-  </form>
+        <div class="inp">
+            <label for="id_username"> <h2> {% trans 'Name' %}  </h2> </label> {{ form.username }}
+        </div>
+    </form>
+</div>

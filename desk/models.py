@@ -88,7 +88,7 @@ class Trad(models.Model):
     )
 
     TYPES = ( # Чтобы не дропать базу для следующей версии, когда будет поддержка проектов
-        ('tassk', pgettext('Type of issue', 'Task')),
+        ('task', pgettext('Type of issue', 'Task')),
         ('notification', pgettext('Type of issue', 'Notification')),
         )
     project = models.ForeignKey(Project, blank=True, null=True, verbose_name=gettext_lazy('Project'))
