@@ -104,7 +104,7 @@
         {% endif %}
         {% if user_status == 'author' and trad.status == 'taken' or user_status == 'author' and trad.status == 'new' %}
         <form action="" method="post">
-            <input type="submit" name="success" class="btn btn-large btn-success" value="{% trans 'Done successfully' %}">
+            <input type="submit" name="success" class="btn btn-large btn-success" value="{% trans 'Completed' %}">
             <input type="submit" class="btn btn-large" name="closed" value="{% trans 'Close issue' %}">
         </form>
         {% endif %}

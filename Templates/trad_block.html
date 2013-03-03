@@ -5,7 +5,8 @@
                 
             <tr class="alert alert-{{trad.attrs.alert}} trad-info">
                 <td>
-                    <a href="{{trad.pk}}"> <!-- Чтобы избежать наличия "div" в "a", можно <div  class='trad-base' onclick="redirect({{trad.pk}})">, в целом не так важно -->
+                    <a href="{{trad.pk}}" style="display:block; position: relative; width: 100%; height: 100%;"> <!-- Чтобы избежать наличия "div" в "a", можно <div  class='trad-base' onclick="redirect({{trad.pk}})">, в целом не так важно -->
+                        <div>
                         <div class="block-icon" >
                             <span>
                                 <i class="icon-{{trad.attrs.icon}}"></i>
@@ -30,11 +31,11 @@
                             {% endif %}
                              <div class="issue-info">
                                 <div class='task-properties condition' >
-                                    {% trans 'Condition: ' %}
+                                    {% trans 'Condition' %}:
                                     {{trad.condition}}
                                 </div>
                                 <div class='task-properties'>
-                                    {% trans 'Given' %}
+                                    {% trans 'Given' %}:
                                     {{trad.given|date:"m" }}/{{trad.given|date:"d" }}
                                     в {{trad.given|date:"H" }}:{{trad.given|date:"i" }}
                                 </div>
@@ -54,7 +55,7 @@
                                         {% endif %}
                                     {% endif %}
                                     {% if trad.leftdays < 0 %}
-                                    {% trans 'Expires' %} {{trad.expiration|date:"m" }}/{{trad.expiration|date:"d" }}
+                                    {% trans 'Expired at' %}: {{trad.expiration|date:"m" }}/{{trad.expiration|date:"d" }}
                                     в {{trad.expiration|date:"H" }}:{{trad.expiration|date:"i" }}
                                     {% endif %}
                                 </div>
@@ -67,6 +68,7 @@
                                </div>
                                 {% endif %}
                             </div>
+                        </div>
                         </div>
                     </a>
                 </td>

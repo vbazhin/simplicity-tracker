@@ -21,7 +21,7 @@ from django.utils.translation import gettext as _
 
 
 # Вспомогательные функции (не возвращают HttpResponse, но участвуют в сборке view)
-def all():
+def all(request):
     all_except_me = User.objects.exclude(id = request.user.id)
     return all_except_me
 
@@ -120,9 +120,7 @@ def show_trad(request, related_trad,  user_status = 'group_task_receiver'):
                     cd = form.cleaned_data
                     comment = Comment()
                     if len(cd['text']) > 0:
-                        comment.add(cd, request.user, trad.id)
-
-
+                        comment.add(cd['text'], request.user, trad.id)
             else:
                 status = [ key for key in request.POST ]
                 trad.renew_status(status[0], request.user) # Новый статус (объеденить метод с комментированием)
@@ -135,49 +133,43 @@ def show_trad(request, related_trad,  user_status = 'group_task_receiver'):
 
 
 def edit_trad(request, trad_id):
-    try:
-        trad = Trad.objects.get(id= trad_id)
-        if trad.status != 'deleted':
-            if trad.author.id == request.user.id:
-                if request.method == 'POST':
-                    form = TradForm(request.POST)
-                    if form.is_valid():
-                        cd = form.cleaned_data
-                        try:
-                            trad = Trad(pk = trad_id) # Поменять date - now(), expiration - забивается
-                            trad.save_edited(cd, request.user)
-                            comment = Comment(text = _('The task was changed by user ') + request.user.username, date = datetime.datetime.now(), trad_id = trad.id,  author = request.user)
-                            comment.save()
-                            return HttpResponseRedirect("/" + str(trad.id))
-                        except:
-                            return 'some error occurred'
-                else:
-                    form = TradForm(
-                        initial={'label':trad.label , 'text':trad.text, 'expiration':trad.expiration}
-                    )
-                    form.fields['receiver'].queryset = User.objects.exclude(id = request.user.id) # Нормальный ход (все польщователи кроме меня)
-                    if trad.receiver:
-                        is_common = False
-                        receivers = trad.receiver.all()
-                        form.fields['receiver'].initial = receivers
-                    else:
-                        is_common = True
-                comments = Comment.objects.filter(trad = trad).order_by('date')
-                if trad.expiration:
-                    expiration_time = str(trad.expiration.time().hour) + ":" + str(trad.expiration.time().minute)
-                    expiration_date = trad.expiration.date().isoformat()
-                else:
-                    expiration_date = None
-                    expiration_time = None
-                new_num, taken_num, check_num, oncheck_num = count_issues(request)
-                # Разобраться, почему не возвращает count_values(request)
-                return render_to_response('edit_trad.html', { 'form': form, 'receivers': receivers, 'user' : request.user, 'is_common': is_common, 'expiration_date' : expiration_date , 'expiration_time' : expiration_time, 'comments' : comments, 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num, 'oncheck_num': oncheck_num, 'trad_id': trad.id, 'tomorrow': get_tomorrow() })
+    trad = Trad.objects.get(id= trad_id)
+    if trad.status != 'deleted':
+        if trad.author.id == request.user.id:
+            if request.method == 'POST':
+                form = TradForm(request.POST)
+                if form.is_valid():
+                    cd = form.cleaned_data
+                    trad = Trad(pk = trad_id) # Поменять date - now(), expiration - забивается
+                    trad.save_edited(cd, request.user)
+                    return HttpResponseRedirect("/" + str(trad.id))
             else:
-                return HttpResponseRedirect("/")
+                form = TradForm(
+                    initial={'label':trad.label , 'text':trad.text, 'expiration':trad.expiration}
+                )
+                form.fields['receiver'].queryset = User.objects.exclude(id = request.user.id) # Нормальный ход (все польщователи кроме меня)
+                if trad.receiver:
+                    is_common = False
+                    receivers = trad.receiver.all()
+                    form.fields['receiver'].initial = receivers
+                else:
+                    is_common = True
+            comments = Comment.objects.filter(trad = trad).order_by('date')
+            if trad.expiration:
+                expiration_time = str(trad.expiration.time().hour) + ":" + str(trad.expiration.time().minute)
+                expiration_date = trad.expiration.date().isoformat()
+            else:
+                expiration_date = None
+                expiration_time = None
+            new_num, taken_num, check_num, oncheck_num = count_issues(request)
+            # Разобраться, почему не возвращает count_values(request)
+            return render_to_response('edit_trad.html', { 'form': form, 'receivers': receivers, 'user' : request.user, 'is_common': is_common, 'expiration_date' : expiration_date , 'expiration_time' : expiration_time, 'comments' : comments, 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num, 'oncheck_num': oncheck_num, 'trad_id': trad.id, 'tomorrow': get_tomorrow() })
         else:
-            raise Http404
-    except:
+            return HttpResponseRedirect("/")
+    else:
         raise Http404
+
+
 
 def remove_trad(request, trad_id):
     trad = Trad.objects.get(id= trad_id)

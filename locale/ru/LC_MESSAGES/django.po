@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-18 20:58+1100\n"
+"POT-Creation-Date: 2013-03-03 15:40+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,9 +19,9 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
-#: Templates/404.html:12 Templates/500.html:12 Templates/header.html:120
-#: Templates/registration/login.html:40
-#: Templates/registration/register.html:47 desk/models.py:187
+#: Templates/404.html:12 Templates/500.html:12 Templates/base.html:23
+#: Templates/header.html:119 Templates/registration/login.html:40
+#: Templates/registration/register.html:82 desk/models.py:232
 msgid "Issues"
 msgstr "Задания"
 
@@ -34,155 +34,218 @@ msgstr "Страница не найдена"
 msgid "server error"
 msgstr "ошибка сервера"
 
-#: Templates/header.html:124 Templates/admin/base.html:50
+#: Templates/base.html:127 Templates/header.html:123
+#: Templates/admin/base.html:50
 msgid "Log out"
 msgstr "Выйти"
 
-#: Templates/header.html:130 Templates/header.html.py:134
+#: Templates/base.html:131 Templates/base.html.py:135
+#: Templates/header.html:129 Templates/header.html.py:133
 #: Templates/admin/change_form.html:22 Templates/admin/index.html:29
 msgid "Add"
 msgstr "Добавить"
 
-#: Templates/header.html:139
+#: Templates/base.html:140 Templates/header.html:138
 msgid "Invite"
 msgstr "Пригласить"
 
-#: Templates/header.html:149 Templates/index.html:87
+#: Templates/base.html:148 Templates/edit_trad.html:108
+#: Templates/header.html:148 Templates/index.html:44
 msgid "Close"
 msgstr "Закрыть"
 
-#: Templates/header.html:161
+#: Templates/base.html:160 Templates/header.html:160
 msgid "All"
 msgstr "Все"
 
-#: Templates/header.html:162
+#: Templates/base.html:161 Templates/header.html:161
 msgid "Current"
 msgstr "Текущие"
 
-#: Templates/header.html:163
+#: Templates/base.html:162 Templates/header.html:162
 msgid "New"
 msgstr "Новые"
 
-#: Templates/header.html:164
+#: Templates/base.html:163 Templates/header.html:163
 msgid "In progress"
 msgstr "В работе"
 
-#: Templates/header.html:165
-msgid "To check"
-msgstr "На проверку"
+#: Templates/base.html:164
+msgid "On check"
+msgstr "На проверке"
 
-#: Templates/header.html:168
+#: Templates/base.html:167 Templates/header.html:167
 msgid "Other"
 msgstr "Остальные"
 
-#: Templates/header.html:172
-msgid "Send for check"
+#: Templates/base.html:171
+msgid "Sent for check"
 msgstr "Отправленные на проверку"
 
-#: Templates/header.html:173
+#: Templates/base.html:172 Templates/header.html:172
 msgid "Given by me"
 msgstr "Данные мной"
 
-#: Templates/header.html:174 Templates/trad.html:75 desk/models.py:200
+#: Templates/base.html:173 Templates/header.html:173
 msgid "Done successfully"
 msgstr "Успешные"
 
-#: Templates/header.html:175
+#: Templates/base.html:174 Templates/header.html:174
 msgid "Failed"
 msgstr "Проваленные"
 
-#: Templates/index.html:52
+#: Templates/base.html:219 Templates/edit_trad.html:67
 msgid "Please correct the errors below:"
 msgstr "Пожалуйста, исправьте следующие ошибки:"
 
-#: Templates/index.html:59
+#: Templates/edit_trad.html:73
+#, fuzzy
+msgid "Edit issue"
+msgstr "Добавить задание"
+
+#: Templates/edit_trad.html:80 Templates/index.html:16
 msgid "Header:"
-msgstr "Название"
+msgstr "Название: "
 
-#: Templates/index.html:63
+#: Templates/edit_trad.html:84 Templates/index.html:20
 msgid "Description:"
-msgstr "Описание"
+msgstr "Описание: "
 
-#: Templates/index.html:68
+#: Templates/edit_trad.html:89
+#, fuzzy
+msgid "Receivers"
+msgstr "Получатели"
+
+#: Templates/edit_trad.html:89 Templates/index.html:25
 msgid "hold Ctrl while selecting"
-msgstr "Удерживайте Ctrl чтобы выбрать несколько"
+msgstr "Удерживайте Ctrl, чтобы выбрать несколько"
 
-#: Templates/index.html:74
+#: Templates/edit_trad.html:90 Templates/index.html:26
+msgid "Common"
+msgstr "Общее"
+
+#: Templates/edit_trad.html:95
+msgid "Set an expiration: "
+msgstr "Установить срок выполнения"
+
+#: Templates/edit_trad.html:109
+msgid "Save issue"
+msgstr "Сохранить"
+
+#: Templates/header.html:164
+msgid "To check"
+msgstr "На проверку"
+
+#: Templates/header.html:171
+msgid "Send for check"
+msgstr "Отправленные на проверку"
+
+#: Templates/index.html:31
 msgid "Set an expiration"
 msgstr "Установить срок выполнения"
 
-#: Templates/index.html:88
+#: Templates/index.html:45
 msgid "Add issue"
 msgstr "Добавить задание"
 
-#: Templates/trad.html:50 Templates/trad.html.py:63
+#: Templates/trad.html:33
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#: Templates/trad.html:37
+msgid "Cancel"
+msgstr "Отменить"
+
+#: Templates/trad.html:38 Templates/trad.html.py:75
+#: Templates/admin/edit_inline/stacked.html:70
+#: Templates/admin/edit_inline/tabular.html:116
+msgid "Remove"
+msgstr "Удалить"
+
+#: Templates/trad.html:58
+#, fuzzy
+msgid "Receivers: "
+msgstr "Получатели: "
+
+#: Templates/trad.html:67
+msgid "Common issue"
+msgstr "Общее задание"
+
+#: Templates/trad.html:75
+msgid "Edit"
+msgstr "Редактировать"
+
+#: Templates/trad.html:82 Templates/trad.html.py:95
 msgid "Accept"
 msgstr "Принять"
 
-#: Templates/trad.html:51 Templates/trad.html.py:64
+#: Templates/trad.html:83 Templates/trad.html.py:96
 msgid "Refuse"
 msgstr "Отказаться"
 
-#: Templates/trad.html:56 Templates/trad.html.py:69 Templates/trad.html:86
+#: Templates/trad.html:88 Templates/trad.html.py:101 Templates/trad.html:118
 msgid "Done"
 msgstr "Выполнено"
 
-#: Templates/trad.html:57 Templates/trad.html.py:70
+#: Templates/trad.html:89 Templates/trad.html.py:102
 msgid "Reject"
 msgstr "Отказаться"
 
-#: Templates/trad.html:76
-msgid "Close issue"
-msgstr "Закрыть"
+#: Templates/trad.html:107 desk/models.py:248
+msgid "Completed"
+msgstr "Выполнено"
 
-#: Templates/trad.html:81
+#: Templates/trad.html:108
+msgid "Close issue"
+msgstr "Закрыть задание"
+
+#: Templates/trad.html:113
 msgid "Set back"
 msgstr "Дать заново"
 
-#: Templates/trad.html:87
+#: Templates/trad.html:119
 msgid "Need to be redone"
 msgstr "Нужно переделать"
 
-#: Templates/trad.html:93
+#: Templates/trad.html:125
 msgid "Comments:"
 msgstr "Комментарии:"
 
-#: Templates/trad.html:119
+#: Templates/trad.html:153
 msgid "Add comment"
 msgstr "Добавить"
 
-#: Templates/trad_block.html:19 desk/models.py:90
+#: Templates/trad_block.html:20 desk/models.py:105
 msgid "Author"
 msgstr "Автор"
 
-#: Templates/trad_block.html:33
-msgid "Condition: "
+#: Templates/trad_block.html:34
+msgid "Condition"
 msgstr "Состояние"
 
-#: Templates/trad_block.html:37
+#: Templates/trad_block.html:38
 msgid "Given"
 msgstr "Задано"
 
-#: Templates/trad_block.html:45
+#: Templates/trad_block.html:46
 msgid "Left"
 msgstr "Осталось"
 
-#: Templates/trad_block.html:47
+#: Templates/trad_block.html:48
 msgid "d"
 msgstr "дн"
 
-#: Templates/trad_block.html:50
+#: Templates/trad_block.html:51
 msgid "h"
 msgstr "ч"
 
-#: Templates/trad_block.html:52
+#: Templates/trad_block.html:53
 msgid "min"
 msgstr "мин"
 
-#: Templates/trad_block.html:57
-#, fuzzy
-msgid "Expires"
-msgstr "Не выполнено"
+#: Templates/trad_block.html:58
+msgid "Expired at"
+msgstr "Истекло"
 
 #: Templates/admin/404.html:10
 msgid "We're sorry, but the requested page could not be found."
@@ -396,11 +459,11 @@ msgstr ""
 
 #: Templates/admin/login.html:33
 msgid "Username:"
-msgstr ""
+msgstr "Имя:"
 
 #: Templates/admin/login.html:37
 msgid "Password:"
-msgstr ""
+msgstr "Пароль"
 
 #: Templates/admin/login.html:42
 msgid "Log in"
@@ -481,7 +544,7 @@ msgstr ""
 #: Templates/admin/auth/user/change_password.html:36
 #: Templates/auth/user/change_password.html:40
 #: Templates/registration/login.html:49
-#: Templates/registration/register.html:56
+#: Templates/registration/register.html:87
 msgid "Password"
 msgstr "Пароль"
 
@@ -501,11 +564,6 @@ msgstr "Введите тот же пароль"
 msgid "Add another %(verbose_name)s"
 msgstr ""
 
-#: Templates/admin/edit_inline/stacked.html:70
-#: Templates/admin/edit_inline/tabular.html:116
-msgid "Remove"
-msgstr ""
-
 #: Templates/admin/edit_inline/tabular.html:15
 msgid "Delete?"
 msgstr ""
@@ -516,7 +574,7 @@ msgid "Issues \\ Sign in"
 msgstr "Задания \\ Регистрация"
 
 #: Templates/registration/login.html:34
-#: Templates/registration/register.html:41
+#: Templates/registration/register.html:76
 #, fuzzy
 msgid "Please correct the errors below."
 msgstr "Пожалуйста, исправьте ошибку:"
@@ -533,23 +591,23 @@ msgstr "Войти"
 msgid "Issues \\ Registration"
 msgstr "Задания \\ Регистрация"
 
-#: Templates/registration/register.html:53
-msgid "Name"
-msgstr "Имя"
+#: Templates/registration/register.html:85
+msgid "Register"
+msgstr "Зарегистрироваться"
 
-#: Templates/registration/register.html:57
+#: Templates/registration/register.html:88
 msgid "Password again"
 msgstr "Пароль (снова)"
 
-#: Templates/registration/register.html:60
-msgid "Register"
-msgstr "Зарегистрироваться"
+#: Templates/registration/register.html:91
+msgid "Name"
+msgstr "Имя"
 
 #: desk/models.py:31
 msgid "Project name"
 msgstr "Проект"
 
-#: desk/models.py:38 desk/models.py:80
+#: desk/models.py:38 desk/models.py:95
 msgid "Project"
 msgstr "Проект"
 
@@ -558,173 +616,189 @@ msgstr "Проект"
 msgid "Projects"
 msgstr "Проект"
 
-#: desk/models.py:68 desk/models.py:152 desk/models.py:162
+#: desk/models.py:81 desk/models.py:197 desk/models.py:207
 msgctxt "issue condition"
 msgid "New"
 msgstr "Новое"
 
-#: desk/models.py:69 desk/models.py:160
+#: desk/models.py:82 desk/models.py:205
 msgctxt "issue condition"
 msgid "In progress"
 msgstr "В работе"
 
-#: desk/models.py:70 desk/models.py:141
+#: desk/models.py:83 desk/models.py:184
 msgctxt "issue condition"
 msgid "Rejected"
 msgstr "Отменено"
 
-#: desk/models.py:71 desk/models.py:139
+#: desk/models.py:84 desk/models.py:182
 msgctxt "issue condition"
 msgid "Closed"
 msgstr "Закрыто"
 
-#: desk/models.py:72
+#: desk/models.py:85
 msgctxt "issue condition"
 msgid "Done"
 msgstr "Выполнено"
 
-#: desk/models.py:73 desk/models.py:137
+#: desk/models.py:86 desk/models.py:180
 msgctxt "issue condition"
 msgid "Success"
-msgstr "Успешно"
+msgstr "Выполнено"
 
-#: desk/models.py:77
+#: desk/models.py:87 desk/models.py:186
+#, fuzzy
+msgctxt "issue condition"
+msgid "Deleted"
+msgstr "Время делегирования"
+
+#: desk/models.py:92
 msgctxt "Type of issue"
 msgid "Task"
 msgstr "Задание"
 
-#: desk/models.py:78
+#: desk/models.py:93
 msgctxt "Type of issue"
 msgid "Notification"
 msgstr "Уведомление"
 
-#: desk/models.py:81
+#: desk/models.py:96
 msgid "Label"
 msgstr "Заголовок"
 
-#: desk/models.py:82
+#: desk/models.py:97
 msgid "Description"
 msgstr "Описание"
 
-#: desk/models.py:83 desk/models.py:193
+#: desk/models.py:98 desk/models.py:238
 msgid "Occurrence time"
 msgstr "Время появления"
 
-#: desk/models.py:84
+#: desk/models.py:99
 msgid "Expiration"
 msgstr "Установить срок выполнения"
 
-#: desk/models.py:85
+#: desk/models.py:100
 msgid "Expiration date"
 msgstr "Время истечения"
 
-#: desk/models.py:86
+#: desk/models.py:101
 msgid "Change date"
 msgstr "Время изменения"
 
-#: desk/models.py:88
+#: desk/models.py:103
 msgid "Current status"
 msgstr "Текущий статус"
 
-#: desk/models.py:89
+#: desk/models.py:104
 msgid "Receiver"
 msgstr "Получатель"
 
-#: desk/models.py:91 desk/models.py:192
+#: desk/models.py:106 desk/models.py:237
 msgid "Type"
 msgstr "Тип"
 
-#: desk/models.py:117
-msgid "Can`t delete"
+#: desk/models.py:107
+#, fuzzy
+msgid "Is deleted"
 msgstr "Невозможно удалить"
 
-#: desk/models.py:121
+#: desk/models.py:169
 msgid "Issue saving error"
 msgstr "Ошибка сохранения задания"
 
-#: desk/models.py:130
+#: desk/models.py:173
 msgid "Comment saving error"
 msgstr "Ошибка сохранения комментария"
 
-#: desk/models.py:135
+#: desk/models.py:178
 msgctxt "issue condition"
 msgid "On check"
 msgstr "На проверке"
 
-#: desk/models.py:154
+#: desk/models.py:199
 msgctxt "issue condition"
 msgid "Failed"
 msgstr "Не выполнено"
 
-#: desk/models.py:186
+#: desk/models.py:231
 msgid "Issue"
 msgstr "Задание"
 
-#: desk/models.py:191
+#: desk/models.py:236
 msgid "Text"
 msgstr "Текст"
 
-#: desk/models.py:199
+#: desk/models.py:247
 msgid "The task is done, send for check"
 msgstr "Задание выполненоЮ отправлено на проверку"
 
-#: desk/models.py:201
+#: desk/models.py:249
 msgid "Closed"
 msgstr "Закрыто"
 
-#: desk/models.py:202
+#: desk/models.py:250
 msgid "Refused"
 msgstr "Пользователь отказался от задания"
 
-#: desk/models.py:203
+#: desk/models.py:251
 msgid "Accepted"
 msgstr "Принято"
 
-#: desk/models.py:204
+#: desk/models.py:252
 msgid "Given again"
 msgstr "Задано снова"
 
-#: desk/models.py:214
+#: desk/models.py:253
+msgid "Deleted"
+msgstr "Удалено"
+
+#: desk/models.py:254
+msgid "Edited"
+msgstr "Отредактировано"
+
+#: desk/models.py:269
 msgid "Comment"
 msgstr "Комментарий"
 
-#: desk/models.py:215
+#: desk/models.py:270
 msgid "Comments"
 msgstr "Комментарии"
 
-#: desk/models.py:219
+#: desk/models.py:274
 msgid "Link"
 msgstr "Ссылка"
 
-#: desk/models.py:220
+#: desk/models.py:275
 msgid "Is valid"
 msgstr "Валидность"
 
-#: desk/models.py:221
+#: desk/models.py:276
 msgid "Delegated at"
 msgstr "Время делегирования"
 
-#: desk/models.py:234
+#: desk/models.py:289
 msgid "Invite link"
 msgstr "Приглашения "
 
-#: desk/models.py:235
+#: desk/models.py:290
 msgid "Invite links"
 msgstr "Приглашения"
 
-#: desk/views.py:216
+#: desk/views.py:214
 msgid "Invite "
 msgstr "Приглашение "
 
-#: desk/views.py:216
+#: desk/views.py:214
 msgid "Registration link (can be used only once):"
 msgstr "Ссылка на регистрацию (действует 1 раз):"
 
-#: desk/views.py:219
-msgid "Error occured"
+#: desk/views.py:217
+#, fuzzy
+msgid "Error occurred"
 msgstr "Произошла ошибка"
 
-#: desk/views.py:221
+#: desk/views.py:219
 msgid "You are not administrator"
 msgstr "Вы не администратор, а только притворяетесь"
 
@@ -735,6 +809,12 @@ msgstr ""
 #: tracker/settings.py:48
 msgid "English"
 msgstr ""
+
+#~ msgid "The task was changed by"
+#~ msgstr "Задание изменено пользователем"
+
+#~ msgid "Completed successfully"
+#~ msgstr "Успешные"
 
 #, fuzzy
 #~ msgid "Closed by "

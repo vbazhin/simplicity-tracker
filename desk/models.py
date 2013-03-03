@@ -70,7 +70,8 @@ status_attrs = {
     'taken': {'icon' : 'cog', 'alert' : 'info'},
     'new': {'icon' : 'exclamation-sign', 'alert' : 'new'},
     'error': {'icon' : 'remove', 'alert' : 'error'},
-    'deleted': {'icon' : 'remove', 'alert' : 'error'}
+    'deleted': {'icon' : 'remove', 'alert' : 'error'},
+    'edited': {'icon' : 'exclamation-sign', 'alert' : 'new'}
 }
 
 
@@ -131,6 +132,11 @@ class Trad(models.Model):
         self.receiver = receivers
 
     def save_edited(self, data, request_user):
+        """
+
+        :param data:
+        :param request_user:
+        """
         expdate = data['expdate']
         exptime = data['exptime']
         if expdate == None:
@@ -150,9 +156,9 @@ class Trad(models.Model):
         self.author = request_user # Поменять date - now(), expiration - забивается
         self.save()
         receivers = data['receiver']
-
         self.receiver = receivers
-
+        comment = Comment(type='status_cmt', text ='edited', date = datetime.datetime.now(), trad_id = self.id,  author = request_user)
+        comment.save()
 
     def renew_status(self, new_data, current_user):
         self.status = new_data
@@ -162,14 +168,9 @@ class Trad(models.Model):
         except:
             return _('Issue saving error')
         try:
-            comment
+            comment.save()
         except:
-            comment = None
-        else:
-            try:
-                comment.save()
-            except:
-                return _('Comment saving error')
+            return _('Comment saving error')
 
 
     def define_condition (self):
@@ -239,18 +240,18 @@ class Comment(models.Model):
     author = models.ForeignKey(User)
 
     def get_text(self):
-        def __init__(self):
-            if self.type == 'status_cmt':
-                self.status_attrs = status_attrs[self.text]
+        if self.type == 'status_cmt':
+            self.status_attrs = status_attrs[self.text]
 
         text_messages = {
             'done' : gettext_lazy('The task is done, send for check'),
-            'success': gettext_lazy('Done successfully'),
+            'success': gettext_lazy('Completed'),
             'closed':  gettext_lazy('Closed'),
             'refused': gettext_lazy('Refused'),
             'taken': gettext_lazy( 'Accepted'),
             'new': gettext_lazy( 'Given again'),
             'deleted': gettext_lazy( 'Deleted'),
+            'edited': gettext_lazy( 'Edited'),
         }
 
         self.status_attr = status_attrs[self.text]

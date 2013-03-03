@@ -204,25 +204,34 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/readme.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/set.js" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/style.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/base.html" afterPath="$PROJECT_DIR$/Templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/index.html" afterPath="$PROJECT_DIR$/Templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.mo" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.mo" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/edit_trad.html" afterPath="$PROJECT_DIR$/Templates/edit_trad.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/desk/models.py" afterPath="$PROJECT_DIR$/desk/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/registration/register.html" afterPath="$PROJECT_DIR$/Templates/registration/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/select-language.html" afterPath="$PROJECT_DIR$/Templates/select-language.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker/settings.py" afterPath="$PROJECT_DIR$/tracker/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/style.css" afterPath="$PROJECT_DIR$/static/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/trad.html" afterPath="$PROJECT_DIR$/Templates/trad.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tracker/urls.py" afterPath="$PROJECT_DIR$/tracker/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/trad_block.html" afterPath="$PROJECT_DIR$/Templates/trad_block.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/desk/views.py" afterPath="$PROJECT_DIR$/desk/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="django-bootstrap-tracker.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362191430018" ignored="false" />
-    <file path="/style.css" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362199268752" ignored="false" />
+    <file path="/Dummy.txt" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362276110854" ignored="false" />
+    <file path="/style.css" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279785847" ignored="false" />
     <file path="/register.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1361938277000" ignored="false" />
-    <file path="/base.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362193493417" ignored="false" />
+    <file path="/base.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279455490" ignored="false" />
     <file path="/index.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362195517631" ignored="false" />
     <file path="/select-language.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362198895980" ignored="false" />
+    <file path="/trad_block.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362278160302" ignored="false" />
+    <file path="$PROJECT_DIR$/../furniture/Templates/base.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362217041401" ignored="false" />
+    <file path="/django.po" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362285806518" ignored="false" />
+    <file path="/views.py" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362284989594" ignored="false" />
+    <file path="/header.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279314501" ignored="false" />
+    <file path="/models.py" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362285568029" ignored="false" />
+    <file path="/trad.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362280507295" ignored="false" />
+    <file path="/edit_trad.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362283415517" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,55 +248,57 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/desk/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/desk/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="238" column="0" selection-start="11694" selection-end="11694" vertical-scroll-proportion="-21.92">
-              <folding />
+            <state line="122" column="44" selection-start="5929" selection-end="5929" vertical-scroll-proportion="-16.8">
+              <folding>
+                <element signature="e#34#70#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tracker/urls.py">
+      <file leaf-file-name="select-language.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Templates/select-language.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="45" selection-start="1272" selection-end="1272" vertical-scroll-proportion="0.0">
+            <state line="11" column="0" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="trad.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Templates/trad.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="106" column="108" selection-start="3759" selection-end="3759" vertical-scroll-proportion="-8.16">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="293" column="23" selection-start="6754" selection-end="6754" vertical-scroll-proportion="0.48508635">
+            <state line="361" column="18" selection-start="7034" selection-end="7034" vertical-scroll-proportion="-17.76">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Templates/registration/register.html">
+      <file leaf-file-name="django.po" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="20" selection-start="1409" selection-end="1409" vertical-scroll-proportion="0.0">
+            <state line="751" column="18" selection-start="17118" selection-end="17118" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Templates/index.html">
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/desk/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="252" column="48" selection-start="10558" selection-end="10558" vertical-scroll-proportion="0.33333334">
               <folding />
             </state>
           </provider>
@@ -296,36 +307,34 @@
       <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="126" column="85" selection-start="4433" selection-end="4433" vertical-scroll-proportion="-4.48">
+            <state line="172" column="70" selection-start="7145" selection-end="7145" vertical-scroll-proportion="-8.48">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="select-language.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Templates/select-language.html">
+      <file leaf-file-name="header.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Templates/header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="415" selection-end="415" vertical-scroll-proportion="-7.04">
+            <state line="170" column="75" selection-start="7821" selection-end="7821" vertical-scroll-proportion="-6.3">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/desk/models.py">
+      <file leaf-file-name="edit_trad.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Templates/edit_trad.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="237" column="0" selection-start="9791" selection-end="9791" vertical-scroll-proportion="-5.24">
-              <folding>
-                <element signature="e#33#61#0" expanded="true" />
-              </folding>
+            <state line="20" column="54" selection-start="437" selection-end="439" vertical-scroll-proportion="-3.9">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="trad.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Templates/trad.html">
+      <file leaf-file-name="trad_block.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Templates/trad_block.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="138" column="19" selection-start="5122" selection-end="5122" vertical-scroll-proportion="-23.2">
+            <state line="57" column="61" selection-start="3485" selection-end="3485" vertical-scroll-proportion="-4.38">
               <folding />
             </state>
           </provider>
@@ -351,14 +360,18 @@
       <list>
         <option value="$PROJECT_DIR$/tracker/urls.py" />
         <option value="$PROJECT_DIR$/tracker/settings.py" />
-        <option value="$PROJECT_DIR$/desk/views.py" />
         <option value="$PROJECT_DIR$/Templates/registration/register.html" />
-        <option value="$PROJECT_DIR$/desk/models.py" />
-        <option value="$PROJECT_DIR$/Templates/trad.html" />
         <option value="$PROJECT_DIR$/Templates/index.html" />
         <option value="$PROJECT_DIR$/Templates/select-language.html" />
+        <option value="$PROJECT_DIR$/Templates/trad_block.html" />
+        <option value="$PROJECT_DIR$/Templates/header.html" />
         <option value="$PROJECT_DIR$/Templates/base.html" />
         <option value="$PROJECT_DIR$/static/css/style.css" />
+        <option value="$PROJECT_DIR$/Templates/trad.html" />
+        <option value="$PROJECT_DIR$/Templates/edit_trad.html" />
+        <option value="$PROJECT_DIR$/desk/views.py" />
+        <option value="$PROJECT_DIR$/desk/models.py" />
+        <option value="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" />
       </list>
     </option>
   </component>
@@ -394,7 +407,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -472,6 +484,36 @@
               <option name="myItemId" value="locale" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LC_MESSAGES" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="django-bootstrap-tracker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="django-bootstrap-tracker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="locale" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="en" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LC_MESSAGES" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -521,6 +563,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -528,7 +571,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.SQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../furniture" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -541,6 +584,42 @@
     </option>
   </component>
   <component name="RunManager" selected="Django server.django-bootstrap-tracker">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="django-bootstrap-tracker" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="django-bootstrap-tracker" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -622,7 +701,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24980783" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25518832" sideWeight="0.95982784" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -693,55 +772,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="20" selection-start="3345" selection-end="3345" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/registration/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="20" selection-start="1409" selection-end="1409" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="53" selection-start="1829" selection-end="1830" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/desk/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="19" selection-start="198" selection-end="200" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#33#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/desk/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tracker/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="26" selection-start="4659" selection-end="4659" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tracker/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="45" selection-start="1272" selection-end="1272" vertical-scroll-proportion="0.0">
@@ -751,32 +781,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Templates/registration/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="20" selection-start="1409" selection-end="1409" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/desk/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="237" column="0" selection-start="9791" selection-end="9791" vertical-scroll-proportion="-5.24">
-          <folding>
-            <element signature="e#33#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/trad.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="19" selection-start="5122" selection-end="5122" vertical-scroll-proportion="-23.2">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/desk/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="238" column="0" selection-start="11694" selection-end="11694" vertical-scroll-proportion="-21.92">
-          <folding />
-        </state>
+        <state line="40" column="20" selection-start="1409" selection-end="1409" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Templates/index.html">
@@ -788,21 +793,86 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Templates/select-language.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="415" selection-end="415" vertical-scroll-proportion="-7.04">
+        <state line="11" column="0" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.mo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/trad_block.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="61" selection-start="3485" selection-end="3485" vertical-scroll-proportion="-4.38">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="170" column="75" selection-start="7821" selection-end="7821" vertical-scroll-proportion="-6.3">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desk/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="126" column="85" selection-start="4433" selection-end="4433" vertical-scroll-proportion="-4.48">
+        <state line="172" column="70" selection-start="7145" selection-end="7145" vertical-scroll-proportion="-8.48">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/trad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="108" selection-start="3759" selection-end="3759" vertical-scroll-proportion="-8.16">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="293" column="23" selection-start="6754" selection-end="6754" vertical-scroll-proportion="0.48508635">
+        <state line="361" column="18" selection-start="7034" selection-end="7034" vertical-scroll-proportion="-17.76">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/edit_trad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="54" selection-start="437" selection-end="439" vertical-scroll-proportion="-3.9">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desk/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="44" selection-start="5929" selection-end="5929" vertical-scroll-proportion="-16.8">
+          <folding>
+            <element signature="e#34#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="751" column="18" selection-start="17118" selection-end="17118" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desk/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="252" column="48" selection-start="10558" selection-end="10558" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
