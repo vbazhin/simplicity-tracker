@@ -84,7 +84,7 @@ msgstr "Отправленные на проверку"
 
 #: Templates/base.html:172 Templates/header.html:172
 msgid "Given by me"
-msgstr "Данные мной"
+msgstr "Отданные мной"
 
 #: Templates/base.html:173 Templates/header.html:173
 msgid "Done successfully"
