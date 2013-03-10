@@ -14,7 +14,7 @@
                         </div>
                         <div>
                         <span>
-                            <h3> {{trad.label}}
+                            <h3 class="issue-label"> {{trad.label}}
                                 <small>
                                     <span>
                                         {% trans 'Author' %}: {{trad.author}}
@@ -31,7 +31,9 @@
                             {% endif %}
                              <div class="issue-info">
                                 <div class='task-properties condition' >
-                                    {% trans 'Condition' %}:
+                                    <span class='condition-label'>
+                                        {% trans 'Condition' %}:
+                                    </span>
                                     {{trad.condition}}
                                 </div>
                                 <div class='task-properties given-time'>

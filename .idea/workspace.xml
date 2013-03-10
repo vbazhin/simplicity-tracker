@@ -2,231 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b6edb42-eee8-4f23-bf17-e81a236d4073" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Templates/header.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/nppBackup/urls.py.2012-10-02_002542.bak" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/nppBackup/urls.py.2012-10-02_002555.bak" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/css/bootstrap-responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/css/bootstrap-responsive.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/css/datepicker.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/css/timepicker.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/img/glyphicons-halflings-white.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/img/glyphicons-halflings.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/js/bootstrap-collapse.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/js/bootstrap-datepicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/js/bootstrap-datepicker1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/js/bootstrap-datepicker2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/js/bootstrap-modal.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/js/bootstrap-timepicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/bootstrap/js/bootstrap1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/fonts/Consolas.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_diagonals-thick_18_b81900_40x40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_diagonals-thick_20_666666_40x40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_flat_0_aaaaaa_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_flat_10_000000_40x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_glass_100_f6f6f6_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_glass_100_fdf5ce_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_glass_55_fbf9ee_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_glass_65_ffffff_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_glass_75_dadada_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_glass_75_e6e6e6_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_glass_75_ffffff_1x400.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_gloss-wave_35_f6a828_500x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_highlight-soft_100_eeeeee_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_highlight-soft_75_cccccc_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_highlight-soft_75_ffe45c_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-bg_inset-soft_95_fef1ec_1x100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_222222_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_228ef1_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_2e83ff_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_454545_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_888888_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_cd0a0a_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_ef8c08_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_f6cf3b_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_ffd27a_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/images/ui-icons_ffffff_256x240.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/jquery-ui-1.8.18.custom.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/loaders/285.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/loaders/2851.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/jq/jquery-1.7.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/jq/jquery-ui-1.8.18.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/jq/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/jquery.markitup.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/bold.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/clean.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/h1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/h2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/h3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/h4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/h5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/h6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/italic.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/list-bullet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/list-item.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/list-numeric.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/paragraph.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/images/stroke.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/readme.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/set.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/mark/xbbcode/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/bold.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/clean.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/code.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/fonts.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/italic.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/list-bullet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/list-item.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/list-numeric.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/quotes.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/stroke.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/images/underline.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/readme.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/set.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/bbcode/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/bold.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/clean.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/italic.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/list-bullet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/list-numeric.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/images/stroke.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/set.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/default/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/bold.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/clean.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/h1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/h2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/h3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/h4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/h5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/h6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/italic.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/list-bullet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/list-item.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/list-numeric.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/paragraph.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/images/stroke.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/readme.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/set.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/html/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/bold.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/code.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/h1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/h2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/h3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/h4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/h5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/h6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/italic.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/list-bullet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/list-numeric.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/images/quotes.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/readme.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/set.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markdown/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/bold.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/code.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/h1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/h2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/h3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/h4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/h5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/h6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/italic.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/list-bullet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/list-numeric.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/images/quotes.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/readme.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/set.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/markmin/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/templates/preview.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/sets/templates/preview.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-container.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-editor-bbcode.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-editor-dotclear.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-editor-html.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-editor-json.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-editor-markdown.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-editor-textile.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-editor-wiki.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-editor-xml.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/bg-editor.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/handle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/menu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/images/submenu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/markitup/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/simple/images/handle.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/simple/images/menu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/simple/images/submenu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/skins/simple/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/bold.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/clean.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/h1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/h2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/h3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/h4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/h5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/h6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/italic.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/list-bullet.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/list-item.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/list-numeric.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/paragraph.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/picture.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/preview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/images/stroke.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/readme.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/set.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/static/markitup/xbbcode/style.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css" afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.mo" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/style.css" afterPath="$PROJECT_DIR$/static/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/trad.html" afterPath="$PROJECT_DIR$/Templates/trad.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/trad_block.html" afterPath="$PROJECT_DIR$/Templates/trad_block.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="django-bootstrap-tracker.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362403491594" ignored="false" />
-    <file path="/style.css" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279785847" ignored="false" />
+    <file path="/Dummy.txt" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362877808528" ignored="false" />
+    <file path="/style.css" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362884991449" ignored="false" />
     <file path="/register.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1361938277000" ignored="false" />
     <file path="/base.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279455490" ignored="false" />
     <file path="/index.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362195517631" ignored="false" />
     <file path="/select-language.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362198895980" ignored="false" />
-    <file path="/trad_block.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362407011901" ignored="false" />
+    <file path="/trad_block.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362881156523" ignored="false" />
     <file path="$PROJECT_DIR$/../furniture/Templates/base.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362217041401" ignored="false" />
-    <file path="/django.po" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362303661214" ignored="false" />
-    <file path="/views.py" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362284989594" ignored="false" />
+    <file path="/django.po" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362878451693" ignored="false" />
+    <file path="/views.py" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362882924356" ignored="false" />
     <file path="/header.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279314501" ignored="false" />
     <file path="/models.py" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362285568029" ignored="false" />
-    <file path="/trad.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362280507295" ignored="false" />
+    <file path="/trad.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362883231206" ignored="false" />
     <file path="/edit_trad.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362283415517" ignored="false" />
-    <file path="/bootstrap-responsive.css" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362407782919" ignored="false" />
+    <file path="/bootstrap-responsive.css" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362882587248" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,25 +47,25 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/desk/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="44" selection-start="5929" selection-end="5929" vertical-scroll-proportion="0.0">
+            <state line="223" column="67" selection-start="10664" selection-end="10664" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="trad.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Templates/trad.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="108" selection-start="3759" selection-end="3759" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="365" column="31" selection-start="7088" selection-end="7088" vertical-scroll-proportion="0.0">
+            <state line="295" column="17" selection-start="5861" selection-end="5861" vertical-scroll-proportion="0.5102041">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="django.po" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="36" selection-start="411" selection-end="412" vertical-scroll-proportion="-7.68">
               <folding />
             </state>
           </provider>
@@ -273,7 +74,7 @@
       <file leaf-file-name="django.po" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="196" column="0" selection-start="4753" selection-end="4753" vertical-scroll-proportion="0.0">
+            <state line="45" column="13" selection-start="1467" selection-end="1467" vertical-scroll-proportion="-8.32">
               <folding />
             </state>
           </provider>
@@ -282,16 +83,7 @@
       <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/desk/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/desk/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="797" selection-end="797" vertical-scroll-proportion="0.0">
+            <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -300,19 +92,37 @@
       <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="140" column="22" selection-start="5131" selection-end="5131" vertical-scroll-proportion="0.0">
+            <state line="223" column="25" selection-start="8746" selection-end="8746" vertical-scroll-proportion="-5.34">
+              <folding>
+                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="6" selection-start="1095" selection-end="1095" vertical-scroll-proportion="-6.62">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap-responsive.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="bootstrap-responsive.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="78" column="16" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.9488">
-              <folding>
-                <element signature="e#6061#9425#0" expanded="false" />
-              </folding>
+            <state line="185" column="17" selection-start="3065" selection-end="3065" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="trad.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Templates/trad.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="0" selection-start="341" selection-end="341" vertical-scroll-proportion="-6.88">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -320,17 +130,10 @@
       <file leaf-file-name="trad_block.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Templates/trad_block.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="70" selection-start="1482" selection-end="1482" vertical-scroll-proportion="-0.64">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit_trad.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Templates/edit_trad.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="54" selection-start="437" selection-end="439" vertical-scroll-proportion="-0.64">
-              <folding />
+            <state line="43" column="35" selection-start="2500" selection-end="2500" vertical-scroll-proportion="-17.92">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -359,15 +162,16 @@
         <option value="$PROJECT_DIR$/Templates/index.html" />
         <option value="$PROJECT_DIR$/Templates/select-language.html" />
         <option value="$PROJECT_DIR$/Templates/header.html" />
-        <option value="$PROJECT_DIR$/static/css/style.css" />
-        <option value="$PROJECT_DIR$/Templates/trad.html" />
         <option value="$PROJECT_DIR$/Templates/edit_trad.html" />
-        <option value="$PROJECT_DIR$/desk/views.py" />
         <option value="$PROJECT_DIR$/desk/models.py" />
-        <option value="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" />
         <option value="$PROJECT_DIR$/Templates/base.html" />
+        <option value="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" />
         <option value="$PROJECT_DIR$/Templates/trad_block.html" />
         <option value="$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css" />
+        <option value="$PROJECT_DIR$/desk/forms.py" />
+        <option value="$PROJECT_DIR$/desk/views.py" />
+        <option value="$PROJECT_DIR$/Templates/trad.html" />
+        <option value="$PROJECT_DIR$/static/css/style.css" />
       </list>
     </option>
   </component>
@@ -403,6 +207,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -561,20 +366,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="locale" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="django-bootstrap-tracker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="django-bootstrap-tracker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="desk" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -613,7 +404,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -621,7 +411,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.SQL" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../furniture" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/flats" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
@@ -829,28 +619,14 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tracker/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="45" selection-start="1272" selection-end="1272" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Templates/registration/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="20" selection-start="1409" selection-end="1409" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Templates/select-language.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="11" column="0" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.mo">
@@ -863,75 +639,91 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/trad.html">
+    <entry file="file://$PROJECT_DIR$/Templates/edit_trad.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="108" selection-start="3759" selection-end="3759" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/desk/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="44" selection-start="5929" selection-end="5929" vertical-scroll-proportion="0.0">
+        <state line="20" column="54" selection-start="437" selection-end="439" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/desk/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="797" selection-end="797" vertical-scroll-proportion="0.0">
+        <state line="92" column="17" selection-start="3361" selection-end="3362" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="196" column="0" selection-start="4753" selection-end="4753" vertical-scroll-proportion="0.0">
+        <state line="45" column="13" selection-start="1467" selection-end="1467" vertical-scroll-proportion="-8.32">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/desk/forms.py">
+    <entry file="file://$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="140" column="22" selection-start="5131" selection-end="5131" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="365" column="31" selection-start="7088" selection-end="7088" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/edit_trad.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="54" selection-start="437" selection-end="439" vertical-scroll-proportion="-0.64">
+        <state line="12" column="36" selection-start="411" selection-end="412" vertical-scroll-proportion="-7.68">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Templates/trad_block.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="70" selection-start="1482" selection-end="1482" vertical-scroll-proportion="-0.64">
-          <folding />
+        <state line="43" column="35" selection-start="2500" selection-end="2500" vertical-scroll-proportion="-17.92">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="16" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.9488">
+        <state line="185" column="17" selection-start="3065" selection-end="3065" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desk/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desk/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="223" column="67" selection-start="10664" selection-end="10664" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/trad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="341" selection-end="341" vertical-scroll-proportion="-6.88">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="223" column="25" selection-start="8746" selection-end="8746" vertical-scroll-proportion="-5.34">
           <folding>
-            <element signature="e#6061#9425#0" expanded="false" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="6" selection-start="1095" selection-end="1095" vertical-scroll-proportion="-6.62">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="295" column="17" selection-start="5861" selection-end="5861" vertical-scroll-proportion="0.5102041">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -43,7 +43,7 @@ msgstr "Выйти"
 #: Templates/header.html:129 Templates/header.html.py:133
 #: Templates/admin/change_form.html:22 Templates/admin/index.html:29
 msgid "Add"
-msgstr "Добавить"
+msgstr "Новое"
 
 #: Templates/base.html:140 Templates/header.html:138
 msgid "Invite"
