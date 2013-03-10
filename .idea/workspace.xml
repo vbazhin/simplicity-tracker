@@ -2,32 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b6edb42-eee8-4f23-bf17-e81a236d4073" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/nppBackup/urls.py.2012-10-02_002542.bak" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tracker/nppBackup/urls.py.2012-10-02_002555.bak" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.mo" afterPath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.mo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" afterPath="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/style.css" afterPath="$PROJECT_DIR$/static/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/trad.html" afterPath="$PROJECT_DIR$/Templates/trad.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Templates/trad_block.html" afterPath="$PROJECT_DIR$/Templates/trad_block.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/django-bootstrap-tracker.iml" afterPath="$PROJECT_DIR$/.idea/django-bootstrap-tracker.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css" afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css" />
     </list>
     <ignored path="django-bootstrap-tracker.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362877808528" ignored="false" />
-    <file path="/style.css" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362884991449" ignored="false" />
-    <file path="/register.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1361938277000" ignored="false" />
-    <file path="/base.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279455490" ignored="false" />
-    <file path="/index.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362195517631" ignored="false" />
-    <file path="/select-language.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362198895980" ignored="false" />
-    <file path="/trad_block.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362881156523" ignored="false" />
-    <file path="$PROJECT_DIR$/../furniture/Templates/base.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362217041401" ignored="false" />
-    <file path="/django.po" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362878451693" ignored="false" />
-    <file path="/views.py" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362882924356" ignored="false" />
-    <file path="/header.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279314501" ignored="false" />
-    <file path="/models.py" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362285568029" ignored="false" />
-    <file path="/trad.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362883231206" ignored="false" />
-    <file path="/edit_trad.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362283415517" ignored="false" />
     <file path="/bootstrap-responsive.css" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362882587248" ignored="false" />
+    <file path="/edit_trad.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362283415517" ignored="false" />
+    <file path="/trad.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362883231206" ignored="false" />
+    <file path="/models.py" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362285568029" ignored="false" />
+    <file path="/header.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279314501" ignored="false" />
+    <file path="/views.py" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362882924356" ignored="false" />
+    <file path="/django.po" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362878451693" ignored="false" />
+    <file path="$PROJECT_DIR$/../furniture/Templates/base.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362217041401" ignored="false" />
+    <file path="/trad_block.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362881156523" ignored="false" />
+    <file path="/select-language.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362198895980" ignored="false" />
+    <file path="/index.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362195517631" ignored="false" />
+    <file path="/base.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362279455490" ignored="false" />
+    <file path="/register.html" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1361938277000" ignored="false" />
+    <file path="/style.css" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362884991449" ignored="false" />
+    <file path="/Dummy.txt" changelist="6b6edb42-eee8-4f23-bf17-e81a236d4073" time="1362877808528" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +37,9 @@
     <disable_hints />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="django-bootstrap-tracker" />
+  </component>
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
@@ -53,10 +51,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="295" column="17" selection-start="5861" selection-end="5861" vertical-scroll-proportion="0.5102041">
+            <state line="265" column="17" selection-start="5454" selection-end="5454" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -65,7 +63,7 @@
       <file leaf-file-name="django.po" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="36" selection-start="411" selection-end="412" vertical-scroll-proportion="-7.68">
+            <state line="12" column="36" selection-start="411" selection-end="412" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -74,7 +72,7 @@
       <file leaf-file-name="django.po" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="13" selection-start="1467" selection-end="1467" vertical-scroll-proportion="-8.32">
+            <state line="45" column="13" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -92,10 +90,8 @@
       <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="223" column="25" selection-start="8746" selection-end="8746" vertical-scroll-proportion="-5.34">
-              <folding>
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state line="223" column="25" selection-start="8746" selection-end="8746" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,16 +99,16 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="6" selection-start="1095" selection-end="1095" vertical-scroll-proportion="-6.62">
+            <state line="33" column="6" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap-responsive.css" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="bootstrap-responsive.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="185" column="17" selection-start="3065" selection-end="3065" vertical-scroll-proportion="0.0">
+            <state line="62" column="0" selection-start="1056" selection-end="1085" vertical-scroll-proportion="0.33908755">
               <folding />
             </state>
           </provider>
@@ -121,7 +117,7 @@
       <file leaf-file-name="trad.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Templates/trad.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="341" selection-end="341" vertical-scroll-proportion="-6.88">
+            <state line="18" column="0" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -130,10 +126,8 @@
       <file leaf-file-name="trad_block.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Templates/trad_block.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="35" selection-start="2500" selection-end="2500" vertical-scroll-proportion="-17.92">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-              </folding>
+            <state line="45" column="35" selection-start="2691" selection-end="2691" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -147,11 +141,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitLogSettings">
-    <option name="myDateState">
-      <MyDateState />
-    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -167,19 +156,19 @@
         <option value="$PROJECT_DIR$/Templates/base.html" />
         <option value="$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po" />
         <option value="$PROJECT_DIR$/Templates/trad_block.html" />
-        <option value="$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css" />
         <option value="$PROJECT_DIR$/desk/forms.py" />
         <option value="$PROJECT_DIR$/desk/views.py" />
         <option value="$PROJECT_DIR$/Templates/trad.html" />
         <option value="$PROJECT_DIR$/static/css/style.css" />
+        <option value="$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1301" />
-    <option name="height" value="744" />
+    <option name="x" value="-4" />
+    <option name="y" value="-4" />
+    <option name="width" value="1688" />
+    <option name="height" value="1028" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -207,7 +196,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -404,16 +392,17 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.SQL" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.SQL" />
     <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/flats" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -437,6 +426,26 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
+      <option name="MULTIPROCESS" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="django-bootstrap-tracker" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
@@ -460,28 +469,7 @@
       <option name="customRunCommand" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <module name="django-bootstrap-tracker" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
       <JSDebuggerConfigurationSettings>
         <option name="engineId" value="embedded" />
         <option name="fileUrl" />
@@ -541,21 +529,22 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <frame x="-4" y="-4" width="1688" height="1028" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25518832" sideWeight="0.95982784" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19828641" sideWeight="0.95982784" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -585,6 +574,7 @@
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
     <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
@@ -594,11 +584,9 @@
     <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
-    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
-    <option name="LIMIT_HISTORY" value="true" />
-    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
     <option name="LAST_COMMIT_MESSAGE" />
@@ -641,53 +629,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Templates/edit_trad.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="54" selection-start="437" selection-end="439" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="20" column="54" selection-start="437" selection-end="439" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/desk/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="17" selection-start="3361" selection-end="3362" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="13" selection-start="1467" selection-end="1467" vertical-scroll-proportion="-8.32">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="36" selection-start="411" selection-end="412" vertical-scroll-proportion="-7.68">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/trad_block.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="35" selection-start="2500" selection-end="2500" vertical-scroll-proportion="-17.92">
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#a#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="17" selection-start="3065" selection-end="3065" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/desk/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="92" column="17" selection-start="3361" selection-end="3362" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/desk/views.py">
@@ -697,32 +644,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/trad.html">
+    <entry file="file://$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="341" selection-end="341" vertical-scroll-proportion="-6.88">
+        <state line="12" column="36" selection-start="411" selection-end="412" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/locale/ru/LC_MESSAGES/django.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="13" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/desk/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="223" column="25" selection-start="8746" selection-end="8746" vertical-scroll-proportion="-5.34">
-          <folding>
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="223" column="25" selection-start="8746" selection-end="8746" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="6" selection-start="1095" selection-end="1095" vertical-scroll-proportion="-6.62">
+        <state line="33" column="6" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/trad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="341" selection-end="341" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/trad_block.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="35" selection-start="2691" selection-end="2691" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="295" column="17" selection-start="5861" selection-end="5861" vertical-scroll-proportion="0.5102041">
+        <state line="265" column="17" selection-start="5454" selection-end="5454" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/bootstrap/css/bootstrap-responsive.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="0" selection-start="1056" selection-end="1085" vertical-scroll-proportion="0.33908755">
           <folding />
         </state>
       </provider>

@@ -60,13 +60,14 @@
 }
 
 
-@media (max-width: 460px ) {
-    body {
-        width: 460px;
-    }
+@media (max-width: 470px ) {
 
     .navbar {
-        width: 460px;
+        width: 490px;
+    }
+
+    .table-trads {
+        width:100%;
     }
 }
 
@@ -123,7 +124,7 @@
         width: 0;
     }
 }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .given-time {
         overflow: hidden;
         height: 0;
