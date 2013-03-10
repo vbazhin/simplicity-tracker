@@ -29,7 +29,8 @@
 }
 
 .markItUp {
-    width:600px;
+    width:none;
+    width: 100%;
 }
 
 #time-icon {
@@ -281,6 +282,7 @@ form {
 .challenge-task {
     position: relative;
     float: right;
+    margin:-43px 0 10px;
 }
 
 .issue-receivers {
@@ -292,8 +294,6 @@ form {
 
 .form-datetime {
     width: 400px;
-    position: relative;
-    float: left;
 }
 
 .logo-box {
