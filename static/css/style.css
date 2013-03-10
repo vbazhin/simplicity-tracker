@@ -15,7 +15,7 @@
 }
 
 .issue-info .condition {
-    width: 24%;
+    width: 30%;
 }
 
 .issue-info .left-time {
@@ -112,7 +112,6 @@ h3 {
 .left-time-bar {
     opacity: 0.3;
     position: relative;
-    height: 60px;
     background-size: 64px 64px;
     border-radius: 0 5px 5px 0;
     background-color: #468847;
@@ -128,19 +127,6 @@ h3 {
     max-width: 98.5%;
 }
 
-.arrow-right {
-    border-bottom: 27px solid transparent;
-    border-left: 20px solid #468847;
-    border-top: 27px solid transparent;
-    float: right;
-    height: 0;
-    left: 20px;
-    margin-bottom: -29px;
-    margin-top: 1px;
-    opacity: 0.86;
-    position: relative;
-    width: 0;
-}
 
 small span {
     position:absolute;
@@ -177,24 +163,7 @@ small span {
     float: right;
 }
 
-@-moz-document url-prefix() {
-    .left-time-bar {
-         margin: -25px 0 -64px -2px;
-    }
-   .arrow-right {
-    border-bottom: 27px solid transparent;
-    border-left: 20px solid #468847;
-    border-top: 27px solid transparent;
-    float: right;
-    height: 0;
-    left: 20px;
-    margin-bottom: -29px;
-    margin-top: 1px;
-    opacity: 0.86;
-    position: relative;
-    width: 0;
-    }
-}
+
 
 form {
     margin:0;
@@ -312,7 +281,6 @@ form {
 .challenge-task {
     position: relative;
     float: right;
-    margin: -50px 52px 20px 0;
 }
 
 .issue-receivers {
@@ -324,6 +292,8 @@ form {
 
 .form-datetime {
     width: 400px;
+    position: relative;
+    float: left;
 }
 
 .logo-box {
@@ -365,6 +335,12 @@ form {
 .brand .caret {
     border-top: 4px solid #fff;
     margin:10px 0 0 0;
+}
+
+.issue-label {
+    height:23px;
+    overflow: hidden;
+    margin-right: 80px;
 }
 
 #issue-receivers {

@@ -60,17 +60,79 @@
 }
 
 
-@media (max-width: 500px) {
-    .task-properties {
-        overflow: hidden;
-        height: 0;
+@media (max-width: 460px ) {
+    body {
+        width: 460px;
+    }
+
+    .navbar {
+        width: 460px;
     }
 }
 
+@media (max-width: 500px) {
+    .task-properties {
+        overflow: hidden;
+        height:0;
+    }
+
+
+    .issue-label {
+        font-size: 12px;
+    }
+
+    .issue-info .left-time {
+        height: 5px;
+        width:0;
+    }
+
+    .left-time-bar {
+        height: 43px;
+    }
+
+    .arrow-right {
+        border-bottom: 20px solid transparent;
+        border-left: 20px solid #468847;
+        border-top: 20px solid transparent;
+        float: right;
+        height: 0;
+        left: 19px;
+        margin-bottom: -29px;
+        opacity: 0.86;
+        position: relative;
+        width: 0;
+    }
+}
+
+@media (min-width: 500px) {
+    .left-time-bar {
+        height: 60px;
+    }
+
+    .arrow-right {
+        border-bottom: 27px solid transparent;
+        border-left: 20px solid #468847;
+        border-top: 27px solid transparent;
+        float: right;
+        height: 0;
+        left: 20px;
+        margin-bottom: -29px;
+        margin-top: 1px;
+        opacity: 0.86;
+        position: relative;
+        width: 0;
+    }
+}
 @media (max-width: 600px) {
     .given-time {
         overflow: hidden;
         height: 0;
+        width:1%;
+    }
+
+
+    .issue-label {
+        font-size: 14px ;
     }
 
     .brand {
@@ -78,14 +140,16 @@
         height:0;
         width:0;
     }
+
+    .condition-label {
+        display: none;
+    }
 }
 
 
 @media (max-width: 700px) {
     .left-time {
-        overflow: hidden;
-        height: 0;
-        width: 0;
+        display: none;
     }
 }
 

@@ -120,7 +120,7 @@ def show_trad(request, related_trad,  user_status = 'group_task_receiver'):
                     cd = form.cleaned_data
                     comment = Comment()
                     if len(cd['text']) > 0:
-                        comment.add(cd['text'], request.user, trad.id)
+                        comment.add(cd, request.user, trad.id)
             else:
                 status = [ key for key in request.POST ]
                 trad.renew_status(status[0], request.user) # Новый статус (объеденить метод с комментированием)
@@ -221,7 +221,7 @@ def generate_link(request):
 
 # Не имеет смысла выносить формы в отдельный файл
 class TradForm(forms.Form):
-    label = forms.CharField(widget=forms.TextInput(attrs={'style':'width:597px;г'}))
+    label = forms.CharField(widget=forms.TextInput(attrs={'style':'width:650px;'}))
     text = forms.CharField(required=False, widget=MarkItUpWidget(attrs={'style':'width: 99%; height:105px;'}))
     receiver = forms.ModelMultipleChoiceField(required=False, queryset=User.objects.all(), widget=forms.SelectMultiple(attrs={'style':'width:300px; height:200px;'}))
     expdate = forms.DateField(required=False)
