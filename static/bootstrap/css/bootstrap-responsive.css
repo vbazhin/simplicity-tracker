@@ -393,9 +393,21 @@
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#40c9c9c9',GradientType=0 ); /* IE6-9 */
       box-shadow: 0 5px 5px rgba(0,0,0,0.2);
       border-radius: 0 0 10px 10px;
-      width: 101%;
-      margin: 0 -4px;
+      width: 100%;
   }
+
+  .nav-collapse {
+      overflow: hidden;
+      height: 0;
+      width: 100%;
+  }
+
+    .nav-collapse.in {
+        overflow: visible !important;
+        height: 0;
+        width: 100%;
+    }
+
 
 }
 @media (min-width: 1200px) {
