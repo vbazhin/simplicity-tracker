@@ -61,6 +61,9 @@
 
 
 @media (max-width: 470px ) {
+    .navbar {
+        body: 490px;
+    }
 
     .navbar {
         width: 490px;
@@ -76,7 +79,6 @@
         overflow: hidden;
         height:0;
     }
-
 
     .issue-label {
         font-size: 12px;
@@ -125,26 +127,33 @@
     }
 }
 @media (max-width: 700px) {
+    .navbar .nav li {
+        text-align: right;
+    }
+
+    .navbar-inner .nav > li > a {
+        padding: 16px 3px 11px;
+    }
+
     .given-time {
         overflow: hidden;
         height: 0;
         width:1%;
     }
-
-
     .issue-label {
         font-size: 14px ;
     }
-
     .brand {
         overflow: hidden;
         height:0;
         width:0;
     }
-
     .condition-label {
         display: none;
     }
+
+
+
 }
 
 
@@ -152,6 +161,7 @@
     .left-time {
         display: none;
     }
+
 }
 
 @media (max-width: 767px) {
@@ -167,6 +177,7 @@
   .visible-desktop {
     display: none;
   }
+
 }
 @media (min-width: 768px) and (max-width: 979px) {
   .visible-tablet {
@@ -181,6 +192,7 @@
   .visible-desktop {
     display: none;
   }
+
 }
 @media (max-width: 480px) {
   .nav-collapse {
@@ -228,15 +240,12 @@
   .carousel-caption {
     position: static;
   }
+
 }
 @media (max-width: 767px) {
   body {
     padding-left: 20px;
     padding-right: 20px;
-  }
-  .navbar-fixed-top {
-    margin-left: -20px;
-    margin-right: -20px;
   }
   .container {
     width: auto;
@@ -294,7 +303,7 @@
       max-width: 940px;
   }
 
-    body {
+  body {
     padding-top: 0;
   }
   .navbar-fixed-top {
@@ -308,6 +317,7 @@
   .navbar .brand {
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 0;
     margin: 0 0 0 -5px;
   }
   .navbar .nav-collapse {
@@ -317,9 +327,6 @@
   .navbar .nav {
     float: none;
     margin: 0 0 9px;
-  }
-  .navbar .nav > li {
-    float: none;
   }
   .navbar .nav > li > a {
     margin-bottom: 2px;
@@ -332,39 +339,13 @@
     text-shadow: none;
   }
   .navbar .nav > li > a {
-    padding: 6px 15px;
-    font-weight: bold;
+    padding: 6px 10px 15px;
     color: #999999;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
   }
 
-  .navbar .nav > li > a:hover,
-  .navbar .dropdown-menu {
-    position: static;
-    top: auto;
-    left: auto;
-    float: none;
-    max-width: none;
-    margin: 0 15px;
-    padding: 0;
-    background-color: transparent;
-    border: none;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
-  .navbar .dropdown-menu:before,
-  .navbar .dropdown-menu:after {
-    display: none;
-  }
-  .navbar .dropdown-menu .divider {
-    display: none;
-  }
   .navbar-form,
   .navbar-search {
     float: none;
@@ -384,21 +365,47 @@
     padding-left: 10px;
     padding-right: 10px;
   }
+
   .btn-navbar {
     display: block;
   }
-  .nav-collapse {
-    overflow: hidden;
-    height: 0;
+
+  .navbar .nav {
+    float: none;
+    margin: 0 0 9px 30px;
   }
 
+  .dropdown-issues {
+
+  }
+
+  .navbar .nav li {
+      text-align: left;
+  }
+
+  .issue-navigation {
+      background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(201,201,201,0.25) 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(201,201,201,0.25))); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(201,201,201,0.25) 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(201,201,201,0.25) 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(201,201,201,0.25) 100%); /* IE10+ */
+      background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(201,201,201,0.25) 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#40c9c9c9',GradientType=0 ); /* IE6-9 */
+      box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+      border-radius: 0 0 10px 10px;
+      width: 101%;
+      margin: 0 -4px;
+  }
 
 }
 @media (min-width: 1200px) {
   .nav-collapse.collapse {
     height: auto !important;
     overflow: visible !important;
+  }
 
+  .navbar-inner .nav > li > a {
+      padding: 16px 10px 11px;
   }
 }
 @media (min-width: 1200px) {
