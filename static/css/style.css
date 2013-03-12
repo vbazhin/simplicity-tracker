@@ -33,6 +33,12 @@
     width: 100%;
 }
 
+.markItUpEditor {
+    width: 98%;
+    height: 105px;
+}
+
+
 #time-icon {
     margin-top: -9px;
     margin-left:-20px;
@@ -225,7 +231,7 @@ form {
 }
 
 #add-task {
-    min-width: 500px;
+    min-width: 300px;
 }
 
 #add-task .well {
@@ -266,6 +272,7 @@ form {
     position:relative;
     float: left;
     margin-right: 10px;
+    width:100px;
 
 }
 
@@ -282,18 +289,23 @@ form {
 .challenge-task {
     position: relative;
     float: right;
-    margin:-43px 0 10px;
+    margin:20px 0;
 }
 
 .issue-receivers {
-    width:300px;
     position:relative;
     float: left;
     margin-top: -2px;
 }
 
+
+.form-receivers {
+    width:99%;
+}
+
 .form-datetime {
-    width: 400px;
+    position: relative;
+    float: left;
 }
 
 .logo-box {

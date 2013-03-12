@@ -408,6 +408,37 @@
         width: 100%;
     }
 
+  .form-header {
+    width: 100%;
+  }
+
+  .form-issue-label {
+    width: 99%;
+  }
+
+  .form-receivers {
+      height: 200px;
+  }
+
+  .issue-receivers {
+      width:103%;
+  }
+
+  .form-datetime {
+      width:100%;
+  }
+
+  select[multiple] {
+      height: 100px;
+  }
+
+  .add-issue {
+      margin:10px 30px 10px 20px;
+  }
+
+  .form-datetime {
+      width: 220px;
+  }
 
 }
 @media (min-width: 1200px) {
@@ -421,6 +452,24 @@
   }
 }
 @media (min-width: 1200px) {
+
+  select[multiple] {
+      height: 200px;
+  }
+
+  .form-issue-label {
+    width: 650px;
+  }
+
+  .form-datetime {
+      width: 400px;
+  }
+
+  .issue-receivers  {
+      width: 300px;
+      height: 200px;
+  }
+
   .row {
     margin-left: -30px;
     *zoom: 1;

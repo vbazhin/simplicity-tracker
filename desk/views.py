@@ -221,9 +221,9 @@ def generate_link(request):
 
 # Не имеет смысла выносить формы в отдельный файл
 class TradForm(forms.Form):
-    label = forms.CharField(widget=forms.TextInput(attrs={'style':'width:650px;'}))
-    text = forms.CharField(required=False, widget=MarkItUpWidget(attrs={'style':'width: 99%; height:105px;'}))
-    receiver = forms.ModelMultipleChoiceField(required=False, queryset=User.objects.all(), widget=forms.SelectMultiple(attrs={'style':'width:300px; height:200px;'}))
+    label = forms.CharField(widget=forms.TextInput(attrs={'class':'form-issue-label'}))
+    text = forms.CharField(required=False, widget=MarkItUpWidget())
+    receiver = forms.ModelMultipleChoiceField(required=False, queryset=User.objects.all(), widget=forms.SelectMultiple(attrs={'class':'form-receivers'}))
     expdate = forms.DateField(required=False)
     exptime = forms.TimeField(required=False)
     timezone_offset =forms.CharField(required=False) # Либо смещение локального времени сессии, либо utc
