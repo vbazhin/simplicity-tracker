@@ -272,7 +272,7 @@ form {
     position:relative;
     float: left;
     margin-right: 10px;
-    width:100px;
+    width:210px;
 
 }
 
@@ -304,7 +304,7 @@ form {
 }
 
 .form-datetime {
-    position: relative;
+    position: static;
     float: left;
 }
 
