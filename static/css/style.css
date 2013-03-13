@@ -347,6 +347,10 @@ form {
     text-align: center;
 }
 
+.btn-navbar .icon-bar {
+    height: 3px;
+}
+
 .signin-form-block {
     position: relative;
     float: left;
