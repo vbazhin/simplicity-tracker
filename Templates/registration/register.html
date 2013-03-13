@@ -1,94 +1,55 @@
 <html>
 <head>
-
-    {% load static %}
-    {% get_static_prefix as STATIC_URL %}
     {% load i18n %}
     {% get_current_language as LANGUAGE_CODE %}
     {% get_available_languages as LANGUAGES %}
     {% get_current_language_bidi as LANGUAGE_BIDI %}
+    {% load static %}
+    {% get_static_prefix as STATIC_URL %}
 
 
-    <title> {% trans 'Issues \ Registration' %} </title>
+    <title> {% trans 'Issues / registration' %} </title>
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-1.8.18.custom.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-based-responsive.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{{ STATIC_URL }}jq/jquery-1.7.2.min.js"> </script>
-    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"> </script>
-
-    <style>
-        input {
-            height: 30px;
-        }
-
-        label {
-            font-size:20px;
-        }
-
-        .log-in-block {
-            position:relative;
-            float: left;
-            width: 80%;
-        }
-
-        .log-in-block div {
-            margin-right: 50px;
-        }
-
-        .hero-unit {
-            position: relative;
-            float: left;
-            font-size: 40px;;
-        }
-
-        .inp {
-            position: relative;
-            float: right;
-            width: 20%;
-            min-width: 200px;
-            margin-right: 60px;
-        }
-
-        .submit-registration {
-            position: relative;
-            float: right;
-            font-size: 32px;
-            height: 90px;
-            padding: 38px;
-            margin: 20px 35px 0 0;
-        }
-
-        .form-field {
-            background: #333;
-        }
-
-    </style>
-
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"> </script>
 </head>
 <body>
+<div class="login-content-block">
+    {% if form.errors %}
+    <div class="alert alert-message">
+        <p style="color: red;">
+            {% trans 'Please correct the errors below.' %} {{ form.errors }}
+        </p>
+    </div>
+    {% endif %}
+    <div class="login-inner-block">
+        <div class="hero-unit">
+            <div>
+                <h1> {% trans 'Issues' %} </h1>
+                {% include 'select-language.html' %}
+            </div>
+        </div>
+        <br>
+        <div class="login-form">
+            <form action="{{hash}}" method="post">
+                <div class="inp">
+                    <label for="id_username"> <h2> {% trans 'Name' %}  </h2> </label> {{ form.username }}
+                </div>
+                <div class="inp">
+                    <label for="id_password1"> {% trans 'Password' %} </label> {{ form.password1 }}
+                    <label for="id_password2"> {% trans 'Password again' %} </label> {{ form.password2 }}
+                </div>
+                <input type="submit" class="btn button-submit-registration" value="{% trans 'Register' %}" />
+            </form>
+        </div>
+    </div>
+</div></div>
 
-{% if form.errors %}
-<div class="alert alert-message">
-    <p>
-        {% trans 'Please correct the errors below.' %}  {{ form.errors }}
-    </p>
-</div>
-{% endif %}
-<div class="form-field">
-    <div class="hero-unit">
-        {% trans 'Issues' %}
-     </div>
-    <form action="{{hash}}" method="post">
-        <input type="submit" class="btn submit-registration" value="{% trans 'Register' %}" />
-        <div class="inp">
-            <label for="id_password1"> {% trans 'Password' %} </label> {{ form.password1 }}
-            <label for="id_password2"> {% trans 'Password again' %} </label> {{ form.password2 }}
-        </div>
-        <div class="inp">
-            <label for="id_username"> <h2> {% trans 'Name' %}  </h2> </label> {{ form.username }}
-        </div>
-    </form>
-</div>
+</body>
+<script type="text/javascript">
+    document.getElementById('id_username').focus()
+</script>
+</html>

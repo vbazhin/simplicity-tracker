@@ -437,7 +437,11 @@
   }
 
   .form-datetime {
-      width: 220px;
+      width: 330px;
+  }
+
+  #add-task {
+      border-radius: 0 0 10px 10px;
   }
 
 }

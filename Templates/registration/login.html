@@ -4,30 +4,25 @@
     {% get_current_language as LANGUAGE_CODE %}
     {% get_available_languages as LANGUAGES %}
     {% get_current_language_bidi as LANGUAGE_BIDI %}
+    {% load static %}
+    {% get_static_prefix as STATIC_URL %}
 
     <title> {% trans 'Issues \ Sign in' %} </title>
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui-1.8.18.custom.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-based-responsive.css" type="text/css" media="screen" />
+     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{{ STATIC_URL }}jq/jquery-1.7.2.min.js"> </script>
-    <script src="{{ STATIC_URL }}jq/jquery-ui-1.8.18.custom.min.js"> </script>
-    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"> </script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"> </script>
 
 
     <style>
-        input { height: 30px; }
-        label { font-size:20px }
-        .log-in-block { position:relative; float: left; width: 80%; }
-        .log-in-block div { margin-right: 50px; }
-        .hero-unit { padding: 60px 60px 50px 60px; }
+
     </style>
 
     </head>
 
 <body>
-    <div style="position: relative;">
+    <div class="login-content-block">
         {% if form.errors %}
         <div class="alert alert-message">
             <p style="color: red;">
@@ -35,32 +30,37 @@
             </p>
         </div>
         {% endif %}
-        <div class="hero-unit" style="position: relative; min-height:160px;">
-            <div style="min-height:100px; margin-right:160px; margin-top:36px; position: relative; float:left; width:15%;">
-                <h1> {% trans 'Issues' %} </h1>
+        <div class="login-inner-block">
+            <div class="hero-unit">
+                <div>
+                    <h1> {% trans 'Issues' %} </h1>
                     {% include 'select-language.html' %}
+                </div>
             </div>
-            <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
-                <div id="content-main"  style="position: relative; float: left;  width: 20%; min-width:200px; margin-right:160px;">
-                    <div class="form-row">
-                        <label for="id_username" class="required"> {% trans 'Name:' %} </label> {{ form.username }}
-                    </div>
-                    <div class="form-row">
-                        <label for="id_password" class="required"> {% trans 'Password' %} </label> {{ form.password }}
-                    </div>
+                <br>
+                <div class="login-form">
+                    <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+                        <div id="content-main signin-form-block"  >
+                            <div class="form-row">
+                                <label for="id_username" class="required"> {% trans 'Name:' %} </label> {{ form.username }}
+                            </div>
+                            <div class="form-row">
+                                <label for="id_password" class="required"> {% trans 'Password' %} </label> {{ form.password }}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="submit-row signin-form-block" >
+                                <label>&nbsp;</label><input type="submit" class="btn button-login" style="height:90px;" value="{% trans 'Sign in' %}"/>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div style="position: relative; float: left; width: 30%;">
-                    <div class="submit-row" style="potition:relative; float: left; width: 20%; min-width:200px; margin-right:140px;">
-                        <label>&nbsp;</label><input type="submit" class="btn" value="{% trans 'Sign in' %}" style="font-size: 60px; height: 90px;" />
-                    </div>
-                </div>
-            </form>
-            <script type="text/javascript">
-            document.getElementById('id_username').focus()
-            </script>
+            </div>
         </div>
-
     </div>
 
 </body>
+<script type="text/javascript">
+    document.getElementById('id_username').focus()
+</script>
 </html>

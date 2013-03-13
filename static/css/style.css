@@ -317,6 +317,64 @@ form {
     z-index:-1;
 }
 
+.login-content-block input {
+    height: 30px;
+}
+
+.login-content-block label {
+    font-size:20px;
+}
+
+.log-in-block div {
+    margin-right: 50px;
+}
+
+.login-content-block .hero-unit {
+    padding: 60px 60px 50px 60px;
+}
+
+.button-login, .button-submit-registration {
+    font-size: 60px;
+    height: 90px;
+    padding: 4px 22px;
+}
+
+.button-submit-registration {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 20px 5px 44px;
+    text-align: center;
+}
+
+.signin-form-block {
+    position: relative;
+    float: left;
+    width: 20%;
+    min-width:200px;
+    margin-right:160px;
+}
+
+.login-content-block {
+    position: relative;
+    width: 450px;
+    margin: 0 auto;
+}
+
+.login-form {
+    margin: 0 64px;
+}
+
+.login-inner-block {
+    padding: 0 50px;
+}
+
+
+.hero-unit {
+    background: none;
+    margin:0 auto;
+}
+
 .bootstrap-timepicker {
     width: 160px;
 }
