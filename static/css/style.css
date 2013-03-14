@@ -1,3 +1,14 @@
+@font-face {
+    font-family: Consolas; /* имя шрифта для CSS правил */
+    src: local("Consolas"), /* проверяем наличие шрифта в ОС пользователя */
+    url(fonts/Consolas.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+
+
+body {
+    background: url(/static/img/grid.png);
+    font-family: Consolas, Arial;
+}
 
 .task-properties { 
 	position: relative; 
@@ -65,10 +76,6 @@
 
 .table-trads td {
    border:  2px solid #fff;
-}
-
-body {
-    background: url(/static/img/grid.png);
 }
 
 .block-icon {
