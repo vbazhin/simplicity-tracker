@@ -72,7 +72,7 @@
     </tr>
 </table>
 {% if user_status = 'author' %}
-<span class="edit-trad" >
+<span class="edit-issue-link" >
      <a href="{{trad.id }}/edit"> {% trans 'Edit' %} </a> | <a href="#" onclick="showTip()"  > {% trans 'Remove' %} </a>
 </span>
 {% endif %}
@@ -122,31 +122,8 @@
     </div>
     {% endif %}
 </div>
-{% if comments %}
-<h2> {% trans 'Comments:' %} </h2>
-{% endif %}
 
-{% for comment in comments %}
-<div class="well comment-form {% if comment.type == 'status_cmt' %} alert-{{comment.status_attr.alert}} {% endif %} ">
-        <span>
-               <span class="comment-info">
-                <div>
-                    <h3> {{comment.author}} </h3>
-                </div>
-                <div>
-                    {{comment.date|date:"m" }}/{{comment.date|date:"d" }}
-                    {{comment.date|date:"H" }}:{{comment.date|date:"i" }}
-                </div>
-            </span>
-            <span>
-            {{comment.text|markdown}}
-            </span>
-
-        </span>
-
-</div>
-{% endfor %}
-
+{% include 'comment_stock.html' %}
 
 <form action="" method="post">
     <br>

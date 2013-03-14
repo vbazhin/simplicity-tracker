@@ -1,0 +1,37 @@
+{% load i18n %}
+<form action="" method="post" class="add-issue" >
+    <div class="task-name-descr form-header">
+        <div>
+            {% trans 'Header:' %} <br>
+            {{ form.label }}
+        </div>
+        <div>
+            {% trans 'Description:' %} <br>
+            {{ form.text }}
+        </div>
+    </div>
+    <div class="issue-receivers form-header">
+        <span class="task-common">({% trans 'hold Ctrl while selecting' %}) </span>:
+        {% trans 'Common' %}
+        <input type="checkbox" id="receivers_all" name="receivers_all" onchange="disableReceivers()">
+        {{ form.receiver }}
+    </div>
+    <div class="form-datetime form-header">
+        {% trans 'Set an expiration' %}
+        <input type="checkbox" id="no-datetime" name="no_date" onchange="disableExpiration()">
+        <br>
+        <input data-datepicker="datepicker" id="expiration-date" name="expdate" class="small" type="text" value="{{ tomorrow }}" disabled="disabled" />
+        <div class="input-append bootstrap-timepicker-component">
+            <div>
+                <input class="timepick" id="expiration-time" name="exptime" type="text" disabled="disabled" />
+                <i class="icon-time"></i>
+            </div>
+            <input id="timezoneOffset" type="hidden" name="timezone_offset" />
+        </div>
+    </div>
+    <div class="challenge-task" >
+        <a href="#" class="btn" data-dismiss="modal" onclick="hideModal()"> {% trans 'Close' %} </a>
+        <input class="btn btn-primary"  type="submit" value="{% trans 'Confirm' %} ">
+    </div>
+</form>
+

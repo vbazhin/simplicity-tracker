@@ -10,7 +10,7 @@ body {
     font-family: Consolas, Arial;
 }
 
-.task-properties { 
+.task-properties {
 	position: relative; 
 	float:left; 
 	width: 24%; 
@@ -214,10 +214,14 @@ form {
     float:right;
 }
 
-.edit-trad {
+.edit-issue-link {
     position: relative;
     float: right;
     margin: -32px 3px 0 0;
+}
+
+.edit-issue-block {
+    min-height: 300px;
 }
 
 .icon-comment {

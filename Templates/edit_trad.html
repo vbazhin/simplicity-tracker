@@ -2,22 +2,11 @@
 {% load i18n %}
 {% load markup %}
 {% block content %}
-<style>
-
-    form { margin:0; }
-
-    .comment-form { margin-bottom: 7px; }
-
-    .comment-form span {position: relative; float: left;}
-
-    .comment-form .comment-info { position: relative; float: right; margin-top:-10px; }
-
-</style>
-
 {% if expiration_date %}
 <script>
     $(document).ready(function () {
-
+        document.getElementById('expiration-date').disabled = false
+        document.getElementById('expiration-time').disabled = false
         document.getElementById('no-datetime').checked = true
         document.getElementById('expiration-date').value= '{{ expiration_date }}'
 
@@ -50,7 +39,6 @@
 <script>
     // Выделить получателей
 </script>
-
 {% else %}
 <script>
     $(document).ready(function () {
@@ -58,9 +46,7 @@
         document.getElementById('receivers_all').checked = true
     })
 </script>
-
 {% endif %}
-
 {% if form.errors %}
 <div class="alert alert-message">
     <p style="color: red;">
@@ -68,72 +54,12 @@
     </p>
 </div>
 {% endif %}
-<div id="edit-task">
-    <div class="modal-header">
-        <h3> {% trans 'Edit issue' %} </h3>
-        <br>
-
-    </div>
-    <form action="" method="post" style="" >
-        <div class="task-name-descr form-header">
-            <div>
-                {% trans 'Header:' %} <br>
-                {{ form.label }}
-            </div>
-            <div>
-                {% trans 'Description:' %} <br>
-                {{ form.text }}
-            </div>
-        </div>
-        <div class="issue-receivers form-header">
-            {% trans 'Receivers' %} <span class="task-common">({% trans 'hold Ctrl while selecting' %} ) </span>:
-            {% trans 'Common' %}
-            <input type="checkbox" id="receivers_all" name="receivers_all"  onchange="disableReceivers()">
-            {{ form.receiver }}
-        </div>
-        <div class="form-datetime form-header">
-            {% trans 'Set an expiration: ' %}
-            <input type="checkbox" id="no-datetime"name="no_date" onchange="disableExpiration()">
-            <br>
-            <input data-datepicker="datepicker" id="expiration-date" name="expdate" class="small" type="text" />
-            <div class="input-append bootstrap-timepicker-component">
-                <div>
-                    <input class="timepick" id="expiration-time" name="exptime" type="text" />
-                    <i class="icon-time"></i>
-                </div>
-                <input id="timezoneOffset" type="hidden" name="timezone_offset" />
-            </div>
-        </div>
-        <div class="challenge-task" >
-            <a href="#" class="btn btn-large" data-dismiss="modal" onclick="hideModal()"> {% trans 'Close' %} </a>
-            <button class="btn btn-primary btn-large"  type="submit"> {% trans 'Save issue' %}  </button>
-        </div>
-    </form>
-
-
-
-
+<div class="edit-issue-block">
+    {% include 'issue_form.html' %}
 </div>
-{% if comments %}
-<h2> Комментарии: </h2>
-{% endif %}
-{% for comment in comments  %}
-<div class="well comment-form">
-        <span>
-        {{comment.text|markdown}}
-        </span>
-        <span class="comment-info">
-            <div>
-                <h3> {{comment.author}} </h3>
-            </div>
-            <div>
-                {{comment.date|date:"m" }}/{{comment.date|date:"d" }}
-                {{comment.date|date:"H" }}:{{comment.date|date:"i" }}
-            </div>
-        </span>
-</div>
-{% endfor %}
+{% include 'comment_stock.html' %}
 {% endblock %}
+
 
 
 
