@@ -67,7 +67,7 @@ def filter_issues(fltr, request_user):
         #Делаю list, а не queryset т.к. при совместном запрсое разможножает объекты, созданные request.user, упорядочиваю
     elif fltr == 'current':
         trads = Trad.objects.filter(receiver=request_user, status='new') | Trad.objects.filter(receiver=request_user,
-                                                                                               status='taken') | Trad.objects.filter(
+            status='taken') | Trad.objects.filter(
             receiver=request_user, status='done') | Trad.objects.filter(receiver=None,
                                                                         status='new') | Trad.objects.filter(
             receiver=None, status='taken') | Trad.objects.filter(receiver=None, status='done')
@@ -78,7 +78,7 @@ def filter_issues(fltr, request_user):
         trads = Trad.objects.filter(author=request_user).exclude(status='deleted')
     elif fltr == 'error':
         trads = Trad.objects.filter(receiver=request_user, status='error') | Trad.objects.filter(receiver=None,
-                                                                                                 status='error') | Trad.objects.filter(
+            status='error') | Trad.objects.filter(
             author=request_user, status='error')
     elif fltr == 'new':
         trads = Trad.objects.filter(receiver=request_user, status='new').exclude(

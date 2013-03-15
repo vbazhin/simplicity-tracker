@@ -150,11 +150,12 @@ INSTALLED_APPS = (
     'desk',
     'django.contrib.markup',
     'markitup',
+    'south'
 
 
     )
 MARKITUP_PATH = r'markitup'
-MARKITUP_SET = r'markitup/sets/markmin'
+MARKITUP_SET = r'markitup/sets/markdown'
 
 MARKITUP_FILTER = ('django.contrib.markup.templatetags.markup.textile', {})
 

@@ -6,7 +6,6 @@ import datetime
 import random
 import md5
 from django.utils import unittest
-from django.core.mail import send_mail
 from django.utils.translation import pgettext
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
@@ -20,7 +19,6 @@ from django.utils.html import escape
     # Универсальные временные зоны, utc время
     # Перенести определение длины ползунка на пользовательскую сторону (js)
     # Задания группам
-    # Интернационализация
 
 # Возможно
     # mpttшная древовидная структура комментариев

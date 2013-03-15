@@ -6,7 +6,7 @@
 
 
 body {
-    background: url(/static/img/grid.png);
+    background: url(/static/img/linen.png);
      /* font-family: Consolas, Droid Sans Mono, Courier, Arial; */
 }
 
@@ -157,27 +157,15 @@ small span {
     margin-top: 2px;
 }
 
-.add-user {
-    float:left;
-    margin-top:3px;
-    margin-left:20px;
-}
-
-.invite-user {
+.invite-user-button {
     float:right;
-    margin:3px 5px 0 10px;
 }
 
-.add-user a {
-    font-size: 15px;
-}
 
 .issue-navigation {
     position: relative;
     float: right;
 }
-
-
 
 form {
     margin:0;
@@ -189,6 +177,9 @@ form {
     box-shadow: 0 0 7px #bbb;
     margin-bottom: 10px;
     padding: 15px;
+}
+
+.comment-message {
 }
 
 .comment-form .comment-info {
@@ -445,7 +436,7 @@ form {
 }
 
 .navbar-inner {
-    background: url(/static/img/grid.png);
+    background: url(/static/img/linen.png);
     box-shadow: none;
     font-size: 11px;
 }

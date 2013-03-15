@@ -121,18 +121,14 @@
                     {{ user.username }} <a href='logout/'> {% trans 'Log out' %} </a>
                 </div>
                 {% if page_type == 'index' %}
-                <div class="add-user">
-                    <a href="#" class="btn" onclick="showModal()"> <i class="icon-plus"> </i> {% trans 'Add' %}  </a>
-                </div>
+                    <a href="#" class="btn add-task-button" onclick="showModal()"> <i class="icon-plus"> </i> {% trans 'Add' %}  </a>
                 {% else %}
-                <div class="add-user" >
-                    <a href="/add_task" name="add_task" class="btn"> <i class="icon-plus"> </i> {% trans 'Add' %} </a>
-                </div>
+                    <a href="/add_task" name="add_task" class="btn add-task-button">
+                        <i class="icon-plus"> </i> {% trans 'Add' %}
+                    </a>
                 {% endif %}
                 {% if user.is_staff == 1 %}
-                <div class="invite-user" >
-                    <a href="#" class="btn" onclick="generate_reg_link()" > {% trans 'Invite' %} </a>
-                </div>
+                    <a href="#" class="btn invite-user-button" onclick="generate_reg_link()" > {% trans 'Invite' %} </a>
                 {% endif %}
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
