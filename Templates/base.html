@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-based-responsive.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
+
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"> </script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-datepicker.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-timepicker.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
     {% load markup %}
     {% load markitup_tags %}
     {% markitup_media "no-jquery" %}
@@ -109,8 +110,6 @@
 
 </head>
 <body>
-<div class="hero">
-</div>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner nav-base">
         <div class="container">
@@ -134,15 +133,6 @@
                 {% if user.is_staff == 1 %}
                 <div class="invite-user" >
                     <a href="#" class="btn" onclick="generate_reg_link()" > {% trans 'Invite' %} </a>
-                </div>
-                <div>
-                    <div id="link-modal" class="modal" style="display:none;">
-                        <div class="modal-body">
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#" class="btn" onclick="hideLink()"> {% trans 'Close' %} </a>
-                        </div>
-                    </div>
                 </div>
                 {% endif %}
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -175,6 +165,15 @@
         </div>
     </div>
 </div>
+
+<div id="link-modal" class="modal" style="display:none;">
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" onclick="hideLink()"> {% trans 'Close' %} </a>
+    </div>
+</div>
+
     {% if add_task %}
     <script>
         $(document).ready(function () {
@@ -225,5 +224,4 @@
             </div>
         </div>
         </body>
-    </head>
 </html>
