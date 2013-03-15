@@ -112,7 +112,6 @@ msgid "Description:"
 msgstr "Описание: "
 
 #: Templates/edit_trad.html:89
-#, fuzzy
 msgid "Receivers"
 msgstr "Получатели"
 
@@ -163,7 +162,6 @@ msgid "Remove"
 msgstr "Удалить"
 
 #: Templates/trad.html:58
-#, fuzzy
 msgid "Receivers: "
 msgstr "Получатели: "
 
