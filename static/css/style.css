@@ -345,14 +345,13 @@ form {
 }
 
 .button-login {
-    font-size: 43px;
-    height: 90px;
-    padding: 10px 0 0;
+    font-size: 30px;
+    padding: 0;
     text-align: center;
 }
 
 .button-submit-registration {
-    font-size: 28px;
+    font-size: 17px;
     font-weight: bold;
     padding: 20px 0;
     text-align: center;
