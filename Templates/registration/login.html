@@ -1,25 +1,19 @@
 <html>
 <head>
+    {% load static %}
+    {% get_static_prefix as STATIC_URL %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-based-responsive.css" type="text/css" media="screen" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"> </script>
     {% load i18n %}
     {% get_current_language as LANGUAGE_CODE %}
     {% get_available_languages as LANGUAGES %}
     {% get_current_language_bidi as LANGUAGE_BIDI %}
-    {% load static %}
-    {% get_static_prefix as STATIC_URL %}
-
-    <title> {% trans 'Issues \ Sign in' %} </title>
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-based-responsive.css" type="text/css" media="screen" />
-     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"> </script>
-
-
-    <style>
-
-    </style>
-
-    </head>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
+    {% block title %} <title>  {% trans 'Issues' %} </title> {% endblock %}
+</head>
 
 <body>
     <div class="login-content-block">
