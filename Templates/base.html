@@ -29,7 +29,6 @@
         function showModal() {
             $('#add-task').slideToggle()
             $('#id_label').focus();
-
         }
     </script>
 
@@ -106,7 +105,6 @@
             }
             // Переделать с атирибутами
         }
-
     </script>
 
 </head>
@@ -114,15 +112,12 @@
 <div class="hero">
 </div>
 <div class="navbar navbar-fixed-top">
-
   <div class="navbar-inner nav-base">
         <div class="container">
-
             <div>
                 <a class="brand" href="/">
-                    simplicity-tracker 0.45
+                    simplicity-tracker 0.5
                 </a>
-
                 <div class="user-logout" >
                     {% include 'select-language.html' %}
                     {{ user.username }} <a href='logout/'> {% trans 'Log out' %} </a>
@@ -140,7 +135,6 @@
                 <div class="invite-user" >
                     <a href="#" class="btn" onclick="generate_reg_link()" > {% trans 'Invite' %} </a>
                 </div>
-
                 <div>
                     <div id="link-modal" class="modal" style="display:none;">
                         <div class="modal-body">
@@ -181,7 +175,6 @@
         </div>
     </div>
 </div>
-
     {% if add_task %}
     <script>
         $(document).ready(function () {
@@ -205,35 +198,34 @@
             document.location.href=id;
         }
     </script>
-
-            <div id="add-task">
-                <div class="container">
-                    <div class="row span10 offset1">
-                    {% if form.errors %}
-                        <script>
-                            $(document).ready(function(){
-                                $('#add-task').show()
-                            })
-                        </script>
-                     <div class="alert alert-message">
-                    <p style="color: red;">
-                            {% trans 'Please correct the errors below:' %}   {{ form.errors }}
-                        </p>
-                     </div>
-                    {% endif %}
-                    {% block hidden_form %}
-                    {% endblock %}
-                    </div>
-                </div>
-            </div>
+        <div id="add-task">
             <div class="container">
-                <div class="row span10 offset1" style="margin-top:55px;">
-            {% block content %}
-            {% endblock %}
+                <div class="row span10 offset1">
+                {% if form.errors %}
+                    <script>
+                        $(document).ready(function(){
+                            $('#add-task').show()
+                        })
+                    </script>
+                 <div class="alert alert-message">
+                <p style="color: red;">
+                        {% trans 'Please correct the errors below:' %}   {{ form.errors }}
+                    </p>
+                 </div>
+                {% endif %}
+                {% block hidden_form %}
+                {% endblock %}
                 </div>
             </div>
-            <div class="logo-box" style="background: url({{ STATIC_URL  }}css/images/your-logo.png);">
+        </div>
+        <div class="container">
+            <div class="row span10 offset1" style="margin-top:55px;">
+        {% block content %}
+        {% endblock %}
             </div>
+        </div>
+        <div class="logo-box" style="background: url({{ STATIC_URL  }}css/images/your-logo.png);">
+        </div>
         </body>
     </head>
 </html>

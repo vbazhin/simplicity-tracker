@@ -344,18 +344,19 @@ form {
     padding: 60px 60px 50px 60px;
 }
 
-.button-login, .button-submit-registration {
-    font-size: 60px;
+.button-login {
+    font-size: 43px;
     height: 90px;
-    padding: 4px 22px;
+    padding: 10px 20px 0;
+    text-align: center;
 }
 
 .button-submit-registration {
-    font-size: 20px;
+    font-size: 35px;
     font-weight: bold;
-    margin: 10px 0;
-    padding: 20px 5px 44px;
+    padding: 10px 16px 0;
     text-align: center;
+    margin: 15px 0;
 }
 
 .btn-navbar .icon-bar {
