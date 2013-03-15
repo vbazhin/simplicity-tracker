@@ -2,25 +2,18 @@
 #coding: utf-8
 
 import datetime
-
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django import forms
 from markitup.widgets import MarkItUpWidget
 from django.contrib.auth.models import User
-
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
-
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
-
 from desk.models import Trad, Comment, InviteLink
-
-
-
 
 
 # Вспомогательные функции (не возвращают HttpResponse, но участвуют в сборке view)
@@ -44,10 +37,8 @@ def get_tomorrow():
     return tomorrow
 
 # Далее идут вьюшки
-
 def logout(request):
     auth.logout(request)
-    # Перенаправление на страницу.
     return HttpResponseRedirect("/")
 
 
@@ -57,35 +48,83 @@ def login(request):
     return HttpResponseRedirect("/")
 
 
-def filter_issues(fltr, request_user):
-    if fltr == 'all':
-        trads = list(Trad.objects.filter(receiver=request_user).exclude(status='deleted'))
-        trads += list(Trad.objects.filter(receiver=None).exclude(author=request_user).exclude(status='deleted'))
+from django.db.models import Q
 
-        trads += list(Trad.objects.filter(author=request_user).exclude(status='deleted'))
-        trads = sorted(trads, key=lambda trad: trad.given)
-        #Делаю list, а не queryset т.к. при совместном запрсое разможножает объекты, созданные request.user, упорядочиваю
-    elif fltr == 'current':
-        trads = Trad.objects.filter(receiver=request_user, status='new') | Trad.objects.filter(receiver=request_user,
-            status='taken') | Trad.objects.filter(
-            receiver=request_user, status='done') | Trad.objects.filter(receiver=None,
-                                                                        status='new') | Trad.objects.filter(
-            receiver=None, status='taken') | Trad.objects.filter(receiver=None, status='done')
-        trads = trads.exclude(author=request_user)
-    elif fltr == 'check':
-        trads = Trad.objects.filter(author=request_user, status='done')
-    elif fltr == 'givenbyme':
-        trads = Trad.objects.filter(author=request_user).exclude(status='deleted')
-    elif fltr == 'error':
-        trads = Trad.objects.filter(receiver=request_user, status='error') | Trad.objects.filter(receiver=None,
-            status='error') | Trad.objects.filter(
-            author=request_user, status='error')
-    elif fltr == 'new':
-        trads = Trad.objects.filter(receiver=request_user, status='new').exclude(
-            author=request_user) | Trad.objects.filter(receiver=None, status=fltr).exclude(author=request_user)
+
+# Рефакторинг
+def filter_issues(fltr, request_user):
+    filter_rules = {
+        # Список условий для all
+        # Нельзя связанные объектыполучать в filter __in, поэтому конструируем запросы отдельно
+        'all': [{'filter': {'receiver': request_user},
+                 'exclude':{'status__in': ['deleted']},
+                },
+                {'filter': {'receiver': None},
+                 'exclude': {'status__in': ['deleted']},
+                },
+                {'filter': {'author': request_user},
+                 'exclude': {'status__in': ['deleted']},
+                }],
+        'current': [{'filter': {'receiver': request_user,
+                                'status__in': ['new', 'taken', 'done']},
+                     'exclude': {'status': False}
+                    },
+                    {'filter': {'receiver': None,
+                                 'status__in': ['new', 'taken', 'done']},
+                     'exclude': {'status':False}
+                   }],
+        'check': [{'filter': {'author': request_user,
+                                'status__in': ['done']},
+                 }],
+        'givenbyme': [{'filter': {'author': request_user},
+                      'exclude': {'status__in': ['deleted']},
+                 }],
+        'error': [{'filter': {'receiver': request_user,
+                              'status__in': ['error']},
+                  },
+                  {'filter': {'receiver': None,
+                              'status__in': ['error']},
+                },
+                  {'filter': {'author': request_user,
+                              'status__in': ['error']},
+                }],
+        'new': [{'filter': {'receiver': request_user,
+                            'status__in': ['new']},
+                'exclude': {'author': request_user},
+                },
+                {'filter': {'receiver': None,
+                            'status__in': ['new']},
+                 'exclude': {'author': request_user},
+                }]
+        }
+
+
+    def _terms_unpacker(filter_dict):
+        return reduce(lambda x, y: x | y,
+                      [(Q(**terms_set['filter']) & ~Q(**terms_set['exclude'] or None))
+                       for terms_set in filter_dict])
+
+
+    def _construct_query(terms_filter):
+        # reduce(lambda x, y: x | y, [Q(name__contains=word) for word in list]))
+        filter_dict = filter_rules[terms_filter]
+        # Подготавливаем словари, чтобы в каждом были filter и exclude
+        for term_set in filter_dict:
+            if 'filter' not in term_set:
+                term_set['filter'] = {'id':True}
+            if 'exclude' not in term_set:
+                term_set['exclude'] = {'id':False}
+        trads = Trad.objects.filter(_terms_unpacker(filter_dict))
+        return trads
+
+
+    if fltr in filter_rules:
+        trads = _construct_query(fltr)
     else:
-        trads = Trad.objects.filter(receiver=request_user, status=fltr) | Trad.objects.filter(receiver=None,
-                                                                                              status=fltr)
+        trads = Trad.objects.filter(receiver=request_user, status=fltr) | \
+                Trad.objects.filter(receiver=None, status=fltr)
+    trads = trads.exclude(status = 'deleted')
+    trads = sorted(trads, key=lambda trad: trad.given)
     for trad in trads:
         trad.comments_num = Comment.objects.filter(trad=trad).count() # Cчитаем комментарии
         trad.define_condition()
