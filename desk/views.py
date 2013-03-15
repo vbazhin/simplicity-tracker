@@ -145,7 +145,7 @@ def show_trad(request, related_trad, user_status='group_task_receiver'):
             return HttpResponseRedirect("")
         else:
             form = CommentForm()
-        return render_to_response('trad.html', {'form': form, 'user': request.user, 'trad': trad, 'comments': comments,
+        return render_to_response('issue_page.html', {'form': form, 'user': request.user, 'trad': trad, 'comments': comments,
                                                 'user_status': user_status, 'receivers': trad.receiver.all(),
                                                 'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num,
                                                 'oncheck_num': oncheck_num})
@@ -185,7 +185,7 @@ def edit_trad(request, trad_id):
                 expiration_time = None
             new_num, taken_num, check_num, oncheck_num = count_issues(request)
             # Разобраться, почему не возвращает count_values(request)
-            return render_to_response('edit_trad.html', {'form': form, 'receivers': receivers, 'user': request.user,
+            return render_to_response('edit_issue.html', {'form': form, 'receivers': receivers, 'user': request.user,
                                                          'is_common': is_common, 'expiration_date': expiration_date,
                                                          'expiration_time': expiration_time, 'comments': comments,
                                                          'new_num': new_num, 'taken_num': taken_num,

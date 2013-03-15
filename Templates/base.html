@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-based-responsive.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"> </script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-datepicker.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap-timepicker.js"></script>
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
     {% load markup %}
     {% load markitup_tags %}
     {% markitup_media "no-jquery" %}
@@ -118,7 +117,7 @@
                     simplicity-tracker 0.5
                 </a>
                 <div class="user-logout" >
-                    {% include 'select-language.html' %}
+                    {% include 'select_language.html' %}
                     {{ user.username }} <a href='logout/'> {% trans 'Log out' %} </a>
                 </div>
                 {% if page_type == 'index' %}
