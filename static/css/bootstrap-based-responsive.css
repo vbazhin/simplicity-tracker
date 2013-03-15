@@ -60,6 +60,7 @@
 }
 
 
+
 @media (max-width: 470px ) {
     .navbar {
         body: 490px;
@@ -434,9 +435,6 @@
       margin:10px 30px 10px 20px;
   }
 
-  .form-datetime {
-      width: 330px;
-  }
 
 }
 @media (min-width: 1200px) {

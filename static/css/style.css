@@ -7,7 +7,7 @@
 
 body {
     background: url(/static/img/grid.png);
-    font-family: Consolas, Arial;
+     /* font-family: Consolas, Droid Sans Mono, Courier, Arial; */
 }
 
 .task-properties {
@@ -274,6 +274,11 @@ form {
     margin-right:10px;
 }
 
+.form-datetime {
+    max-width: 320px;
+}
+
+
 .task-common {
     font-size:10px;
     color: #777;
@@ -442,7 +447,7 @@ form {
 .navbar-inner {
     background: url(/static/img/grid.png);
     box-shadow: none;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .navbar-inner .nav > li > a {
