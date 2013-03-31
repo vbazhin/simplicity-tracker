@@ -150,7 +150,7 @@ INSTALLED_APPS = (
     'desk',
     'django.contrib.markup',
     'markitup',
-    'south'
+    #'south'
 
 
     )
