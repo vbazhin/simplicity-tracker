@@ -1,0 +1,461 @@
+@font-face {
+    font-family: Consolas; /* имя шрифта для CSS правил */
+    src: local("Consolas"), /* проверяем наличие шрифта в ОС пользователя */
+    url(fonts/Consolas.ttf); /* если шрифт не установлен, тогда загружаем его по указанному пути */
+}
+
+
+body {
+    background: url(/static/img/grid.png);
+    /* font-family: Consolas, Droid Sans Mono, Courier, Arial; */
+}
+
+.task-properties {
+    position: relative;
+    float:left;
+    width: 24%;
+    text-align: left;
+    padding: 12px 24px 0 0;
+    color: #898383;
+    font-weight: normal;
+}
+
+.issue-info {
+    position:relative;
+    width:100%;
+}
+
+.issue-info .condition {
+    width: 30%;
+}
+
+.issue-info .left-time {
+    width:24%;
+
+}
+.issue-info .comments {
+    width:40px;
+    float:right;
+    padding-right: 0;
+}
+
+.markItUp {
+    width:none;
+    width: 100%;
+}
+
+.markItUpEditor {
+    width: 98%;
+    height: 105px;
+}
+
+
+#time-icon {
+    margin-top: -9px;
+    margin-left:-20px;
+}
+
+.trad-info a {
+    color:#000;
+}
+
+.table td {
+    padding: 4px;
+}
+
+.table td div {
+    position:relative;
+}
+
+.table-trads {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.698);
+    border: 0 #fff ;
+    padding: 5px 3px 3px;
+    box-shadow: 0 0 7px #aaa;
+}
+
+.table-trads td {
+    border:  2px solid #fff;
+}
+
+.block-icon {
+    float: left;
+    height:100%;
+    margin:20px 5px 0  5px;
+}
+
+.bar-block {
+    position: relative;
+    height:100%;
+    left:-25px;
+}
+
+.progress {
+    height: 12px;
+}
+
+h3 {
+    line-height: 21px;
+}
+
+.trad-text p {
+    font-size: 14px;
+}
+
+.description-cell {
+    paddin:16px;
+}
+
+.alert-new {
+    background: #FFF6CB;
+}
+
+.stripe-bar {
+    border-radius: 5px;
+    background-color: #468847;
+    position: relative;
+    float:left;
+    opacity: 0.3;
+    height:56px;
+    width:5px;
+    margin-left:4px;
+    margin-bottom:-23px;
+    margin-top:0;
+}
+
+.left-time-bar {
+    opacity: 0.3;
+    position: relative;
+    background-size: 64px 64px;
+    border-radius: 0 5px 5px 0;
+    background-color: #468847;
+    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+    background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    margin: -25px 0 -33px -2px;
+    left:25px;
+    min-width: 48px;
+    max-width: 98.5%;
+}
+
+
+small span {
+    position:absolute;
+    top:0;
+    right:5px;
+}
+
+.user-logout {
+    float:right;
+    margin:15px 10px;
+}
+
+.icon-plus {
+    margin-top: 2px;
+}
+
+.invite-user-button {
+    float:right;
+}
+
+
+.issue-navigation {
+    position: relative;
+    float: right;
+}
+
+form {
+    margin:0;
+}
+
+.comment-form {
+    border-color: #fff;
+    border-width: 3px;
+    box-shadow: 0 0 7px #bbb;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.comment-message {
+}
+
+.comment-form .comment-info {
+    position: relative;
+    float: right;
+    margin-top:-9px;
+}
+
+.comment-form span p {
+    margin-bottom: 2px;
+}
+
+.change-status {
+    margin:-10px 0 10px 0;
+}
+
+.trad-data {
+    margin-bottom:34px;
+}
+
+.trad .receivers {
+    position: relative;
+    float:right;
+}
+
+.edit-issue-link {
+    position: relative;
+    float: right;
+    margin: -32px 3px 0 0;
+}
+
+.edit-issue-block {
+    min-height: 300px;
+}
+
+.icon-comment {
+    margin-top:2px;
+}
+
+#add-task {
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(201,201,201,0.25) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(201,201,201,0.25))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(201,201,201,0.25) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(201,201,201,0.25) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(201,201,201,0.25) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(201,201,201,0.25) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#40c9c9c9',GradientType=0 ); /* IE6-9 */
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    margin-bottom:0;
+    display: none;
+}
+
+#add-task {
+    min-width: 300px;
+}
+
+#add-task .well {
+    background: #fff;
+    border-width: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#add-task form {
+    border-width: 0;
+}
+
+#add-task form .well {
+    box-shadow: 0 0 0;
+}
+
+#add-task .row {
+    margin-top:55px;
+}
+
+.alert-none {
+    background:#eee;
+}
+
+.task-name-descr {
+    position: relative;
+    float: left;
+    margin-right:10px;
+}
+
+.form-datetime {
+    max-width: 320px;
+}
+
+
+.task-common {
+    font-size:10px;
+    color: #777;
+}
+
+#expiration-date {
+    position:relative;
+    float: left;
+    margin-right: 10px;
+    width:210px;
+
+}
+
+#expiration-time {
+    width: 75px;
+}
+
+.icon-time {
+    margin: -2px 0 0 -30px;
+    pointer-events: none;
+    position: relative;
+}
+
+.challenge-task {
+    position: relative;
+    float: right;
+    margin:20px 0;
+}
+
+.issue-receivers {
+    position:relative;
+    float: left;
+    margin-top: -2px;
+}
+
+
+.form-receivers {
+    width:99%;
+}
+
+.form-datetime {
+    position: static;
+    float: left;
+}
+
+.logo-box {
+    position: fixed;
+    width:400px;
+    height:600px;
+    top:160px;
+    left: 20px;
+    z-index:-1;
+}
+
+.login-content-block input {
+    height: 30px;
+}
+
+.login-content-block label {
+    font-size:20px;
+}
+
+.log-in-block div {
+    margin-right: 50px;
+}
+
+.login-content-block .hero-unit {
+    padding: 60px 60px 50px 60px;
+}
+
+.button-login {
+    font-size: 30px;
+    padding: 0;
+    text-align: center;
+}
+
+.button-submit-registration {
+    font-size: 17px;
+    font-weight: bold;
+    padding: 20px 0;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.btn-navbar .icon-bar {
+    height: 3px;
+}
+
+.signin-form-block {
+    position: relative;
+    float: left;
+    width: 20%;
+    min-width:200px;
+    margin-right:160px;
+}
+
+.login-content-block {
+    position: relative;
+    width: 450px;
+    margin: 0 auto;
+}
+
+.login-form {
+    margin: 0 64px;
+}
+
+.login-inner-block {
+    padding: 0 50px;
+}
+
+
+.hero-unit {
+    background: none;
+    margin:0 auto;
+}
+
+.bootstrap-timepicker {
+    width: 160px;
+}
+
+.trad-base {
+    color:#333;
+    cursor:pointer;
+}
+
+.select-language {
+    position: relative;
+    float: left;
+    margin-right: 17px;
+}
+
+.select-language-menu {
+    min-width:36px;
+    margin-left:-5px;
+}
+
+.select-language-item {
+    background: transparent;
+    border: 0;
+    font-size: 15px;
+    padding:3px 10px;
+}
+
+.brand .caret {
+    border-top: 4px solid #fff;
+    margin:10px 0 0 0;
+}
+
+.issue-label {
+    height:23px;
+    overflow: hidden;
+    margin-right: 80px;
+}
+
+#issue-receivers {
+    position: relative;
+    float:left;
+    margin-top:6px;
+    color:#999;
+    font-size:11px;
+    background:#F5F5F5;
+    border-radius:4px;
+    padding:0 6px;
+}
+
+.navbar-inner {
+    background: url(/static/img/grid.png);
+    box-shadow: none;
+    font-size: 11px;
+}
+
+.navbar-inner .nav > li > a {
+    color:#555;
+}
+
+.navbar .brand {
+    padding-top: 15px;
+    color: #333;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.navbar .btn {
+    margin: 10px;
+}
+
+.trad-info td a:hover {
+    text-decoration: none;
+}

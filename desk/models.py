@@ -1,5 +1,6 @@
 #author: v.bazhin
 #coding: utf-8
+
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
@@ -44,9 +45,19 @@ class TradTestCase(unittest.TestCase):
         try:
             self.user =  User.objects.get(username = 'admin')
         except User.DoesNotExist:
-            self.user = User.objects.create(username='admin', is_staff=1, is_superuser=1)
-        self.trad = Trad.objects.create(label='Me', is_expiration = 'Yes', expiration=datetime.datetime(2017, 12, 6, 16, 29, 43, 79043), author = self.user, status="new")
-        self.comment = Comment(text = u'Задание принято пользователем ' + self.user.username, date = datetime.datetime.now(), trad_id = self.trad.id,  author = self.user)
+            self.user = User.objects.create(username='admin',
+                                            is_staff=1,
+                                            is_superuser=1)
+        self.trad = Trad.objects.create(label='Me',
+                                        is_expiration = 'Yes',
+                                        expiration=datetime.datetime(2017, 12, 6, 16, 29, 43, 79043),
+                                        author = self.user,
+                                        status="new")
+        self.comment = Comment(text = u'Задание принято пользователем '
+                                      + self.user.username,
+                               date = datetime.datetime.now(),
+                               trad_id = self.trad.id,
+                               author = self.user)
     def test_time_left_returns_timedelta(self):
         """timedelta"""
         self.assertEqual(str(type(self.trad.time_left())), "<type 'datetime.timedelta'>")
@@ -60,7 +71,7 @@ class TradTestCase(unittest.TestCase):
         self.assertEqual(self.trad.define_condition(), 'new')
 
 
-status_attrs = {
+STATUS_ATTRS = {
     'done' : {'icon' : 'ok', 'alert' : 'success'},
     'success': {'icon' : 'ok', 'alert' : 'success'},
     'closed': {'icon' : 'ban-circle', 'alert' : 'none'},
@@ -203,7 +214,7 @@ class Trad(models.Model):
                     self.condition = pgettext('issue condition', 'In progress')
                 elif self.status == 'new':
                     self.condition = pgettext('issue condition', 'New')
-        self.attrs = status_attrs[self.status]
+        self.attrs = STATUS_ATTRS[self.status]
         if self.is_expiration == "Yes":
             self.delta0 = self.expiration - self.given
             self.delta1 = datetime.datetime.now() - self.given
@@ -239,7 +250,7 @@ class Comment(models.Model):
 
     def get_text(self):
         if self.type == 'status_cmt':
-            self.status_attrs = status_attrs[self.text]
+            self.status_attrs = STATUS_ATTRS[self.text]
 
         text_messages = {
             'done' : gettext_lazy('The task is done, send for check'),
@@ -252,7 +263,7 @@ class Comment(models.Model):
             'edited': gettext_lazy( 'Edited'),
         }
 
-        self.status_attr = status_attrs[self.text]
+        self.status_attr = STATUS_ATTRS[self.text]
         self.text = text_messages[self.text]
         return self.text
 
