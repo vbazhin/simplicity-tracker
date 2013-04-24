@@ -67,11 +67,9 @@ def filter_issues(fltr, request_user):
                 }],
         'current': [{'filter': {'receiver': request_user,
                                 'status__in': ['new', 'taken', 'done']},
-                     'exclude': {'status': False}
                     },
                     {'filter': {'receiver': None,
                                  'status__in': ['new', 'taken', 'done']},
-                     'exclude': {'status':False}
                    }],
         'check': [{'filter': {'author': request_user,
                                 'status__in': ['done']},
