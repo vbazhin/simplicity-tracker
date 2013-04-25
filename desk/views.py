@@ -186,7 +186,6 @@ def edit_trad(request, trad_id):
                                                      'tomorrow': get_tomorrow()})
 
 
-
 def remove_trad(request, trad_id):
     trad = Trad.objects.get(id=trad_id)
     if trad.author == request.user:
@@ -196,40 +195,33 @@ def remove_trad(request, trad_id):
 
 
 def register(request, hashlink=None):
+    # Проверяется валидность ссылки и меняется ее статус на burned
     check_link = InviteLink.objects.get(link=hashlink)
+    if check_link.valid_status == 'valid' and request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            check_link.valid_status = 'burned'
+            check_link.save()
+            return HttpResponseRedirect("/")
     if check_link.valid_status == 'valid':
-        if request.method == 'POST':
-            # Наверное нужно сделать нечто вроде
-            # unicoded request.POST['username'] = unicode(request.POST['username'])
-            form = UserCreationForm(request.POST)
-            if form.is_valid():
-                form.save()
-                check_link.valid_status = 'burned'
-                check_link.save()
-                return HttpResponseRedirect("/")
-        else:
-            form = UserCreationForm()
-
+        form = UserCreationForm()
         return render_to_response("registration/register.html", {
             'form': form, 'hash': hash
         })
     else:
         raise Http404
 
-
 def generate_link(request):
-    if request.is_ajax():
-        if request.user.is_superuser == 1:
-            try:
-                link = InviteLink.objects.create()
-                link.generate() # Метод создает хеш md5, делает запись в таблицу
-                path = request.build_absolute_uri('../register/') + link.link
-                welcome = "<div class='modal-header'> <h2>" + _("Invite ") + "№ " + \
-                str(link.id) + " </h2> </div>  <br> <h3>" + \
-                      _("Registration link (can be used only once):") + \
-                          "</h3> <br>  <code>" + path + "</code>"
-                return HttpResponse(welcome)
-            except:
-                return HttpResponse(_('Error occurred'))
-        else:
-            return HttpResponse(_('You are not administrator'))
+    if request.is_ajax() and request.user.is_superuser == 1:
+        link = InviteLink.objects.create()
+        # Метод создает хеш md5, делает запись в таблицу
+        link.generate()
+        path = request.build_absolute_uri('../register/') + link.link
+        welcome = "<div class='modal-header'> <h2>" + _("Invite ") + "№ " + \
+        str(link.id) + " </h2> </div>  <br> <h3>" + \
+              _("Registration link (can be used only once):") + \
+                  "</h3> <br>  <code>" + path + "</code>"
+        return HttpResponse(welcome)
+    else:
+        return Http404
