@@ -45,7 +45,11 @@ def login(request):
     # Перенаправление на страницу.
     return HttpResponseRedirect("/")
 
-# Рефакторинг
+def comments_gettext_loop(comments):
+    for comment in comments:
+        if comment.type == 'status_cmt':
+            comment.get_text()
+    return comments
 
 # Импортируем фильтр наборов условий
 import terms_sets_filter
@@ -99,17 +103,6 @@ def show_trad(request, related_trad, user_status='group_task_receiver'):
     # Делаю filter, чтобы можно было сразу исключить задания со статусом deleted
     # и не пистаь дополнительное условие if
     trad = Trad.objects.filter(pk=related_trad).exclude(status = 'deleted')[0]
-    trad.count_comments()
-    trad.define_condition()
-    new_num, taken_num, check_num, oncheck_num = count_issues(request)
-    comments = Comment.objects.filter(trad=trad).order_by('date')
-    for comment in comments:
-        if comment.type == 'status_cmt':
-            comment.get_text()
-    if request.user in trad.receiver.all():
-        user_status = 'receiver'
-    if request.user == trad.author:
-        user_status = 'author'
         # escape - html символы
     if request.method == 'POST' and 'comment' in request.POST:
         form = CommentForm(request.POST)
@@ -117,11 +110,20 @@ def show_trad(request, related_trad, user_status='group_task_receiver'):
             cd = form.cleaned_data
             comment = Comment()
             comment.add(cd, request.user, trad.id)
-    if request.method == 'POST' and 'comment' not in request.POST:
+        return HttpResponseRedirect("")
+    elif request.method == 'POST' and 'comment' not in request.POST:
         status = [key for key in request.POST]
         trad.renew_status(status[0], request.user)
         return HttpResponseRedirect("")
     else:
+        trad.count_comments()
+        trad.define_condition()
+        new_num, taken_num, check_num, oncheck_num = count_issues(request)
+        comments = comments_gettext_loop(Comment.objects.filter(trad=trad).order_by('date'))
+        if request.user in trad.receiver.all():
+            user_status = 'receiver'
+        if request.user == trad.author:
+            user_status = 'author'
         form = CommentForm()
     return render_to_response('issue_page.html', {'form': form,
                                                   'user': request.user,
@@ -158,37 +160,38 @@ def edit_trad(request, trad_id):
             form.fields['receiver'].initial = receivers
         else:
             is_common = True
-    comments = Comment.objects.filter(trad=trad).order_by('date')
-    if trad.expiration:
-        # Тут надо что-то делать
-        expiration_time = str(trad.expiration.time().hour) + ":" + \
-                          str(trad.expiration.time().minute)
-        expiration_date = trad.expiration.date().isoformat()
-    else:
-        expiration_date = None
-        expiration_time = None
-    new_num, taken_num, check_num, oncheck_num = count_issues(request)
-    # Разобраться, почему не возвращает count_values(request)
-    return render_to_response('edit_issue.html', {'form': form,
-                                                  'receivers': receivers,
-                                                  'user': request.user,
-                                                 'is_common': is_common,
-                                                 'expiration_date': expiration_date,
-                                                 'expiration_time': expiration_time,
-                                                 'comments': comments,
-                                                 'new_num': new_num,
-                                                 'taken_num': taken_num,
-                                                 'check_num': check_num,
-                                                 'oncheck_num': oncheck_num,
-                                                 'trad_id': trad.id,
-                                                 'tomorrow': get_tomorrow()})
+        comments = comments_gettext_loop(Comment.objects.filter(trad=trad).order_by('date'))
+        if trad.expiration:
+            # Тут надо что-то делать
+            expiration_time = str(trad.expiration.time().hour) + ":" + \
+                              str(trad.expiration.time().minute)
+            expiration_date = trad.expiration.date().isoformat()
+        else:
+            expiration_date = None
+            expiration_time = None
+        new_num, taken_num, check_num, oncheck_num = count_issues(request)
+        # Разобраться, почему не возвращает count_values(request)
+        return render_to_response('edit_issue.html', {'form': form,
+                                                      'receivers': receivers,
+                                                      'user': request.user,
+                                                     'is_common': is_common,
+                                                     'expiration_date': expiration_date,
+                                                     'expiration_time': expiration_time,
+                                                     'comments': comments,
+                                                     'new_num': new_num,
+                                                     'taken_num': taken_num,
+                                                     'check_num': check_num,
+                                                     'oncheck_num': oncheck_num,
+                                                     'trad_id': trad.id,
+                                                     'tomorrow': get_tomorrow()})
 
 
 
 def remove_trad(request, trad_id):
     trad = Trad.objects.get(id=trad_id)
-    trad.status = 'deleted'
-    trad.save()
+    if trad.author == request.user:
+        trad.status = 'deleted'
+        trad.save()
     return HttpResponseRedirect("/")
 
 

@@ -20,6 +20,6 @@ class IssueForm(forms.Form):
 
 
 class CommentForm(forms.Form):
-    text = forms.CharField(required=False,
+    text = forms.CharField(required=True,
                            widget=MarkItUpWidget(attrs={
                                'style': 'width: 99%; height:105px;'}))

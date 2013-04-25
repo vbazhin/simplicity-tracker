@@ -1,11 +1,8 @@
 #author: v.bazhin
 #coding: utf-8
 
-
 def get_terms_set(model_name, *args, **kwargs):
-
     request_user = args[0]
-
     issue = {
             # Нельзя связанные объекты получать с помощью filter __in,
             # поэтому конструируем запросы отдельно
@@ -47,6 +44,6 @@ def get_terms_set(model_name, *args, **kwargs):
                                 'status__in': ['new']},
                      'exclude': {'author': request_user},
                      }]
-        }
+            }
 
     return locals()[model_name]
