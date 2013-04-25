@@ -55,6 +55,7 @@ class Trad(models.Model):
 
     objects = filter_manager.FilterManager()
 
+
     STATUS_VALUES = (
         ('new', pgettext('issue condition', 'New')),
         ('taken', pgettext('issue condition', 'In progress')),
@@ -70,6 +71,7 @@ class Trad(models.Model):
         ('task', pgettext('Type of issue', 'Task')),
         ('notification', pgettext('Type of issue', 'Notification')),
         )
+
     project = models.ForeignKey(Project, blank=True, null=True, verbose_name=gettext_lazy('Project'))
     label = models.CharField(max_length=100, verbose_name=gettext_lazy('Label'))
     text = models.TextField(blank=True, max_length=5000, verbose_name=gettext_lazy('Description'))
@@ -252,11 +254,12 @@ class Comment(models.Model):
         return self.text
 
     def add(self, data, request_user, related_trad_id):
-        self = Comment(text = escape(data['text']),
-                       date = datetime.datetime.now(),
-                       trad_id = related_trad_id,
-                       author = request_user)
-        self.save()
+        if len(data['text']) > 0:
+            self = Comment(text = escape(data['text']),
+                           date = datetime.datetime.now(),
+                           trad_id = related_trad_id,
+                           author = request_user)
+            self.save()
 
     def __unicode__(self):
         return self.text

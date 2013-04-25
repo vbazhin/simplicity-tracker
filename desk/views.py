@@ -5,8 +5,6 @@ import datetime
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
-from django import forms
-from markitup.widgets import MarkItUpWidget
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
@@ -15,6 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
 from desk.models import Trad, Comment, InviteLink
 from django.db.models import Q
+from forms import IssueForm, CommentForm
 
 # Вспомогательные функции (не возвращают HttpResponse, но участвуют в сборке view)
 def all(request):
@@ -74,14 +73,14 @@ def index(request, fltr='all', add_task=None): # Фильтруем по ста�
     # Добавляем задание
     trads = filter_issues(fltr, request.user)
     if request.method == 'POST': # Если сабмичена форма добавления сообщений
-        form = TradForm(request.POST)
+        form = IssueForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             trad = Trad()
             trad.add(cd, request.user)
             return HttpResponseRedirect("/")
     else:
-        form = TradForm()
+        form = IssueForm()
         form.fields['receiver'].queryset = User.objects.exclude(
             id=request.user.id) # Нормальный ход (все польщователи кроме меня)
     return render_to_response('index.html',
@@ -99,46 +98,44 @@ def index(request, fltr='all', add_task=None): # Фильтруем по ста�
 
 
 def show_trad(request, related_trad, user_status='group_task_receiver'):
-    trad = Trad.objects.get(pk=related_trad)
-    if trad.status != 'deleted':
-        trad.count_comments()
-        trad.define_condition()
-        new_num, taken_num, check_num, oncheck_num = count_issues(request)
-        comments = Comment.objects.filter(trad=trad).order_by('date')
-        for comment in comments:
-            if comment.type == 'status_cmt':
-                comment.get_text()
-        if request.user in trad.receiver.all():
-            user_status = 'receiver'
-        if request.user == trad.author:
-            user_status = 'author'
-            # escape - html символы
-        if request.method == 'POST':
-            if 'comment' in request.POST:
-                form = CommentForm(request.POST)
-                if form.is_valid():
-                    cd = form.cleaned_data
-                    comment = Comment()
-                    if len(cd['text']) > 0:
-                        comment.add(cd, request.user, trad.id)
-            else:
-                status = [key for key in request.POST]
-                trad.renew_status(status[0], request.user)
-            return HttpResponseRedirect("")
+    # Делаю filter, чтобы можно было сразу исключить задания со статусом deleted
+    # и не пистаь дополнительное условие if
+    trad = Trad.objects.filter(pk=related_trad).exclude(status = 'deleted')[0]
+    trad.count_comments()
+    trad.define_condition()
+    new_num, taken_num, check_num, oncheck_num = count_issues(request)
+    comments = Comment.objects.filter(trad=trad).order_by('date')
+    for comment in comments:
+        if comment.type == 'status_cmt':
+            comment.get_text()
+    if request.user in trad.receiver.all():
+        user_status = 'receiver'
+    if request.user == trad.author:
+        user_status = 'author'
+        # escape - html символы
+    if request.method == 'POST' and 'comment' in request.POST:
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            comment = Comment()
+            comment.add(cd, request.user, trad.id)
         else:
-            form = CommentForm()
-        return render_to_response('issue_page.html', {'form': form,
-                                                      'user': request.user,
-                                                      'trad': trad,
-                                                      'comments': comments,
-                                                      'user_status': user_status,
-                                                      'receivers': trad.receiver.all(),
-                                                      'new_num': new_num,
-                                                      'taken_num': taken_num,
-                                                      'check_num': check_num,
-                                                      'oncheck_num': oncheck_num})
+            status = [key for key in request.POST]
+            trad.renew_status(status[0], request.user)
+        return HttpResponseRedirect("")
     else:
-        raise Http404
+        form = CommentForm()
+    return render_to_response('issue_page.html', {'form': form,
+                                                  'user': request.user,
+                                                  'trad': trad,
+                                                  'comments': comments,
+                                                  'user_status': user_status,
+                                                  'receivers': trad.receiver.all(),
+                                                  'new_num': new_num,
+                                                  'taken_num': taken_num,
+                                                  'check_num': check_num,
+                                                  'oncheck_num': oncheck_num})
+
 
 
 def edit_trad(request, trad_id):
@@ -146,14 +143,14 @@ def edit_trad(request, trad_id):
     if trad.status != 'deleted':
         if trad.author.id == request.user.id:
             if request.method == 'POST':
-                form = TradForm(request.POST)
+                form = IssueForm(request.POST)
                 if form.is_valid():
                     cd = form.cleaned_data
                     trad = Trad(pk=trad_id)
                     trad.save_edited(cd, request.user)
                     return HttpResponseRedirect("/" + str(trad.id))
             else:
-                form = TradForm(
+                form = IssueForm(
                     initial={'label': trad.label, 'text': trad.text, 'expiration': trad.expiration}
                 )
                 form.fields['receiver'].queryset = User.objects.exclude(
@@ -239,19 +236,3 @@ def generate_link(request):
             return HttpResponse(_('You are not administrator'))
 
 
-# Не имеет смысла выносить формы в отдельный файл
-class TradForm(forms.Form):
-    label = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-issue-label'}))
-    text = forms.CharField(required=False, widget=MarkItUpWidget())
-    receiver = forms.ModelMultipleChoiceField(required=False,
-                                              queryset=User.objects.all(),
-                                              widget=forms.SelectMultiple(attrs=
-                                              {'class': 'form-receivers'}))
-    expdate = forms.DateField(required=False)
-    exptime = forms.TimeField(required=False)
-    timezone_offset = forms.CharField(required=False)
-
-
-class CommentForm(forms.Form):
-    text = forms.CharField(required=False, min_length=1,
-                           widget=MarkItUpWidget(attrs={'style': 'width: 99%; height:105px;'}))
