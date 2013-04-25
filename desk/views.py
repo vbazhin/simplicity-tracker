@@ -53,7 +53,6 @@ import terms_sets_filter
 def filter_issues(fltr, request_user):
     # Выбираем из фильтра наборов условий нужный нам словарь
     filter_terms_sets = terms_sets_filter.get_terms_set('issue',request_user)
-
     if fltr in filter_terms_sets:
         # Выбираем issues соответствующие нашим условиям
         issues = Trad.objects.filter_set(filter_terms_sets[fltr])
@@ -65,7 +64,6 @@ def filter_issues(fltr, request_user):
         issue.count_comments()
         issue.define_condition()
     return issues
-
 
 @login_required
 def index(request, fltr='all', add_task=None): # Фильтруем по статусу
@@ -137,56 +135,54 @@ def show_trad(request, related_trad, user_status='group_task_receiver'):
                                                   'oncheck_num': oncheck_num})
 
 
-
 def edit_trad(request, trad_id):
-    trad = Trad.objects.get(id=trad_id)
-    if trad.status != 'deleted':
-        if trad.author.id == request.user.id:
-            if request.method == 'POST':
-                form = IssueForm(request.POST)
-                if form.is_valid():
-                    cd = form.cleaned_data
-                    trad = Trad(pk=trad_id)
-                    trad.save_edited(cd, request.user)
-                    return HttpResponseRedirect("/" + str(trad.id))
-            else:
-                form = IssueForm(
-                    initial={'label': trad.label, 'text': trad.text, 'expiration': trad.expiration}
-                )
-                form.fields['receiver'].queryset = User.objects.exclude(
-                    id=request.user.id)
-                if trad.receiver:
-                    is_common = False
-                    receivers = trad.receiver.all()
-                    form.fields['receiver'].initial = receivers
-                else:
-                    is_common = True
-            comments = Comment.objects.filter(trad=trad).order_by('date')
-            if trad.expiration:
-                expiration_time = str(trad.expiration.time().hour) + ":" + str(trad.expiration.time().minute)
-                expiration_date = trad.expiration.date().isoformat()
-            else:
-                expiration_date = None
-                expiration_time = None
-            new_num, taken_num, check_num, oncheck_num = count_issues(request)
-            # Разобраться, почему не возвращает count_values(request)
-            return render_to_response('edit_issue.html', {'form': form,
-                                                          'receivers': receivers,
-                                                          'user': request.user,
-                                                         'is_common': is_common,
-                                                         'expiration_date': expiration_date,
-                                                         'expiration_time': expiration_time,
-                                                         'comments': comments,
-                                                         'new_num': new_num,
-                                                         'taken_num': taken_num,
-                                                         'check_num': check_num,
-                                                         'oncheck_num': oncheck_num,
-                                                         'trad_id': trad.id,
-                                                         'tomorrow': get_tomorrow()})
-        else:
-            return HttpResponseRedirect("/")
+    if request.method == 'POST':
+        form = IssueForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            trad = Trad(pk=trad_id)
+            trad.save_edited(cd, request.user)
+            return HttpResponseRedirect("/" + str(trad.id))
     else:
-        raise Http404
+        trad = Trad.objects.filter(id=trad_id,
+                                   author=request.user).exclude(status='deleted')[0]
+        form = IssueForm(
+            initial={'label': trad.label,
+                     'text': trad.text,
+                     'expiration': trad.expiration}
+        )
+        form.fields['receiver'].queryset = User.objects.exclude(id=request.user.id)
+        if trad.receiver:
+            is_common = False
+            receivers = trad.receiver.all()
+            form.fields['receiver'].initial = receivers
+        else:
+            is_common = True
+    comments = Comment.objects.filter(trad=trad).order_by('date')
+    if trad.expiration:
+        # Тут надо что-то делать
+        expiration_time = str(trad.expiration.time().hour) + ":" + \
+                          str(trad.expiration.time().minute)
+        expiration_date = trad.expiration.date().isoformat()
+    else:
+        expiration_date = None
+        expiration_time = None
+    new_num, taken_num, check_num, oncheck_num = count_issues(request)
+    # Разобраться, почему не возвращает count_values(request)
+    return render_to_response('edit_issue.html', {'form': form,
+                                                  'receivers': receivers,
+                                                  'user': request.user,
+                                                 'is_common': is_common,
+                                                 'expiration_date': expiration_date,
+                                                 'expiration_time': expiration_time,
+                                                 'comments': comments,
+                                                 'new_num': new_num,
+                                                 'taken_num': taken_num,
+                                                 'check_num': check_num,
+                                                 'oncheck_num': oncheck_num,
+                                                 'trad_id': trad.id,
+                                                 'tomorrow': get_tomorrow()})
+
 
 
 def remove_trad(request, trad_id):
@@ -234,5 +230,3 @@ def generate_link(request):
                 return HttpResponse(_('Error occurred'))
         else:
             return HttpResponse(_('You are not administrator'))
-
-
