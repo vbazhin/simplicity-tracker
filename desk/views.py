@@ -117,9 +117,9 @@ def show_trad(request, related_trad, user_status='group_task_receiver'):
             cd = form.cleaned_data
             comment = Comment()
             comment.add(cd, request.user, trad.id)
-        else:
-            status = [key for key in request.POST]
-            trad.renew_status(status[0], request.user)
+    if request.method == 'POST' and 'comment' not in request.POST:
+        status = [key for key in request.POST]
+        trad.renew_status(status[0], request.user)
         return HttpResponseRedirect("")
     else:
         form = CommentForm()
