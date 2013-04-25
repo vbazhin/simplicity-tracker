@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 import datetime
 import random
 import md5
-from django.utils import unittest
 from django.utils.translation import pgettext
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
@@ -24,6 +23,7 @@ from django.utils.html import escape
 # Возможно
     # mpttшная древовидная структура комментариев
 
+import filter_manager
 
 
 class Project(models.Model):
@@ -36,39 +36,6 @@ class Project(models.Model):
     class Meta:
         verbose_name = gettext_lazy('Project')
         verbose_name_plural = gettext_lazy('Projects')
-
-
-# Пакет тестов объекта Trad
-
-class TradTestCase(unittest.TestCase):
-    def setUp(self):
-        try:
-            self.user =  User.objects.get(username = 'admin')
-        except User.DoesNotExist:
-            self.user = User.objects.create(username='admin',
-                                            is_staff=1,
-                                            is_superuser=1)
-        self.trad = Trad.objects.create(label='Me',
-                                        is_expiration = 'Yes',
-                                        expiration=datetime.datetime(2017, 12, 6, 16, 29, 43, 79043),
-                                        author = self.user,
-                                        status="new")
-        self.comment = Comment(text = u'Задание принято пользователем '
-                                      + self.user.username,
-                               date = datetime.datetime.now(),
-                               trad_id = self.trad.id,
-                               author = self.user)
-    def test_time_left_returns_timedelta(self):
-        """timedelta"""
-        self.assertEqual(str(type(self.trad.time_left())), "<type 'datetime.timedelta'>")
-
-    def test_renew_status_no_exceptions(self):
-        '''Returns None'''
-        self.assertEqual(self.trad.renew_status(('taken'), self.user), None)
-
-    def test_define_status_returns_new(self):
-        '''Returns current status'''
-        self.assertEqual(self.trad.define_condition(), 'new')
 
 
 STATUS_ATTRS = {
@@ -85,6 +52,8 @@ STATUS_ATTRS = {
 
 
 class Trad(models.Model):
+
+    objects = filter_manager.FilterManager()
 
     STATUS_VALUES = (
         ('new', pgettext('issue condition', 'New')),
@@ -133,7 +102,14 @@ class Trad(models.Model):
             exp = datetime.datetime.combine(expdate, exptime) # Соединяем дату и время
             #if exptime == None:
             #is_exp = 'No'
-        self = Trad(label = data['label'], text = escape(data['text']), given=datetime.datetime.now(), is_expiration = exp_value, expiration=exp, status='new', author = request_user) # Поменять date - now(), expiration - забивается
+        # Поменять date - now(), expiration - забивается
+        self = Trad(label = data['label'],
+                    text = escape(data['text']),
+                    given=datetime.datetime.now(),
+                    is_expiration = exp_value,
+                    expiration=exp,
+                    status='new',
+                    author = request_user)
         self.save()
         receivers = data['receiver']
         #if not receivers:
@@ -166,12 +142,20 @@ class Trad(models.Model):
         self.save()
         receivers = data['receiver']
         self.receiver = receivers
-        comment = Comment(type='status_cmt', text ='edited', date = datetime.datetime.now(), trad_id = self.id,  author = request_user)
+        comment = Comment(type='status_cmt',
+                          text ='edited',
+                          date = datetime.datetime.now(),
+                          trad_id = self.id,
+                          author = request_user)
         comment.save()
 
     def renew_status(self, new_data, current_user):
         self.status = new_data
-        comment = Comment(type='status_cmt', text = self.status, date = datetime.datetime.now(), trad_id = self.id,  author = current_user)
+        comment = Comment(type='status_cmt',
+                          text = self.status,
+                          date = datetime.datetime.now(),
+                          trad_id = self.id,
+                          author = current_user)
         try:
             self.save()
         except:
@@ -268,7 +252,10 @@ class Comment(models.Model):
         return self.text
 
     def add(self, data, request_user, related_trad_id):
-        self = Comment(text = escape(data['text']), date = datetime.datetime.now(), trad_id = related_trad_id,  author = request_user)
+        self = Comment(text = escape(data['text']),
+                       date = datetime.datetime.now(),
+                       trad_id = related_trad_id,
+                       author = request_user)
         self.save()
 
     def __unicode__(self):
@@ -291,8 +278,8 @@ class InviteLink(models.Model):
         self.save()
         return self
 
-    #def __unicode__(self):
-        #return self.id
+    def __unicode__(self):
+        return self.id
 
     class Meta:
         verbose_name = gettext_lazy('Invite link')

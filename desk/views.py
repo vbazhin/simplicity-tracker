@@ -14,21 +14,21 @@ from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
 from desk.models import Trad, Comment, InviteLink
-
+from django.db.models import Q
 
 # Вспомогательные функции (не возвращают HttpResponse, но участвуют в сборке view)
 def all(request):
     all_except_me = User.objects.exclude(id=request.user.id)
     return all_except_me
 
-
 def count_issues(request): # Считаем задания с разными статусами
-    iss_num = lambda x: Trad.objects.filter(receiver=request.user, status=x).count() + Trad.objects.filter(
-        receiver=None, status=x).exclude(author=request.user).count()
+    iss_num = lambda x: Trad.objects.filter(receiver=request.user, status=x).count() + \
+                        Trad.objects.filter(receiver=None, status=x).\
+                            exclude(author=request.user).count()
     # Те задания, которые направлены мне, либо общие, исключая те, автор которых - я
-    for_check = Trad.objects.filter(author=request.user, status='done').count() # Задания направленные мне на проверку
+    for_check = Trad.objects.filter(author=request.user, status='done').count()
+    # Задания направленные мне на проверку
     return iss_num('new'), iss_num('taken'), for_check, iss_num('done')
-
 
 def get_tomorrow():
     today_dt = datetime.date.today()
@@ -41,93 +41,31 @@ def logout(request):
     auth.logout(request)
     return HttpResponseRedirect("/")
 
-
 def login(request):
     auth.login(request)
     # Перенаправление на страницу.
     return HttpResponseRedirect("/")
 
-
-from django.db.models import Q
-
-
 # Рефакторинг
+
+# Импортируем фильтр наборов условий
+import terms_sets_filter
+
 def filter_issues(fltr, request_user):
-    filter_rules = {
-        # Список условий для all
-        # Нельзя связанные объектыполучать в filter __in, поэтому конструируем запросы отдельно
-        'all': [{'filter': {'receiver': request_user},
-                 'exclude':{'status__in': ['deleted']},
-                },
-                {'filter': {'receiver': None},
-                 'exclude': {'status__in': ['deleted']},
-                },
-                {'filter': {'author': request_user},
-                 'exclude': {'status__in': ['deleted']},
-                }],
-        'current': [{'filter': {'receiver': request_user,
-                                'status__in': ['new', 'taken', 'done']},
-                    },
-                    {'filter': {'receiver': None,
-                                 'status__in': ['new', 'taken', 'done']},
-                   }],
-        'check': [{'filter': {'author': request_user,
-                                'status__in': ['done']},
-                 }],
-        'givenbyme': [{'filter': {'author': request_user},
-                      'exclude': {'status__in': ['deleted']},
-                 }],
-        'error': [{'filter': {'receiver': request_user,
-                              'status__in': ['error']},
-                  },
-                  {'filter': {'receiver': None,
-                              'status__in': ['error']},
-                },
-                  {'filter': {'author': request_user,
-                              'status__in': ['error']},
-                }],
-        'new': [{'filter': {'receiver': request_user,
-                            'status__in': ['new']},
-                'exclude': {'author': request_user},
-                },
-                {'filter': {'receiver': None,
-                            'status__in': ['new']},
-                 'exclude': {'author': request_user},
-                }]
-        }
+    # Выбираем из фильтра наборов условий нужный нам словарь
+    filter_terms_sets = terms_sets_filter.get_terms_set('issue',request_user)
 
-
-    def _terms_unpacker(filter_dict):
-        return reduce(lambda x, y: x | y,
-                      [(Q(**terms_set['filter']) & ~Q(**terms_set['exclude'] or None))
-                       for terms_set in filter_dict])
-
-
-    def _construct_query(terms_filter):
-        # reduce(lambda x, y: x | y, [Q(name__contains=word) for word in list]))
-        filter_dict = filter_rules[terms_filter]
-        # Подготавливаем словари, чтобы в каждом были filter и exclude
-        for term_set in filter_dict:
-            if 'filter' not in term_set:
-                term_set['filter'] = {'id':True}
-            if 'exclude' not in term_set:
-                term_set['exclude'] = {'id':False}
-        trads = Trad.objects.filter(_terms_unpacker(filter_dict))
-        return trads
-
-
-    if fltr in filter_rules:
-        trads = _construct_query(fltr)
+    if fltr in filter_terms_sets:
+        # Выбираем issues соответствующие нашим условиям
+        issues = Trad.objects.filter_set(filter_terms_sets[fltr])
     else:
-        trads = Trad.objects.filter(receiver=request_user, status=fltr) | \
-                Trad.objects.filter(receiver=None, status=fltr)
-    trads = trads.exclude(status = 'deleted')
-    trads = sorted(trads, key=lambda trad: trad.given)
-    for trad in trads:
-        trad.comments_num = Comment.objects.filter(trad=trad).count() # Cчитаем комментарии
-        trad.define_condition()
-
-    return trads
+        issues = Trad.objects.filter(Q(receiver=request_user, status=fltr) | \
+                                     Q(receiver=None, status=fltr))
+    issues = sorted(issues, key=lambda trad: trad.given)
+    for issue in issues:
+        issue.count_comments()
+        issue.define_condition()
+    return issues
 
 
 @login_required
@@ -147,9 +85,16 @@ def index(request, fltr='all', add_task=None): # Фильтруем по ста�
         form.fields['receiver'].queryset = User.objects.exclude(
             id=request.user.id) # Нормальный ход (все польщователи кроме меня)
     return render_to_response('index.html',
-                              {'trads': trads, 'form': form, 'user': request.user, 'tomorrow': get_tomorrow(),
-                               'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num,
-                               'oncheck_num': oncheck_num, 'page_type': 'index', 'add_task': add_task}
+                              {'trads': trads,
+                               'form': form,
+                               'user': request.user,
+                               'tomorrow': get_tomorrow(),
+                               'new_num': new_num,
+                               'taken_num': taken_num,
+                               'check_num': check_num,
+                               'oncheck_num': oncheck_num,
+                               'page_type': 'index',
+                               'add_task': add_task}
     )
 
 
@@ -178,14 +123,20 @@ def show_trad(request, related_trad, user_status='group_task_receiver'):
                         comment.add(cd, request.user, trad.id)
             else:
                 status = [key for key in request.POST]
-                trad.renew_status(status[0], request.user) # Новый статус (объеденить метод с комментированием)
+                trad.renew_status(status[0], request.user)
             return HttpResponseRedirect("")
         else:
             form = CommentForm()
-        return render_to_response('issue_page.html', {'form': form, 'user': request.user, 'trad': trad, 'comments': comments,
-                                                'user_status': user_status, 'receivers': trad.receiver.all(),
-                                                'new_num': new_num, 'taken_num': taken_num, 'check_num': check_num,
-                                                'oncheck_num': oncheck_num})
+        return render_to_response('issue_page.html', {'form': form,
+                                                      'user': request.user,
+                                                      'trad': trad,
+                                                      'comments': comments,
+                                                      'user_status': user_status,
+                                                      'receivers': trad.receiver.all(),
+                                                      'new_num': new_num,
+                                                      'taken_num': taken_num,
+                                                      'check_num': check_num,
+                                                      'oncheck_num': oncheck_num})
     else:
         raise Http404
 
@@ -198,7 +149,7 @@ def edit_trad(request, trad_id):
                 form = TradForm(request.POST)
                 if form.is_valid():
                     cd = form.cleaned_data
-                    trad = Trad(pk=trad_id) # Поменять date - now(), expiration - забивается
+                    trad = Trad(pk=trad_id)
                     trad.save_edited(cd, request.user)
                     return HttpResponseRedirect("/" + str(trad.id))
             else:
@@ -206,7 +157,7 @@ def edit_trad(request, trad_id):
                     initial={'label': trad.label, 'text': trad.text, 'expiration': trad.expiration}
                 )
                 form.fields['receiver'].queryset = User.objects.exclude(
-                    id=request.user.id) # Нормальный ход (все польщователи кроме меня)
+                    id=request.user.id)
                 if trad.receiver:
                     is_common = False
                     receivers = trad.receiver.all()
@@ -222,12 +173,19 @@ def edit_trad(request, trad_id):
                 expiration_time = None
             new_num, taken_num, check_num, oncheck_num = count_issues(request)
             # Разобраться, почему не возвращает count_values(request)
-            return render_to_response('edit_issue.html', {'form': form, 'receivers': receivers, 'user': request.user,
-                                                         'is_common': is_common, 'expiration_date': expiration_date,
-                                                         'expiration_time': expiration_time, 'comments': comments,
-                                                         'new_num': new_num, 'taken_num': taken_num,
-                                                         'check_num': check_num, 'oncheck_num': oncheck_num,
-                                                         'trad_id': trad.id, 'tomorrow': get_tomorrow()})
+            return render_to_response('edit_issue.html', {'form': form,
+                                                          'receivers': receivers,
+                                                          'user': request.user,
+                                                         'is_common': is_common,
+                                                         'expiration_date': expiration_date,
+                                                         'expiration_time': expiration_time,
+                                                         'comments': comments,
+                                                         'new_num': new_num,
+                                                         'taken_num': taken_num,
+                                                         'check_num': check_num,
+                                                         'oncheck_num': oncheck_num,
+                                                         'trad_id': trad.id,
+                                                         'tomorrow': get_tomorrow()})
         else:
             return HttpResponseRedirect("/")
     else:
@@ -270,9 +228,10 @@ def generate_link(request):
                 link = InviteLink.objects.create()
                 link.generate() # Метод создает хеш md5, делает запись в таблицу
                 path = request.build_absolute_uri('../register/') + link.link
-                welcome = "<div class='modal-header'> <h2>" + _("Invite ") + "№ " + str(
-                    link.id) + " </h2> </div>  <br> <h3>" + _(
-                    "Registration link (can be used only once):") + "</h3> <br>  <code>" + path + "</code>"
+                welcome = "<div class='modal-header'> <h2>" + _("Invite ") + "№ " + \
+                str(link.id) + " </h2> </div>  <br> <h3>" + \
+                      _("Registration link (can be used only once):") + \
+                          "</h3> <br>  <code>" + path + "</code>"
                 return HttpResponse(welcome)
             except:
                 return HttpResponse(_('Error occurred'))
@@ -284,11 +243,13 @@ def generate_link(request):
 class TradForm(forms.Form):
     label = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-issue-label'}))
     text = forms.CharField(required=False, widget=MarkItUpWidget())
-    receiver = forms.ModelMultipleChoiceField(required=False, queryset=User.objects.all(),
-                                              widget=forms.SelectMultiple(attrs={'class': 'form-receivers'}))
+    receiver = forms.ModelMultipleChoiceField(required=False,
+                                              queryset=User.objects.all(),
+                                              widget=forms.SelectMultiple(attrs=
+                                              {'class': 'form-receivers'}))
     expdate = forms.DateField(required=False)
     exptime = forms.TimeField(required=False)
-    timezone_offset = forms.CharField(required=False) # Либо смещение локального времени сессии, либо utc
+    timezone_offset = forms.CharField(required=False)
 
 
 class CommentForm(forms.Form):
