@@ -3,28 +3,28 @@
         {% get_available_languages as LANGUAGES %}
         {% get_current_language_bidi as LANGUAGE_BIDI %}
                 
-            <tr class="alert alert-{{trad.attrs.alert}} trad-info">
+            <tr class="alert alert-{{issue.attrs.alert}} issue-info">
                 <td>
-                    <a href="{{trad.pk}}" style="display:block; position: relative; width: 100%; height: 100%;"> <!-- Чтобы избежать наличия "div" в "a", можно <div  class='trad-base' onclick="redirect({{trad.pk}})">, в целом не так важно -->
+                    <a href="{{issue.pk}}" style="display:block; position: relative; width: 100%; height: 100%;"> <!-- Чтобы избежать наличия "div" в "a", можно <div  class='issue-base' onclick="redirect({{issue.pk}})">, в целом не так важно -->
                         <div>
                         <div class="block-icon" >
                             <span>
-                                <i class="icon-{{trad.attrs.icon}}"></i>
+                                <i class="icon-{{issue.attrs.icon}}"></i>
                             </span>
                         </div>
                         <div>
                         <span>
-                            <h3 class="issue-label"> {{trad.label}}
+                            <h3 class="issue-label"> {{issue.label}}
                                 <small>
                                     <span>
-                                        {% trans 'Author' %}: {{trad.author}}
+                                        {% trans 'Author' %}: {{issue.author}}
                                     </span>
                                 </small>
                             </h3>
                         </span>
-                            {% if trad.status == 'new' and trad.is_expiration = 'Yes' or trad.status == 'taken' and trad.is_expiration == 'Yes' %}
+                            {% if issue.status == 'new' and issue.is_expiration or issue.status == 'taken' and issue.is_expiration == 'Yes' %}
                                 <div class="bar-block">
-                                    <div class="bar left-time-bar" style="width:{{trad.time}}%;">
+                                    <div class="bar left-time-bar" style="width:{{issue.time}}%;">
                                         <div class="arrow-right"></div>
                                      </div>
                                 </div>
@@ -34,38 +34,38 @@
                                     <span class='condition-label'>
                                         {% trans 'Condition' %}:
                                     </span>
-                                    {{trad.condition}}
+                                    {{issue.condition}}
                                 </div>
                                 <div class='task-properties given-time'>
                                     {% trans 'Given' %}:
-                                    {{trad.given|date:"m" }}/{{trad.given|date:"d" }}
-                                    в {{trad.given|date:"H" }}:{{trad.given|date:"i" }}
+                                    {{issue.given|date:"m" }}/{{issue.given|date:"d" }}
+                                    в {{issue.given|date:"H" }}:{{issue.given|date:"i" }}
                                 </div>
-                                {% if trad.status != 'success' and trad.status != 'closed' and trad.status != 'refused' %}
-                                {% if trad.is_expiration = 'Yes' %}
+                                {% if issue.status != 'success' and issue.status != 'closed' and issue.status != 'refused' %}
+                                {% if issue.is_expiration %}
                                 <div class='task-properties left-time' >
-                                    {% if trad.leftdays >= 0 %}
+                                    {% if issue.leftdays >= 0 %}
                                         {% trans 'Left' %}:
-                                        {% if trad.leftdays > 1 %}
-                                            {{trad.leftdays }} {% trans 'd' %}
+                                        {% if issue.leftdays > 1 %}
+                                            {{issue.leftdays }} {% trans 'd' %}
                                         {% else %}
-                                            {% if trad.lefthours > 1 %}
-                                                {{ trad.lefthours }} {% trans 'h' %}
+                                            {% if issue.lefthours > 1 %}
+                                                {{ issue.lefthours }} {% trans 'h' %}
                                             {% else %}
-                                                {{ trad.leftminutes }} {% trans 'min' %}
+                                                {{ issue.leftminutes }} {% trans 'min' %}
                                             {% endif %}
                                         {% endif %}
                                     {% endif %}
-                                    {% if trad.leftdays < 0 %}
-                                    {% trans 'Expired at' %}: {{trad.expiration|date:"m" }}/{{trad.expiration|date:"d" }}
-                                    в {{trad.expiration|date:"H" }}:{{trad.expiration|date:"i" }}
+                                    {% if issue.leftdays < 0 %}
+                                    {% trans 'Expired at' %}: {{issue.expiration|date:"m" }}/{{issue.expiration|date:"d" }}
+                                    в {{issue.expiration|date:"H" }}:{{issue.expiration|date:"i" }}
                                     {% endif %}
                                 </div>
                                 {% endif %}
                                 {% endif %}
-                                {% if trad.comments_num > 0 %}
+                                {% if issue.comments_num > 0 %}
                                <div class='task-properties comments'>
-                                    {{trad.comments_num}}
+                                    {{issue.comments_num}}
                                     <i class="icon-comment"> </i>
                                </div>
                                 {% endif %}

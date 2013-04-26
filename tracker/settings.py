@@ -16,7 +16,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'tracker',                      # Or path to database file if using sqlite3.
+        'NAME': 'tracker_new',                      # Or path to database file if using sqlite3.
         'USER': 'root',                      # Not used with sqlite3.
         'PASSWORD': '1',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -150,7 +150,7 @@ INSTALLED_APPS = (
     'desk',
     'django.contrib.markup',
     'markitup',
-    #'south'
+    'south'
 
 
     )

@@ -11,9 +11,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
-from desk.models import Trad, Comment, InviteLink
+from desk.models import Issue, Comment, InviteLink
 from django.db.models import Q
 from forms import IssueForm, CommentForm
+# Импортируем фильтр наборов условий
+import terms_sets_filter
 
 # Вспомогательные функции (не возвращают HttpResponse, но участвуют в сборке view)
 def all(request):
@@ -21,11 +23,11 @@ def all(request):
     return all_except_me
 
 def count_issues(request): # Считаем задания с разными статусами
-    iss_num = lambda x: Trad.objects.filter(receiver=request.user, status=x).count() + \
-                        Trad.objects.filter(receiver=None, status=x).\
+    iss_num = lambda x: Issue.objects.filter(receiver=request.user, status=x).count() + \
+                        Issue.objects.filter(receiver=None, status=x).\
                             exclude(author=request.user).count()
     # Те задания, которые направлены мне, либо общие, исключая те, автор которых - я
-    for_check = Trad.objects.filter(author=request.user, status='done').count()
+    for_check = Issue.objects.filter(author=request.user, status='done').count()
     # Задания направленные мне на проверку
     return iss_num('new'), iss_num('taken'), for_check, iss_num('done')
 
@@ -47,23 +49,20 @@ def login(request):
 
 def comments_gettext_loop(comments):
     for comment in comments:
-        if comment.type == 'status_cmt':
+        if comment.is_status_comment == True:
             comment.get_text()
     return comments
-
-# Импортируем фильтр наборов условий
-import terms_sets_filter
 
 def filter_issues(fltr, request_user):
     # Выбираем из фильтра наборов условий нужный нам словарь
     filter_terms_sets = terms_sets_filter.get_terms_set('issue',request_user)
     if fltr in filter_terms_sets:
         # Выбираем issues соответствующие нашим условиям
-        issues = Trad.objects.filter_set(filter_terms_sets[fltr])
+        issues = Issue.objects.filter_set(filter_terms_sets[fltr])
     else:
-        issues = Trad.objects.filter(Q(receiver=request_user, status=fltr) | \
+        issues = Issue.objects.filter(Q(receiver=request_user, status=fltr) | \
                                      Q(receiver=None, status=fltr))
-    issues = sorted(issues, key=lambda trad: trad.given)
+    issues = sorted(issues, key=lambda issue: issue.given)
     for issue in issues:
         issue.count_comments()
         issue.define_condition()
@@ -73,20 +72,20 @@ def filter_issues(fltr, request_user):
 def index(request, fltr='all', add_task=None): # Фильтруем по статусу
     new_num, taken_num, check_num, oncheck_num = count_issues(request)
     # Добавляем задание
-    trads = filter_issues(fltr, request.user)
+    issues = filter_issues(fltr, request.user)
     if request.method == 'POST': # Если сабмичена форма добавления сообщений
         form = IssueForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            trad = Trad()
-            trad.add(cd, request.user)
+            issue = Issue()
+            issue.add(cd, request.user)
             return HttpResponseRedirect("/")
     else:
         form = IssueForm()
         form.fields['receiver'].queryset = User.objects.exclude(
             id=request.user.id) # Нормальный ход (все польщователи кроме меня)
     return render_to_response('index.html',
-                              {'trads': trads,
+                              {'issues': issues,
                                'form': form,
                                'user': request.user,
                                'tomorrow': get_tomorrow(),
@@ -99,76 +98,77 @@ def index(request, fltr='all', add_task=None): # Фильтруем по ста�
     )
 
 
-def show_trad(request, related_trad, user_status='group_task_receiver'):
+
+@login_required
+def show_issue(request, related_issue, user_status='group_task_receiver'):
     # Делаю filter, чтобы можно было сразу исключить задания со статусом deleted
     # и не пистаь дополнительное условие if
-    trad = Trad.objects.filter(pk=related_trad).exclude(status = 'deleted')[0]
+    issue = Issue.objects.filter(pk=related_issue).exclude(status = 'deleted')[0]
         # escape - html символы
     if request.method == 'POST' and 'comment' in request.POST:
         form = CommentForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             comment = Comment()
-            comment.add(cd, request.user, trad.id)
+            user = User.objects.get(id = 1)
+            comment.add(cd, request.user, issue.id)
         return HttpResponseRedirect("")
     elif request.method == 'POST' and 'comment' not in request.POST:
         status = [key for key in request.POST]
-        trad.renew_status(status[0], request.user)
+        issue.renew_status(status[0], request.user)
         return HttpResponseRedirect("")
     else:
-        trad.count_comments()
-        trad.define_condition()
+        issue.count_comments()
+        issue.define_condition()
         new_num, taken_num, check_num, oncheck_num = count_issues(request)
-        comments = comments_gettext_loop(Comment.objects.filter(trad=trad).order_by('date'))
-        if request.user in trad.receiver.all():
+        comments = comments_gettext_loop(Comment.objects.filter(issue=issue).order_by('date'))
+        if request.user in issue.receiver.all():
             user_status = 'receiver'
-        if request.user == trad.author:
+        if request.user == issue.author:
             user_status = 'author'
         form = CommentForm()
     return render_to_response('issue_page.html', {'form': form,
                                                   'user': request.user,
-                                                  'trad': trad,
+                                                  'issue': issue,
                                                   'comments': comments,
                                                   'user_status': user_status,
-                                                  'receivers': trad.receiver.all(),
+                                                  'receivers': issue.receiver.all(),
                                                   'new_num': new_num,
                                                   'taken_num': taken_num,
                                                   'check_num': check_num,
                                                   'oncheck_num': oncheck_num})
 
-
-def edit_trad(request, trad_id):
+def edit_issue(request, issue_id):
     if request.method == 'POST':
         form = IssueForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            trad = Trad(pk=trad_id)
-            trad.save_edited(cd, request.user)
-            return HttpResponseRedirect("/" + str(trad.id))
+            issue = Issue(pk=issue_id)
+            issue.save_edited(cd, request.user)
+            return HttpResponseRedirect("/" + str(issue.id))
     else:
-        trad = Trad.objects.filter(id=trad_id,
+        issue = Issue.objects.filter(id=issue_id,
                                    author=request.user).exclude(status='deleted')[0]
         form = IssueForm(
-            initial={'label': trad.label,
-                     'text': trad.text,
-                     'expiration': trad.expiration}
+            initial={'label': issue.label,
+                     'text': issue.text,
+                     'expiration': issue.expiration}
         )
         form.fields['receiver'].queryset = User.objects.exclude(id=request.user.id)
-        if trad.receiver:
+        if issue.receiver:
             is_common = False
-            receivers = trad.receiver.all()
+            receivers = issue.receiver.all()
             form.fields['receiver'].initial = receivers
         else:
             is_common = True
-        comments = comments_gettext_loop(Comment.objects.filter(trad=trad).order_by('date'))
-        if trad.expiration:
+        comments = comments_gettext_loop(Comment.objects.filter(issue=issue).order_by('date'))
+        if issue.expiration:
             # Тут надо что-то делать
-            expiration_time = str(trad.expiration.time().hour) + ":" + \
-                              str(trad.expiration.time().minute)
-            expiration_date = trad.expiration.date().isoformat()
+            expiration_time = str(issue.expiration.time().hour) + ":" + \
+                              str(issue.expiration.time().minute)
+            expiration_date = issue.expiration.date().isoformat()
         else:
-            expiration_date = None
-            expiration_time = None
+            expiration_date = expiration_time = None
         new_num, taken_num, check_num, oncheck_num = count_issues(request)
         # Разобраться, почему не возвращает count_values(request)
         return render_to_response('edit_issue.html', {'form': form,
@@ -182,17 +182,16 @@ def edit_trad(request, trad_id):
                                                      'taken_num': taken_num,
                                                      'check_num': check_num,
                                                      'oncheck_num': oncheck_num,
-                                                     'trad_id': trad.id,
+                                                     'issue_id': issue.id,
                                                      'tomorrow': get_tomorrow()})
 
 
-def remove_trad(request, trad_id):
-    trad = Trad.objects.get(id=trad_id)
-    if trad.author == request.user:
-        trad.status = 'deleted'
-        trad.save()
+def remove_issue(request, issue_id):
+    issue = Issue.objects.get(id=issue_id)
+    if issue.author == request.user:
+        issue.status = 'deleted'
+        issue.save()
     return HttpResponseRedirect("/")
-
 
 def register(request, hashlink=None):
     # Проверяется валидность ссылки и меняется ее статус на burned

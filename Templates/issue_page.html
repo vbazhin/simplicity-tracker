@@ -5,7 +5,7 @@
 
 {% block title %}
 <title>
-    {{ trad.label }}
+    {{ issue.label }}
 </title>
 {% endblock %}
 
@@ -36,18 +36,18 @@
 
     <div class="modal-footer">
         <a href="#" class="btn" onclick="hideTip()" > {% trans 'Cancel' %} </a>
-        <a href="{{trad.id }}/remove" class="btn btn-primary">{% trans 'Remove' %} </a>
+        <a href="{{issue.id }}/remove" class="btn btn-primary">{% trans 'Remove' %} </a>
     </div>
 </div>
 
 {{ usinfo }}
-<table class="table table-trads table-bordered trad-data">
+<table class="table table-issues table-bordered issue-data">
     {% include 'issue_block.html' %}
-    {% if trad.text %}
+    {% if issue.text %}
     <tr>
         <td class="description-cell" style="padding:16px;" colspan="8">
-                <span class='trad-text'>
-                    {{ trad.text|markdown }}
+                <span class='issue-text'>
+                    {{ issue.text|markdown }}
                 </span>
         </td>
     </tr>
@@ -73,48 +73,48 @@
 </table>
 {% if user_status == 'author' %}
 <span class="edit-issue-link" >
-     <a href="{{trad.id }}/edit"> {% trans 'Edit' %} </a> | <a href="#" onclick="showTip()"  > {% trans 'Remove' %} </a>
+     <a href="{{issue.id }}/edit"> {% trans 'Edit' %} </a> | <a href="#" onclick="showTip()"  > {% trans 'Remove' %} </a>
 </span>
 {% endif %}
 <div>
     <div class="change-status">
-        {% if user_status == 'receiver' and trad.status == 'new' %}
+        {% if user_status == 'receiver' and issue.status == 'new' %}
         <form action="" method="post">
             <input type="submit" class="btn btn-large btn-primary" name="taken" value="{% trans 'Accept' %}">
             <input type="submit" class="btn btn-large btn-danger" name="refused" value="{% trans 'Refuse' %}">
         </form>
         {% endif %}
-        {% if user_status == 'receiver' and trad.status == 'taken' %}
+        {% if user_status == 'receiver' and issue.status == 'taken' %}
         <form action="" method="post">
             <input type="submit" class="btn btn-large btn-success" name="done" value="{% trans 'Done' %}">
             <input type="submit" class="btn btn-large btn-danger" name="refused" value="{% trans 'Reject' %}">
         </form>
         {% endif %}
 
-        {% if user_status == 'group_task_receiver' and trad.status == 'new' %}
+        {% if user_status == 'group_task_receiver' and issue.status == 'new' %}
         <form action="" method="post">
             <input type="submit" class="btn btn-large btn-primary" name="taken" value="{% trans 'Accept' %}">
             <input type="submit" class="btn btn-large btn-danger" name="refused" value="{% trans 'Refuse' %}">
         </form>
         {% endif %}
-        {% if user_status == 'group_task_receiver' and trad.status == 'taken' %}
+        {% if user_status == 'group_task_receiver' and issue.status == 'taken' %}
         <form action="" method="post">
             <input type="submit" class="btn btn-large btn-success" name="done" value="{% trans 'Done' %} ">
             <input type="submit" class="btn btn-large btn-danger" name="refused" value="{% trans 'Reject' %}">
         </form>
         {% endif %}
-        {% if user_status == 'author' and trad.status == 'taken' or user_status == 'author' and trad.status == 'new' %}
+        {% if user_status == 'author' and issue.status == 'taken' or user_status == 'author' and issue.status == 'new' %}
         <form action="" method="post">
             <input type="submit" name="success" class="btn btn-large btn-success" value="{% trans 'Completed' %}">
             <input type="submit" class="btn btn-large" name="closed" value="{% trans 'Close issue' %}">
         </form>
         {% endif %}
-        {% if user_status == 'author' and trad.status == 'refused' %}
+        {% if user_status == 'author' and issue.status == 'refused' %}
         <form action="" method="post">
             <input type="submit" class="btn btn-large btn-primary" name="new" value="{% trans 'Set back' %}">
         </form>
         {% endif %}
-        {% if user_status == 'author' and trad.status == 'done' %}
+        {% if user_status == 'author' and issue.status == 'done' %}
         <form action="" method="post">
             <input type="submit" name="success" class="btn btn-large btn-success" value="{% trans 'Done' %}">
             <input type="submit" name="new" class="btn btn-large" value="{% trans 'Need to be redone' %}">

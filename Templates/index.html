@@ -13,8 +13,8 @@
 {% include 'issue_form.html' %}
 {% endblock %}
 {% block content %}
-    <table class="table table-bordered edits-dump-hidden table-trads">
-        {% for trad in trads reversed %}
+    <table class="table table-bordered edits-dump-hidden table-issues">
+        {% for issue in issues reversed %}
         {% include 'issue_block.html' %}
         {% endfor %}
     </table>

@@ -4,8 +4,9 @@
 <head>
     {% load static %}
     {% get_static_prefix as STATIC_URL %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/datepicker.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/timepicker.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-based-responsive.css" type="text/css" media="screen" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://code.jquery.com/jquery-1.7.2.min.js"> </script>
@@ -85,28 +86,47 @@
 
     <script>
         function disableReceivers() {
-            if (document.getElementById('id_receiver').disabled == false) {
-                document.getElementById('id_receiver').disabled = true
+            var receiver = document.getElementById('id_receiver')
+            if (receiver.disabled == false) {
+                receiver.disabled = true
             }
             else {
-                document.getElementById('id_receiver').disabled = false
+                receiver.disabled = false
             }
             // Переделать с атирибутами
         }
 
         function disableExpiration() {
-            if (document.getElementById('expiration-date').disabled == false) {
-                document.getElementById('expiration-date').disabled = true
-                document.getElementById('expiration-time').disabled = true
+            var exp_date = document.getElementById('expiration-date')
+            var exp_time = document.getElementById('expiration-time')
+            if (exp_date.disabled == false) {
+                exp_date.disabled = true
+                exp_time.disabled = true
             }
             else {
-                document.getElementById('expiration-date').disabled = false
-                document.getElementById('expiration-time').disabled = false
+                exp_date.disabled = false
+                exp_time.disabled = false
             }
             // Переделать с атирибутами
         }
     </script>
 
+    <script>
+        function defineTzOffset() {
+            var userDate = new Date()
+            var offset = userDate.getTimezoneOffset()
+            return offset
+        }
+
+        $(document).ready(function () {
+            offsetInput = document.getElementById('timezoneOffset')
+            offsetInput.value = defineTzOffset()
+        })
+
+        function redirect(id) {
+            document.location.href=id;
+        }
+    </script>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -121,14 +141,14 @@
                     {{ user.username }} <a href='logout/'> {% trans 'Log out' %} </a>
                 </div>
                 {% if page_type == 'index' %}
-                    <a href="#" class="btn add-task-button" onclick="showModal()"> <i class="icon-plus"> </i> {% trans 'Add' %}  </a>
+                    <a href="#" class="btn btn-large btn-success add-task-button" onclick="showModal()"> <i class="icon-plus"> </i> {% trans 'Add' %}  </a>
                 {% else %}
-                    <a href="/add_task" name="add_task" class="btn add-task-button">
+                    <a href="/add_task" name="add_task" class="btn btn-large btn-success add-task-button">
                         <i class="icon-plus"> </i> {% trans 'Add' %}
                     </a>
                 {% endif %}
                 {% if user.is_staff == 1 %}
-                    <a href="#" class="btn invite-user-button" onclick="generate_reg_link()" > {% trans 'Invite' %} </a>
+                    <a href="#" class="btn btn-large btn-info invite-user-button" onclick="generate_reg_link()" > {% trans 'Invite' %} </a>
                 {% endif %}
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
@@ -176,22 +196,6 @@
         })
     </script>
     {% endif %}
-    <script>
-        function defineTzOffset() {
-            var userDate = new Date()
-            var offset = userDate.getTimezoneOffset()
-            return offset
-        }
-
-        $(document).ready(function () {
-            offsetInput = document.getElementById('timezoneOffset')
-            offsetInput.value = defineTzOffset()
-        })
-
-        function redirect(id) {
-            document.location.href=id;
-        }
-    </script>
         <div id="add-task">
             <div class="container">
                 <div class="row span10 offset1">

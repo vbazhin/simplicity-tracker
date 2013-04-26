@@ -10,33 +10,7 @@ from django.utils.translation import pgettext
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
 from django.utils.html import escape
-
-# Todo
-    # Нужно сделать поддержку проектов
-    # Кеширование шаблонов
-    # Кеширование запросов
-    # Юниттесты всех моделей
-    # Универсальные временные зоны, utc время
-    # Перенести определение длины ползунка на пользовательскую сторону (js)
-    # Задания группам
-
-# Возможно
-    # mpttшная древовидная структура комментариев
-
 import filter_manager
-
-
-class Project(models.Model):
-    name = models.CharField(max_length=100, verbose_name=gettext_lazy("Project name"))
-    crew = models.ManyToManyField(User, blank=True, null=True)
-
-    def __unicode__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = gettext_lazy('Project')
-        verbose_name_plural = gettext_lazy('Projects')
-
 
 STATUS_ATTRS = {
     'done' : {'icon' : 'ok', 'alert' : 'success'},
@@ -51,12 +25,10 @@ STATUS_ATTRS = {
 }
 
 
-class Trad(models.Model):
-
+class Issue(models.Model):
+    # Custom object manager initialization (to use "filter_set" to filter issues in views)
     objects = filter_manager.FilterManager()
-
-
-    STATUS_VALUES = (
+    status_dict = (
         ('new', pgettext('issue condition', 'New')),
         ('taken', pgettext('issue condition', 'In progress')),
         ('refused', pgettext('issue condition', 'Rejected')),
@@ -64,109 +36,96 @@ class Trad(models.Model):
         ('done', pgettext('issue condition', 'Done')),
         ('success', pgettext('issue condition', 'Success')),
         ('deleted', pgettext('issue condition', 'Deleted'))
-
     )
 
-    TYPES = ( # Чтобы не дропать базу для следующей версии, когда будет поддержка проектов
-        ('task', pgettext('Type of issue', 'Task')),
-        ('notification', pgettext('Type of issue', 'Notification')),
-        )
-
-    project = models.ForeignKey(Project, blank=True, null=True, verbose_name=gettext_lazy('Project'))
     label = models.CharField(max_length=100, verbose_name=gettext_lazy('Label'))
     text = models.TextField(blank=True, max_length=5000, verbose_name=gettext_lazy('Description'))
     given = models.DateTimeField(auto_now_add=True, verbose_name=gettext_lazy('Occurrence time'))
-    is_expiration = models.CharField(blank=True,  max_length=3, verbose_name=gettext_lazy('Expiration'))
+    is_expiration = models.BooleanField(blank=True,  max_length=3, verbose_name=gettext_lazy('Expiration'))
     expiration = models.DateTimeField(blank=True, null=True, verbose_name=gettext_lazy('Expiration date'))
     change_date = models.DateTimeField(auto_now=True, verbose_name=gettext_lazy('Change date'))
-    # кое-что тут http://stackoverflow.com/questions/38601/using-django-time-date-widgets-in-custom-form
-    status = models.CharField(blank=True, max_length=10, choices=STATUS_VALUES, verbose_name=gettext_lazy('Current status'))
+    status = models.CharField(blank=True, max_length=10, choices=status_dict, verbose_name=gettext_lazy('Current status'))
     receiver = models.ManyToManyField(User, blank=True, null=True, related_name = 'receiver', verbose_name=gettext_lazy('Receiver') )
     author = models.ForeignKey(User, related_name = 'author', verbose_name = gettext_lazy('Author'))
-    type = models.CharField(blank=True, null=True, max_length=12, choices=TYPES, verbose_name=gettext_lazy("Type")) # Чтобы не дропать базу для следующей версии, когда будет поддержка проектов
-    is_deleted = models.CharField(blank=True, null=True, max_length=3, verbose_name=gettext_lazy('Is deleted'))
 
     def time_left(self):
-        if self.is_expiration == 'Yes':
+        if self.is_expiration == True:
             time_left = self.expiration - datetime.datetime.now()
             return time_left
 
-    def add(self, data, request_user):
-
-        tz_offset = data['timezone_offset']
+    def _save_new_data_old(self, data, request_user):
         expdate = data['expdate']
         exptime = data['exptime']
         if expdate == None:
-            exp_value = 'No'
+            exp_value = False
             exp = None
         else:
-            exp_value = 'Yes'
+            exp_value = True
             exp = datetime.datetime.combine(expdate, exptime) # Соединяем дату и время
             #if exptime == None:
             #is_exp = 'No'
         # Поменять date - now(), expiration - забивается
-        self = Trad(label = data['label'],
-                    text = escape(data['text']),
-                    given=datetime.datetime.now(),
-                    is_expiration = exp_value,
-                    expiration=exp,
-                    status='new',
-                    author = request_user)
+        self = Issue(label = data['label'],
+                     text = escape(data['text']),
+                     given=datetime.datetime.now(),
+                     is_expiration = exp_value,
+                     expiration=exp,
+                     status='new',
+                     author = request_user)
         self.save()
         receivers = data['receiver']
         #if not receivers:
         #receivers = User.objects.exclude(id = request.user.id)
         self.receiver = receivers
 
-    def save_edited(self, data, request_user):
-        """
 
-        :param data:
-        :param request_user:
-        """
-        expdate = data['expdate']
-        exptime = data['exptime']
-        if expdate == None:
-            exp_value = 'No'
-            exp = None
-        else:
-            exp_value = 'Yes'
-            exp = datetime.datetime.combine(expdate, exptime)
-            #if exptime == None:
-            #is_exp = 'No'
-        self.label = data['label']
-        self.text = data['text']
-        self.given=datetime.datetime.now()
-        self.is_expiration = exp_value
-        self.expiration=exp
-        self.status='new'
-        self.author = request_user # Поменять date - now(), expiration - забивается
-        self.save()
+    def _save_new_data(self, data, request_user):
         receivers = data['receiver']
-        self.receiver = receivers
-        comment = Comment(type='status_cmt',
-                          text ='edited',
+        if data['expdate'] != None:
+            exp_exists = True
+            # Join date and time
+            exp = datetime.datetime.combine(data['expdate'], data['exptime'])
+        else:
+            exp_exists = False
+            exp = None
+
+        # think up this. Do not like
+        issue = Issue(
+                     id = self.id,
+                     label = data['label'],
+                     text = escape(data['text']),
+                     given=datetime.datetime.now(),
+                     is_expiration = exp_exists,
+                     expiration=exp,
+                     status='new',
+                     author = request_user)
+        issue.save()
+        receivers = data['receiver']
+        issue.receiver = receivers
+
+    def add(self, data, request_user):
+        self._save_new_data(data, request_user)
+
+    def _add_status_comment(self, text, request_user):
+        comment = Comment(is_status_comment=True,
+                          text =text,
                           date = datetime.datetime.now(),
-                          trad_id = self.id,
+                          issue_id = self.id,
                           author = request_user)
         comment.save()
 
-    def renew_status(self, new_data, current_user):
-        self.status = new_data
-        comment = Comment(type='status_cmt',
-                          text = self.status,
-                          date = datetime.datetime.now(),
-                          trad_id = self.id,
-                          author = current_user)
-        try:
-            self.save()
-        except:
-            return _('Issue saving error')
-        try:
-            comment.save()
-        except:
-            return _('Comment saving error')
+    def save_edited(self, data, request_user):
+        """
+        :param data:
+        :param request_user:
+        """
+        self._save_new_data(data, request_user)
+        self._add_status_comment('edited', request_user)
 
+    def renew_status(self, new_data, request_user):
+        self.status = new_data
+        self.save()
+        self._add_status_comment(self.status, request_user)
 
     def define_condition (self):
         if self.status == 'done':
@@ -180,7 +139,7 @@ class Trad(models.Model):
         elif self.status == 'deleted':
             self.condition = pgettext('issue condition', 'Deleted')
         else:
-            if self.is_expiration == 'Yes':
+            if self.is_expiration == True:
                 self.left = self.time_left()
                 self.leftdays = self.left.days
                 self.lefthours = self.left.seconds/3600
@@ -201,7 +160,7 @@ class Trad(models.Model):
                 elif self.status == 'new':
                     self.condition = pgettext('issue condition', 'New')
         self.attrs = STATUS_ATTRS[self.status]
-        if self.is_expiration == "Yes":
+        if self.is_expiration == True:
             self.delta0 = self.expiration - self.given
             self.delta1 = datetime.datetime.now() - self.given
             self.time = (self.delta1.total_seconds()/self.delta0.total_seconds())*100
@@ -209,15 +168,11 @@ class Trad(models.Model):
         return self.status
 
     def count_comments(self):
-        self.comments_num = Comment.objects.filter(trad = self).count()
+        self.comments_num = Comment.objects.filter(issue = self).count()
 
     def delete(self):
-        if self.is_deleted != 'Yes':
-            try:
-                self.is_deleted = 'Yes'
-                self.save()
-            except:
-                pass
+        self.status = 'deleted'
+        self.save()
 
     def __unicode__(self):
         return self.label
@@ -229,15 +184,12 @@ class Trad(models.Model):
 
 class Comment(models.Model):
     text = models.TextField(max_length=1000, verbose_name=gettext_lazy('Text'))
-    type = models.TextField(max_length=10, blank=True, null=True, verbose_name=gettext_lazy('Type'))
     date = models.DateTimeField(verbose_name=gettext_lazy('Occurrence time'))
-    trad = models.ForeignKey(Trad)
+    issue = models.ForeignKey(Issue)
     author = models.ForeignKey(User)
+    is_status_comment = models.BooleanField(default=False, verbose_name=gettext_lazy('Is status comment'))
 
     def get_text(self):
-        if self.type == 'status_cmt':
-            self.status_attrs = STATUS_ATTRS[self.text]
-
         text_messages = {
             'done' : gettext_lazy('The task is done, send for check'),
             'success': gettext_lazy('Completed'),
@@ -248,17 +200,25 @@ class Comment(models.Model):
             'deleted': gettext_lazy( 'Deleted'),
             'edited': gettext_lazy( 'Edited'),
         }
-
+        if self.is_status_comment == True:
+            self.status_attrs = STATUS_ATTRS[self.text]
         self.status_attr = STATUS_ATTRS[self.text]
         self.text = text_messages[self.text]
         return self.text
 
     def add(self, data, request_user, related_trad_id):
+        comment = Comment(text = escape(data['text']),
+                       date = datetime.datetime.now(),
+                       issue_id = related_trad_id,
+                       author = request_user)
+        comment.save()
+
+    def add_st(self, data, request_user, related_issue_id):
         if len(data['text']) > 0:
-            self = Comment(text = escape(data['text']),
-                           date = datetime.datetime.now(),
-                           trad_id = related_trad_id,
-                           author = request_user)
+            self.text = escape(data['text']),
+            self.date = datetime.datetime.now(),
+            self.issue_id = related_issue_id,
+            self.author = request_user,
             self.save()
 
     def __unicode__(self):

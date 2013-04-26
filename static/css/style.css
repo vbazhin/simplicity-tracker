@@ -55,7 +55,7 @@ body {
     margin-left:-20px;
 }
 
-.trad-info a {
+.issue-info a {
     color:#000;
 }
 
@@ -67,14 +67,14 @@ body {
     position:relative;
 }
 
-.table-trads {
+.table-issues {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.698);
     border: 0 #fff ;
     padding: 5px 3px 3px;
     box-shadow: 0 0 7px #aaa;
 }
 
-.table-trads td {
+.table-issues td {
     border:  2px solid #fff;
 }
 
@@ -98,7 +98,7 @@ h3 {
     line-height: 21px;
 }
 
-.trad-text p {
+.issue-text p {
     font-size: 14px;
 }
 
@@ -196,11 +196,11 @@ form {
     margin:-10px 0 10px 0;
 }
 
-.trad-data {
+.issue-data {
     margin-bottom:34px;
 }
 
-.trad .receivers {
+.issue .receivers {
     position: relative;
     float:right;
 }
@@ -287,8 +287,8 @@ form {
     width: 75px;
 }
 
-.icon-time {
-    margin: -2px 0 0 -30px;
+.form-datetime .icon-time {
+    margin: -2px 0 0 -26px;
     pointer-events: none;
     position: relative;
 }
@@ -390,7 +390,7 @@ form {
     width: 160px;
 }
 
-.trad-base {
+.issue-base {
     color:#333;
     cursor:pointer;
 }
@@ -438,7 +438,7 @@ form {
 .navbar-inner {
     background: url(/static/img/grid.png);
     box-shadow: none;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .navbar-inner .nav > li > a {
@@ -452,10 +452,14 @@ form {
     font-weight: bold;
 }
 
-.navbar .btn {
-    margin: 10px;
+.navbar .btn{
+    margin: 8px 10px;
 }
 
-.trad-info td a:hover {
+.navbar .btn-large {
+    padding: 5px 14px;
+}
+
+.issue-info td a:hover {
     text-decoration: none;
 }

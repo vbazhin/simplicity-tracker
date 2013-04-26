@@ -6,7 +6,7 @@
 <h2> {% trans 'Comments:' %} </h2>
 {% endif %}
 {% for comment in comments %}
-<div class="well comment-form {% if comment.type == 'status_cmt' %} alert-{{comment.status_attr.alert}} {% endif %} ">
+<div class="well comment-form {% if comment.is_status_comment %} alert-{{comment.status_attr.alert}} {% endif %} ">
     <span>
          <span class="comment-info">
             <div>

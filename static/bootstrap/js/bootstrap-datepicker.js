@@ -331,16 +331,16 @@
 
 
     /*
-    monthNames: ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"]
-        , shortDayNames: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+     monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+     "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
+     , shortDayNames: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
 
      , shortDayNames: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
         */
   $.fn.datepicker.defaults = {
-    monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
-                 "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
-  , shortDayNames: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
-  , startOfWeek: 1
+      monthNames: ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"],
+      shortDayNames: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      startOfWeek: 1
   };
 }( window.jQuery || window.ender );
