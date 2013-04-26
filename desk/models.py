@@ -53,32 +53,6 @@ class Issue(models.Model):
             time_left = self.expiration - datetime.datetime.now()
             return time_left
 
-    def _save_new_data_old(self, data, request_user):
-        expdate = data['expdate']
-        exptime = data['exptime']
-        if expdate == None:
-            exp_value = False
-            exp = None
-        else:
-            exp_value = True
-            exp = datetime.datetime.combine(expdate, exptime) # Соединяем дату и время
-            #if exptime == None:
-            #is_exp = 'No'
-        # Поменять date - now(), expiration - забивается
-        self = Issue(label = data['label'],
-                     text = escape(data['text']),
-                     given=datetime.datetime.now(),
-                     is_expiration = exp_value,
-                     expiration=exp,
-                     status='new',
-                     author = request_user)
-        self.save()
-        receivers = data['receiver']
-        #if not receivers:
-        #receivers = User.objects.exclude(id = request.user.id)
-        self.receiver = receivers
-
-
     def _save_new_data(self, data, request_user):
         receivers = data['receiver']
         if data['expdate'] != None:
@@ -212,14 +186,6 @@ class Comment(models.Model):
                        issue_id = related_trad_id,
                        author = request_user)
         comment.save()
-
-    def add_st(self, data, request_user, related_issue_id):
-        if len(data['text']) > 0:
-            self.text = escape(data['text']),
-            self.date = datetime.datetime.now(),
-            self.issue_id = related_issue_id,
-            self.author = request_user,
-            self.save()
 
     def __unicode__(self):
         return self.text

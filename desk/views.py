@@ -110,7 +110,6 @@ def show_issue(request, related_issue, user_status='group_task_receiver'):
         if form.is_valid():
             cd = form.cleaned_data
             comment = Comment()
-            user = User.objects.get(id = 1)
             comment.add(cd, request.user, issue.id)
         return HttpResponseRedirect("")
     elif request.method == 'POST' and 'comment' not in request.POST:
