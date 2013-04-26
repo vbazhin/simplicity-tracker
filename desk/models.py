@@ -48,10 +48,6 @@ class Issue(models.Model):
     receiver = models.ManyToManyField(User, blank=True, null=True, related_name = 'receiver', verbose_name=gettext_lazy('Receiver') )
     author = models.ForeignKey(User, related_name = 'author', verbose_name = gettext_lazy('Author'))
 
-    def time_left(self):
-        if self.is_expiration == True:
-            time_left = self.expiration - datetime.datetime.now()
-            return time_left
 
     def _save_new_data(self, data, request_user):
         receivers = data['receiver']
@@ -102,43 +98,48 @@ class Issue(models.Model):
         self._add_status_comment(self.status, request_user)
 
     def define_condition (self):
-        if self.status == 'done':
-            self.condition = pgettext('issue condition', 'On check')
-        elif self.status == 'success':
-            self.condition = pgettext('issue condition', 'Success')
-        elif self.status == 'closed':
-            self.condition = pgettext('issue condition', 'Closed')
-        elif self.status == 'refused':
-            self.condition = pgettext('issue condition', 'Rejected')
-        elif self.status == 'deleted':
-            self.condition = pgettext('issue condition', 'Deleted')
-        else:
-            if self.is_expiration == True:
-                self.left = self.time_left()
-                self.leftdays = self.left.days
-                self.lefthours = self.left.seconds/3600
-                self.leftminutes = self.left.seconds/60
-                if self.left > datetime.timedelta(0):
-                    if self.status == 'taken':
-                        self.condition = 'In progress'
-                    elif self.status == 'new':
-                        self.condition = pgettext('issue condition', 'New')
-                else:
-                    self.condition = pgettext('issue condition', 'Failed')
-                    if self.status != 'error':
-                        self.status = 'error'
-                        self.save()
+        """
+        This function manages condition of issue
+        defines how the issue will be displayed
+        and compares expiration time and current time and automatically update it status
+        """
+        unactive_statuses = {
+            'done' : 'On check',
+            'success': 'Success',
+            'closed': 'Closed',
+            'refused': 'Rejected',
+            'deleted': 'Deleted',
+        }
+
+        active_statuses = {
+            'new': 'New',
+            'taken': 'In progress',
+        }
+
+        if self.status in unactive_statuses:
+            self.condition = pgettext('issue condition', unactive_statuses[self.status])
+        elif self.is_expiration == True:
+            # Do i really need this?
+            self.time_left = self.expiration - datetime.datetime.now()
+            self.leftdays = self.time_left.days
+            self.lefthours = self.time_left.seconds/3600
+            self.leftminutes = self.time_left.seconds/60
+            # If time is not expired
+            if self.time_left > datetime.timedelta(0) and self.status in active_statuses:
+                time_total = self.expiration - self.given
+                time_passed = datetime.datetime.now() - self.given
+                self.time = (time_passed.total_seconds()/time_total.total_seconds())*100
+                self.given_time = self.given.time()
+                self.condition = pgettext('issue condition', active_statuses[self.status])
             else:
-                if self.status == 'taken':
-                    self.condition = pgettext('issue condition', 'In progress')
-                elif self.status == 'new':
-                    self.condition = pgettext('issue condition', 'New')
+                self.condition = pgettext('issue condition', 'Failed')
+                if self.status != 'error':
+                    self.status = 'error'
+                    self.save()
+        elif self.status in active_statuses:
+            self.condition = pgettext('issue condition', active_statuses[self.status])
         self.attrs = STATUS_ATTRS[self.status]
-        if self.is_expiration == True:
-            self.delta0 = self.expiration - self.given
-            self.delta1 = datetime.datetime.now() - self.given
-            self.time = (self.delta1.total_seconds()/self.delta0.total_seconds())*100
-            self.given_time = self.given.time()
+
         return self.status
 
     def count_comments(self):
@@ -163,7 +164,7 @@ class Comment(models.Model):
     author = models.ForeignKey(User)
     is_status_comment = models.BooleanField(default=False, verbose_name=gettext_lazy('Is status comment'))
 
-    def get_text(self):
+    def     get_text(self):
         text_messages = {
             'done' : gettext_lazy('The task is done, send for check'),
             'success': gettext_lazy('Completed'),
