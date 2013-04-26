@@ -1,16 +1,16 @@
 #author: v.bazhin
 #coding: utf-8
 
-from django.db import models
 from django.contrib.auth.models import User
-import datetime
-import random
-import md5
 from django.utils.translation import pgettext
-from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy
+from django.db import models
 from django.utils.html import escape
 import filter_manager
+import datetime
+import md5
+import random
+
 
 STATUS_ATTRS = {
     'done' : {'icon' : 'ok', 'alert' : 'success'},
@@ -23,7 +23,6 @@ STATUS_ATTRS = {
     'deleted': {'icon' : 'remove', 'alert' : 'error'},
     'edited': {'icon' : 'exclamation-sign', 'alert' : 'new'}
 }
-
 
 class Issue(models.Model):
     # Custom object manager initialization (to use "filter_set" to filter issues in views)
@@ -85,10 +84,6 @@ class Issue(models.Model):
         comment.save()
 
     def save_edited(self, data, request_user):
-        """
-        :param data:
-        :param request_user:
-        """
         self._save_new_data(data, request_user)
         self._add_status_comment('edited', request_user)
 
@@ -110,12 +105,10 @@ class Issue(models.Model):
             'refused': 'Rejected',
             'deleted': 'Deleted',
         }
-
         active_statuses = {
             'new': 'New',
             'taken': 'In progress',
         }
-
         if self.status in unactive_statuses:
             self.condition = pgettext('issue condition', unactive_statuses[self.status])
         elif self.is_expiration == True:
@@ -133,13 +126,10 @@ class Issue(models.Model):
                 self.condition = pgettext('issue condition', active_statuses[self.status])
             else:
                 self.condition = pgettext('issue condition', 'Failed')
-                if self.status != 'error':
-                    self.status = 'error'
-                    self.save()
+                if self.status != 'error': self.status = 'error'
         elif self.status in active_statuses:
             self.condition = pgettext('issue condition', active_statuses[self.status])
         self.attrs = STATUS_ATTRS[self.status]
-
         return self.status
 
     def count_comments(self):
@@ -202,8 +192,8 @@ class InviteLink(models.Model):
     delegated_time = models.DateTimeField(auto_now_add=True, verbose_name=gettext_lazy('Delegated at'))
 
     def generate(self):
-        hash = md5.md5(str(random.getrandbits(128))).hexdigest() # Генерируем хеш
-        self.link = hash
+        # Generate hash
+        self.link = md5.md5(str(random.getrandbits(128))).hexdigest()
         self.valid_status = 'valid'
         self.save()
         return self

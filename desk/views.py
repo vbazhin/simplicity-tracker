@@ -14,21 +14,21 @@ from django.utils.translation import gettext as _
 from desk.models import Issue, Comment, InviteLink
 from django.db.models import Q
 from forms import IssueForm, CommentForm
-# Импортируем фильтр наборов условий
+# Import terms sets for issues filtering
 import terms_sets_filter
 
-# Вспомогательные функции (не возвращают HttpResponse, но участвуют в сборке view)
+
 def all(request):
     all_except_me = User.objects.exclude(id=request.user.id)
     return all_except_me
 
-def count_issues(request): # Считаем задания с разными статусами
+# Counting issues with the different statuses
+# Not sure in this idea
+def count_issues(request):
     iss_num = lambda x: Issue.objects.filter(receiver=request.user, status=x).count() + \
                         Issue.objects.filter(receiver=None, status=x).\
                             exclude(author=request.user).count()
-    # Те задания, которые направлены мне, либо общие, исключая те, автор которых - я
     for_check = Issue.objects.filter(author=request.user, status='done').count()
-    # Задания направленные мне на проверку
     return iss_num('new'), iss_num('taken'), for_check, iss_num('done')
 
 def get_tomorrow():
@@ -44,7 +44,6 @@ def logout(request):
 
 def login(request):
     auth.login(request)
-    # Перенаправление на страницу.
     return HttpResponseRedirect("/")
 
 def comments_gettext_loop(comments):
@@ -54,10 +53,10 @@ def comments_gettext_loop(comments):
     return comments
 
 def filter_issues(fltr, request_user):
-    # Выбираем из фильтра наборов условий нужный нам словарь
+    # Select needed dict from the set of filter terms
     filter_terms_sets = terms_sets_filter.get_terms_set('issue',request_user)
     if fltr in filter_terms_sets:
-        # Выбираем issues соответствующие нашим условиям
+        # Select issues relevant to out conditions
         issues = Issue.objects.filter_set(filter_terms_sets[fltr])
     else:
         issues = Issue.objects.filter(Q(receiver=request_user, status=fltr) | \
@@ -69,11 +68,11 @@ def filter_issues(fltr, request_user):
     return issues
 
 @login_required
-def index(request, fltr='all', add_task=None): # Фильтруем по статусу
+def index(request, fltr='all', add_task=None):
     new_num, taken_num, check_num, oncheck_num = count_issues(request)
-    # Добавляем задание
+    # filter issues according to status
     issues = filter_issues(fltr, request.user)
-    if request.method == 'POST': # Если сабмичена форма добавления сообщений
+    if request.method == 'POST':
         form = IssueForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
@@ -83,7 +82,7 @@ def index(request, fltr='all', add_task=None): # Фильтруем по ста�
     else:
         form = IssueForm()
         form.fields['receiver'].queryset = User.objects.exclude(
-            id=request.user.id) # Нормальный ход (все польщователи кроме меня)
+            id=request.user.id)
     return render_to_response('index.html',
                               {'issues': issues,
                                'form': form,
@@ -97,14 +96,10 @@ def index(request, fltr='all', add_task=None): # Фильтруем по ста�
                                'add_task': add_task}
     )
 
-
-
 @login_required
 def show_issue(request, related_issue, user_status='group_task_receiver'):
-    # Делаю filter, чтобы можно было сразу исключить задания со статусом deleted
-    # и не пистаь дополнительное условие if
+    # use "filter" to exclude all deleted issues without extra "if"
     issue = Issue.objects.filter(pk=related_issue).exclude(status = 'deleted')[0]
-        # escape - html символы
     if request.method == 'POST' and 'comment' in request.POST:
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -162,14 +157,13 @@ def edit_issue(request, issue_id):
             is_common = True
         comments = comments_gettext_loop(Comment.objects.filter(issue=issue).order_by('date'))
         if issue.expiration:
-            # Тут надо что-то делать
+            # Probably, we can do it in template
             expiration_time = str(issue.expiration.time().hour) + ":" + \
                               str(issue.expiration.time().minute)
             expiration_date = issue.expiration.date().isoformat()
         else:
             expiration_date = expiration_time = None
         new_num, taken_num, check_num, oncheck_num = count_issues(request)
-        # Разобраться, почему не возвращает count_values(request)
         return render_to_response('edit_issue.html', {'form': form,
                                                       'receivers': receivers,
                                                       'user': request.user,
@@ -184,7 +178,6 @@ def edit_issue(request, issue_id):
                                                      'issue_id': issue.id,
                                                      'tomorrow': get_tomorrow()})
 
-
 def remove_issue(request, issue_id):
     issue = Issue.objects.get(id=issue_id)
     if issue.author == request.user:
@@ -193,7 +186,7 @@ def remove_issue(request, issue_id):
     return HttpResponseRedirect("/")
 
 def register(request, hashlink=None):
-    # Проверяется валидность ссылки и меняется ее статус на burned
+    # Checking if the link is valid
     check_link = InviteLink.objects.get(link=hashlink)
     if check_link.valid_status == 'valid' and request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -213,7 +206,7 @@ def register(request, hashlink=None):
 def generate_link(request):
     if request.is_ajax() and request.user.is_superuser == 1:
         link = InviteLink.objects.create()
-        # Метод создает хеш md5, делает запись в таблицу
+        # Generating hash and saving a record into the table
         link.generate()
         path = request.build_absolute_uri('../register/') + link.link
         welcome = "<div class='modal-header'> <h2>" + _("Invite ") + "№ " + \
