@@ -54,7 +54,7 @@ def comments_gettext_loop(comments):
 
 def filter_issues(fltr, request_user):
     # Select needed dict from the set of filter terms
-    filter_terms_sets = terms_sets_filter.get_terms_set('issue',request_user)
+    filter_terms_sets = terms_sets_filter.get_terms_set('issue', request_user)
     if fltr in filter_terms_sets:
         # Select issues relevant to out conditions
         issues = Issue.objects.filter_set(filter_terms_sets[fltr])

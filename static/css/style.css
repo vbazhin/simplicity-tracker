@@ -40,12 +40,12 @@ body {
 }
 
 .markItUp {
-    width:none;
+    width: none;
     width: 100%;
 }
 
 .markItUpEditor {
-    width: 98%;
+    width: 99%;
     height: 105px;
 }
 
@@ -267,6 +267,7 @@ form {
 
 .form-datetime {
     max-width: 320px;
+    margin-left: 10px;
 }
 
 
@@ -453,7 +454,7 @@ form {
 }
 
 .navbar .btn{
-    margin: 8px 10px;
+    margin: 10px;
 }
 
 .navbar .btn-large {

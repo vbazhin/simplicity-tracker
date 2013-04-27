@@ -16,8 +16,8 @@ class FilterManager(Manager):
         for terms_set in filter_dict:
             if 'filter' not in terms_set:
                 terms_set['filter'] = {'id':True}
-            if 'exclude' not in terms_set:
+#            if 'exclude' not in terms_set:
                 # Добаляем обязательные исключения в список условия
                 # Исключаем все удаленные
-                terms_set['exclude'] = {'status': 'deleted'}
+            terms_set['exclude'] = {'status': 'deleted'}
         return super(FilterManager, self).get_query_set().filter(self._unpack_terms(filter_dict))

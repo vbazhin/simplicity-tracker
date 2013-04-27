@@ -11,7 +11,8 @@
         </div>
     </div>
     <div class="issue-receivers form-header">
-        <span class="task-common">({% trans 'hold Ctrl while selecting' %}) </span>:
+        {% trans 'Executors' %}
+        <span class="task-common">  </span>:
         {% trans 'Common' %}
         <input type="checkbox" id="receivers_all" name="receivers_all" onchange="disableReceivers()">
         {{ form.receiver }}
@@ -30,8 +31,8 @@
         </div>
     </div>
     <div class="challenge-task" >
-        <a href="#" class="btn btn-large" data-dismiss="modal" onclick="hideModal()"> {% trans 'Close' %} </a>
-        <input class="btn btn-primary btn-large"  type="submit" value="{% trans 'Confirm' %} ">
+        <a href="#" class="btn" data-dismiss="modal" onclick="hideModal()"> {% trans 'Close' %} </a>
+        <input class="btn btn-primary"  type="submit" value="{% trans 'Confirm' %} ">
     </div>
 </form>
 

@@ -1,6 +1,8 @@
 #author: v.bazhin
 #coding: utf-8
 
+from django_select2.fields import Select2MultipleWidget
+
 from django import forms
 from markitup.widgets import MarkItUpWidget
 from django.contrib.auth.models import User
@@ -12,8 +14,10 @@ class IssueForm(forms.Form):
                            widget=MarkItUpWidget())
     receiver = forms.ModelMultipleChoiceField(required=False,
                                               queryset=User.objects.all(),
-                                              widget=forms.SelectMultiple(attrs=
-                                              {'class': 'form-receivers'}))
+                                              widget=Select2MultipleWidget(attrs=
+                                                {'class': 'form-receivers',},
+                                               select2_options={
+                                                  'closeOnSelect': True,}))
     expdate = forms.DateField(required=False)
     exptime = forms.TimeField(required=False)
     timezone_offset = forms.CharField(required=False)

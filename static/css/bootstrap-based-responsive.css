@@ -293,8 +293,13 @@
   .offset1 {
       margin-left:0;
   }
+
   .span10 {
       width:100%;
+  }
+
+  .span8 {
+    width:100%;
   }
 
   .container {
@@ -415,10 +420,6 @@
     width: 99%;
   }
 
-  .form-receivers {
-      height: 200px;
-  }
-
   .issue-receivers {
       width:103%;
   }
@@ -454,7 +455,7 @@
   }
 
   .form-issue-label {
-    width: 650px;
+    width: 960px;
   }
 
   .form-datetime {
@@ -462,8 +463,7 @@
   }
 
   .issue-receivers  {
-      width: 300px;
-      height: 200px;
+      width: 500px;
   }
 
   .row {
