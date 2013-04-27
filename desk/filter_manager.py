@@ -20,4 +20,4 @@ class FilterManager(Manager):
                 # Добаляем обязательные исключения в список условия
                 # Исключаем все удаленные
             terms_set['exclude'] = {'status': 'deleted'}
-        return super(FilterManager, self).get_query_set().filter(self._unpack_terms(filter_dict))
+        return super(FilterManager, self).get_query_set().filter(self._unpack_terms(filter_dict)).distinct()
