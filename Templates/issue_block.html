@@ -23,7 +23,7 @@
                                 </small>
                             </h3>
                         </span>
-                            {% if issue.status == 'new' and issue.is_expiration or issue.status == 'taken' and issue.is_expiration == 'Yes' %}
+                            {% if issue.status == 'new' and issue.is_expiration or issue.status == 'taken' and issue.is_expiration %}
                                 <div class="bar-block">
                                     <div class="bar left-time-bar" style="width:{{issue.time}}%;">
                                         <div class="arrow-right"></div>

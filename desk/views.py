@@ -29,7 +29,9 @@ def count_issues(request):
                         Issue.objects.filter(receiver=None, status=x).\
                             exclude(author=request.user).count()
     for_check = Issue.objects.filter(author=request.user, status='done').count()
-    return iss_num('new'), iss_num('taken'), for_check, iss_num('done')
+    in_progress = Issue.objects.filter(Q(receiver=request.user, status='taken') | \
+                                       Q(author=request.user, status='taken')).count()
+    return iss_num('new'), in_progress, for_check, iss_num('done')
 
 def get_tomorrow():
     today_dt = datetime.date.today()
