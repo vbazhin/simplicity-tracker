@@ -2,10 +2,10 @@
 #coding: utf-8
 
 from django_select2.fields import Select2MultipleWidget
-
-from django import forms
 from markitup.widgets import MarkItUpWidget
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy
+from django import forms
 
 class IssueForm(forms.Form):
     label = forms.CharField(max_length = 120, widget=forms.TextInput(attrs={
@@ -15,7 +15,8 @@ class IssueForm(forms.Form):
     receiver = forms.ModelMultipleChoiceField(required=False,
                                               queryset=User.objects.all(),
                                               widget=Select2MultipleWidget(attrs=
-                                                {'class': 'form-receivers',},
+                                                {'class': 'form-receivers',
+                                                 'placeholder': gettext_lazy('leave empty for a common task')},
                                                select2_options={
                                                   'closeOnSelect': True,}))
     expdate = forms.DateField(required=False)

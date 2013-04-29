@@ -303,7 +303,6 @@ form {
 .issue-receivers {
     position:relative;
     float: left;
-    margin-top: -2px;
 }
 
 
@@ -447,10 +446,10 @@ form {
 }
 
 .navbar .brand {
-    padding-top: 15px;
-    color: #333;
-    font-size: 17px;
-    font-weight: bold;
+    color: #777777;
+    font-size: 15px;
+    padding-top: 19px;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
 }
 
 .navbar .btn{

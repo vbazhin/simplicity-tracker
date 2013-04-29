@@ -84,48 +84,21 @@
     </script>
 
     <script>
-        function disableReceivers() {
-            var receiver = document.getElementById('s2id_id_receiver')
-            if (receiver.disabled == false) {
-                receiver.disabled = true
-            }
-            else {
-                receiver.disabled = false
-            }
-            // Переделать с атирибутами
-        }
 
-        function disableExpiration() {
-            var exp_date = document.getElementById('expiration-date')
-            var exp_time = document.getElementById('expiration-time')
-            if (exp_date.disabled == false) {
-                exp_date.disabled = true
-                exp_time.disabled = true
+        function toggleExpiration() {
+            var exp_date = $('#expiration-date')
+            var exp_time = $('#expiration-time')
+            if (exp_date.prop('disabled') == false) {
+                exp_date.prop('disabled', 'disabled')
+                exp_time.prop('disabled', 'disabled')
             }
             else {
-                exp_date.disabled = false
-                exp_time.disabled = false
+                exp_date.prop('disabled', false)
+                exp_time.prop('disabled', false)
             }
-            // Переделать с атирибутами
         }
     </script>
 
-    <script>
-        function defineTzOffset() {
-            var userDate = new Date()
-            var offset = userDate.getTimezoneOffset()
-            return offset
-        }
-
-        $(document).ready(function () {
-            offsetInput = document.getElementById('timezoneOffset')
-            offsetInput.value = defineTzOffset()
-        })
-
-        function redirect(id) {
-            document.location.href=id;
-        }
-    </script>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">

@@ -11,15 +11,12 @@
         </div>
     </div>
     <div class="issue-receivers form-header">
-        {% trans 'Executors' %}
-        <span class="task-common">  </span>:
-        {% trans 'Common' %}
-        <input type="checkbox" id="receivers_all" name="receivers_all" onchange="disableReceivers()">
+        {% trans 'Executors:' %}
         {{ form.receiver }}
     </div>
     <div class="form-datetime form-header">
         {% trans 'Set an expiration' %}
-        <input type="checkbox" id="no-datetime" name="no_date" onchange="disableExpiration()">
+        <input type="checkbox" id="no-datetime" name="no_date" onchange="toggleExpiration()">
         <br>
         <input data-datepicker="datepicker" id="expiration-date" name="expdate" class="small" type="text" value="{{ tomorrow }}" disabled="disabled" />
         <div class="input-append bootstrap-timepicker-component">

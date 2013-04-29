@@ -35,18 +35,6 @@
 </script>
 {% endif %}
 
-{% if receivers %}
-<script>
-    // Выделить получателей
-</script>
-{% else %}
-<script>
-    $(document).ready(function () {
-        document.getElementById('id_receiver').disabled = true
-        document.getElementById('receivers_all').checked = true
-    })
-</script>
-{% endif %}
 {% if form.errors %}
 <div class="alert alert-message">
     <p style="color: red;">
