@@ -179,8 +179,6 @@ form {
     padding: 15px;
 }
 
-.comment-message {
-}
 
 .comment-form .comment-info {
     position: relative;
@@ -462,4 +460,11 @@ form {
 
 .issue-info td a:hover {
     text-decoration: none;
+}
+
+
+pre {
+    background: #fff;
+    margin-right: 80px;
+    margin-bottom: 0;
 }
