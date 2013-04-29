@@ -17,11 +17,11 @@ import os
 
 import sys
 
-#sys.path.append('your pass')
+sys.path.append('/home/v.bazhin/data/django-bootstrap-tracker')
 
 os.environ["DJANGO_SETTINGS_MODULE"]= "tracker.settings"
 
-#os.environ['PYTHON_EGG_CACHE'] = '/tmp'
+os.environ['PYTHON_EGG_CACHE'] = '/tmp'
 
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
