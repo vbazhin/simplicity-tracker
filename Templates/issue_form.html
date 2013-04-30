@@ -1,5 +1,5 @@
 {% load i18n %}
-<form action="" method="post" class="add-issue" >
+<form id="add-issue" action="" method="post" class="add-issue" >
     <div class="task-name-descr form-header">
         <div>
             {% trans 'Header:' %} <br>
@@ -16,20 +16,20 @@
     </div>
     <div class="form-datetime form-header">
         {% trans 'Set an expiration' %}
-        <input type="checkbox" id="no-datetime" name="no_date" onchange="toggleExpiration()">
+        <input type="checkbox" id="no-datetime" name="no_date" tabindex="4" onchange="toggleExpiration()">
         <br>
-        <input data-datepicker="datepicker" id="expiration-date" name="expdate" class="small" type="text" value="{{ tomorrow }}" disabled="disabled" />
+        <input data-datepicker="datepicker" id="expiration-date" name="expdate" tabindex="5" class="small" type="text" value="{{ tomorrow }}" disabled="disabled" />
         <div class="input-append bootstrap-timepicker-component">
             <div>
-                <input class="timepick" id="expiration-time" name="exptime" type="text" disabled="disabled" />
+                <input class="timepick" id="expiration-time" name="exptime" tabindex="6" type="text" disabled="disabled" />
                 <i class="icon-time"></i>
             </div>
             <input id="timezoneOffset" type="hidden" name="timezone_offset" />
         </div>
     </div>
     <div class="challenge-task" >
-        <a href="#" class="btn" data-dismiss="modal" onclick="hideModal()"> {% trans 'Close' %} </a>
-        <input class="btn btn-primary"  type="submit" value="{% trans 'Confirm' %} ">
+        <a href="#" class="btn" data-dismiss="modal" tabindex="8" onclick="hideModal()"> {% trans 'Close' %} </a>
+        <input class="btn btn-primary"  type="submit" tabindex="7" value="{% trans 'Confirm' %} ">
     </div>
 </form>
 

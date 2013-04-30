@@ -9,14 +9,17 @@ from django import forms
 
 class IssueForm(forms.Form):
     label = forms.CharField(max_length = 120, widget=forms.TextInput(attrs={
-                                                'class': 'form-issue-label'}))
+                                                'class': 'form-issue-label',
+                                                'tabindex': '1'}))
     text = forms.CharField(min_length=1, max_length=500, required=False,
-                           widget=MarkItUpWidget())
+                           widget=MarkItUpWidget(attrs={'tabindex': '2'}))
     receiver = forms.ModelMultipleChoiceField(required=False,
                                               queryset=User.objects.all(),
                                               widget=Select2MultipleWidget(attrs=
                                                 {'class': 'form-receivers',
-                                                 'placeholder': gettext_lazy('leave empty for a common task')},
+                                                 'placeholder': gettext_lazy('leave empty for a common task',),
+                                                 'tabindex': '3'
+                                                },
                                                select2_options={
                                                   'closeOnSelect': True,}))
     expdate = forms.DateField(required=False)

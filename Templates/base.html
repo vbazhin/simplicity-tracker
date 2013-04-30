@@ -99,28 +99,59 @@
         }
     </script>
 
+    <script>
+        // Quick keyboard actions handler
+        $(document).ready(function () {
+            $(document).keydown(function(e) {
+                if (e.ctrlKey && e.keyCode == 192 ) {
+                    e.preventDefault();
+                    showModal()
+                }
+                if (e.ctrlKey && e.keyCode == 13) {
+                    $('#add-issue').submit()
+                }
+            });
+        })
+    </script>
+
+    <script>
+        // Hilighting issues on tab
+        $(document).ready(function () {
+            var issues = $('.issue-info').find('a')
+            issues.focus(function(){
+                $(this).parent('td').css('background','#fff')
+            }).blur(function() {
+                $(this).parent('td').css('background','none')
+            })
+        })
+    </script>
+
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner nav-base">
         <div class="container">
             <div>
-                <a class="brand" href="/">
+                <a class="brand" href="/" tabindex="-1">
                     Simplicity Tracker 0.6
                 </a>
-                <div class="user-logout" >
+                <div class="user-logout">
                     {% include 'select_language.html' %}
-                    {{ user.username }} <a href='logout/'> {% trans 'Log out' %} </a>
+                    {{ user.username }} <a href='logout/' tabindex="-1"> {% trans 'Log out' %} </a>
                 </div>
                 {% if page_type == 'index' %}
-                    <a href="#" class="btn btn-large btn-success add-task-button" onclick="showModal()"> <i class="icon-plus"> </i> {% trans 'Add' %}  </a>
+                    <a href="#" class="btn btn-large btn-success add-task-button" tabindex="-1" onclick="showModal()">
+                        <i class="icon-plus"> </i>
+                        {% trans 'Add' %}
+                    </a>
                 {% else %}
-                    <a href="/add_task" name="add_task" class="btn btn-large btn-success add-task-button">
-                        <i class="icon-plus"> </i> {% trans 'Add' %}
+                    <a href="/add_task" name="add_task" class="btn btn-large btn-success add-task-button" tabindex="-1">
+                        <i class="icon-plus"> </i>
+                        {% trans 'Add' %}
                     </a>
                 {% endif %}
                 {% if user.is_staff == 1 %}
-                    <a href="#" class="btn btn-large btn-info invite-user-button" onclick="generate_reg_link()" > {% trans 'Invite' %} </a>
+                    <a href="#" class="btn btn-large btn-info invite-user-button" tabindex="-1" onclick="generate_reg_link()"> {% trans 'Invite' %} </a>
                 {% endif %}
                 <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
@@ -129,13 +160,13 @@
                 </button>
                 <div class="nav-collapse issue-navigation">
                     <ul class="nav">
-                        <li><a href="/">{% trans 'All' %}</a></li>
-                        <li><a href="/current">{% trans 'Current' %}</a></li>
-                        <li><a href="/new"> {% trans 'New' %} <span class="badge badge-warning">{{ new_num }}</span></a></li>
-                        <li><a href="/taken"> {% trans 'In progress' %} <span class="badge badge-info">{{ taken_num }}</span> </a></li>
-                        <li><a href="/check"> {% trans 'On check' %} <span class="badge badge-success">{{ check_num }}</span></a></li>
+                        <li><a href="/" tabindex="-1">{% trans 'All' %}</a></li>
+                        <li><a href="/current" tabindex="-1">{% trans 'Current' %}</a></li>
+                        <li><a href="/new" tabindex="-1"> {% trans 'New' %} <span class="badge badge-warning">{{ new_num }}</span></a></li>
+                        <li><a href="/taken" tabindex="-1"> {% trans 'In progress' %} <span class="badge badge-info">{{ taken_num }}</span> </a></li>
+                        <li><a href="/check" tabindex="-1"> {% trans 'On check' %} <span class="badge badge-success">{{ check_num }}</span></a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle" tabindex="-1" data-toggle="dropdown">
                                 {% trans 'Other' %}
                                 <b class="caret"></b>
                             </a>

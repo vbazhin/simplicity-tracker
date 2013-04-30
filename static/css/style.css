@@ -467,6 +467,10 @@ form {
     text-decoration: none;
 }
 
+.issue-info td a {
+    outline: 0;
+}
+
 
 pre {
     background: #fff;
