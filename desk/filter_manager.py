@@ -19,5 +19,11 @@ class FilterManager(Manager):
 #            if 'exclude' not in terms_set:
                 # Добаляем обязательные исключения в список условия
                 # Исключаем все удаленные
-            terms_set['exclude'] = {'status': 'deleted'}
+            if 'exclude' not in terms_set:
+                terms_set['exclude'] = {'status': 'deleted'}
+            elif 'status' in terms_set['exclude']:
+                terms_set['exclude'] += {'status__in': [terms_set['exclude']['status'], 'deleted']}
+                del(terms_set['exclude']['status'])
+            elif 'status__in' in terms_set['exclude']:
+                terms_set['exclude']['status__in'].append('deleted')
         return super(FilterManager, self).get_query_set().filter(self._unpack_terms(filter_dict)).distinct()
