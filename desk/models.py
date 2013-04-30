@@ -15,7 +15,7 @@ import random
 STATUS_ATTRS = {
     'done' : {'icon' : 'ok', 'alert' : 'success'},
     'success': {'icon' : 'ok', 'alert' : 'success'},
-    'closed': {'icon' : 'ban-circle', 'alert' : 'none'},
+    'closed': {'icon' : 'minus-sign', 'alert' : 'none'},
     'refused': {'icon' : 'ban-circle', 'alert' : 'error'},
     'taken': {'icon' : 'cog', 'alert' : 'info'},
     'new': {'icon' : 'exclamation-sign', 'alert' : 'new'},
@@ -154,16 +154,16 @@ class Comment(models.Model):
     author = models.ForeignKey(User)
     is_status_comment = models.BooleanField(default=False, verbose_name=gettext_lazy('Is status comment'))
 
-    def     get_text(self):
+    def get_text(self):
         text_messages = {
-            'done' : gettext_lazy('The task is done, send for check'),
-            'success': gettext_lazy('Completed'),
-            'closed':  gettext_lazy('Closed'),
-            'refused': gettext_lazy('Refused'),
-            'taken': gettext_lazy( 'Accepted'),
-            'new': gettext_lazy( 'Given again'),
-            'deleted': gettext_lazy( 'Deleted'),
-            'edited': gettext_lazy( 'Edited'),
+            'done' : '<i class="icon-check"></i>' + str(gettext_lazy('The task is done, sent for check')),
+            'success': '<i class="icon-ok"></i>' + str(gettext_lazy('Completed')),
+            'closed':  '<i class="icon-minus-sign"></i>' + str(gettext_lazy('Closed')),
+            'refused': '<i class="icon-ban-circle"></i>' + str(gettext_lazy('Refused')),
+            'taken': '<i class="icon-cog"></i>' + str(gettext_lazy('Accepted')),
+            'new': '<i class="icon-refresh"></i>' + str(gettext_lazy('Given again')),
+            'deleted': '<i class="icon-remove"></i>' + str(gettext_lazy('Deleted')),
+            'edited': '<i class="icon-edit"></i>' + str(gettext_lazy('Edited')),
         }
         if self.is_status_comment == True:
             self.status_attrs = STATUS_ATTRS[self.text]
