@@ -37,15 +37,33 @@ class Issue(models.Model):
         ('deleted', pgettext('issue condition', 'Deleted'))
     )
 
-    label = models.CharField(max_length=100, verbose_name=gettext_lazy('Label'))
-    text = models.TextField(blank=True, max_length=5000, verbose_name=gettext_lazy('Description'))
-    given = models.DateTimeField(auto_now_add=True, verbose_name=gettext_lazy('Occurrence time'))
-    is_expiration = models.BooleanField(blank=True,  max_length=3, verbose_name=gettext_lazy('Expiration'))
-    expiration = models.DateTimeField(blank=True, null=True, verbose_name=gettext_lazy('Expiration date'))
-    change_date = models.DateTimeField(auto_now=True, verbose_name=gettext_lazy('Change date'))
-    status = models.CharField(blank=True, max_length=10, choices=status_dict, verbose_name=gettext_lazy('Current status'))
-    receiver = models.ManyToManyField(User, blank=True, null=True, related_name = 'receiver', verbose_name=gettext_lazy('Receiver') )
-    author = models.ForeignKey(User, related_name = 'author', verbose_name = gettext_lazy('Author'))
+    label = models.CharField(max_length=100,
+                             verbose_name=gettext_lazy('Label'))
+    text = models.TextField(blank=True,
+                            max_length=5000,
+                            verbose_name=gettext_lazy('Description'))
+    given = models.DateTimeField(auto_now_add=True,
+                                 verbose_name=gettext_lazy('Occurrence time'))
+    is_expiration = models.BooleanField(blank=True,
+                                        max_length=3,
+                                        verbose_name=gettext_lazy('Expiration'))
+    expiration = models.DateTimeField(blank=True,
+                                      null=True,
+                                      verbose_name=gettext_lazy('Expiration date'))
+    change_date = models.DateTimeField(auto_now=True,
+                                       verbose_name=gettext_lazy('Change date'))
+    status = models.CharField(blank=True,
+                              max_length=10,
+                              choices=status_dict,
+                              verbose_name=gettext_lazy('Current status'))
+    receiver = models.ManyToManyField(User,
+                                      blank=True,
+                                      null=True,
+                                      related_name = 'receiver',
+                                      verbose_name=gettext_lazy('Receiver') )
+    author = models.ForeignKey(User,
+                               related_name = 'author',
+                               verbose_name = gettext_lazy('Author'))
 
 
     def _save_new_data(self, data, request_user):
@@ -148,11 +166,13 @@ class Issue(models.Model):
 
 
 class Comment(models.Model):
-    text = models.TextField(max_length=1000, verbose_name=gettext_lazy('Text'))
+    text = models.TextField(max_length=1000,
+                            verbose_name=gettext_lazy('Text'))
     date = models.DateTimeField(verbose_name=gettext_lazy('Occurrence time'))
     issue = models.ForeignKey(Issue)
     author = models.ForeignKey(User)
-    is_status_comment = models.BooleanField(default=False, verbose_name=gettext_lazy('Is status comment'))
+    is_status_comment = models.BooleanField(default=False,
+                                            verbose_name=gettext_lazy('Is status comment'))
 
     def get_text(self):
         text_messages = {
@@ -187,9 +207,12 @@ class Comment(models.Model):
 
 
 class InviteLink(models.Model):
-    link = models.CharField(max_length=100, verbose_name=gettext_lazy('Link'))
-    valid_status = models.CharField(max_length=10, verbose_name=gettext_lazy('Is valid'))
-    delegated_time = models.DateTimeField(auto_now_add=True, verbose_name=gettext_lazy('Delegated at'))
+    link = models.CharField(max_length=100,
+                            verbose_name=gettext_lazy('Link'))
+    valid_status = models.CharField(max_length=10,
+                                    verbose_name=gettext_lazy('Is valid'))
+    delegated_time = models.DateTimeField(auto_now_add=True,
+                                          verbose_name=gettext_lazy('Delegated at'))
 
     def generate(self):
         # Generate hash

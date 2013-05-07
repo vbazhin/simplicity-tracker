@@ -18,20 +18,15 @@ from forms import IssueForm, CommentForm
 import terms_sets_filter
 
 
-def all(request):
-    all_except_me = User.objects.exclude(id=request.user.id)
-    return all_except_me
 
 # Counting issues with the different statuses
 # Not sure in this idea
 def count_issues(request):
-    iss_num = lambda x: Issue.objects.filter(receiver=request.user, status=x).count() + \
-                        Issue.objects.filter(receiver=None, status=x).\
-                            exclude(author=request.user).count()
-    for_check = Issue.objects.filter(author=request.user, status='done').count()
-    in_progress = Issue.objects.filter(Q(receiver=request.user, status='taken') | \
-                                       Q(author=request.user, status='taken')).count()
-    return iss_num('new'), in_progress, for_check, iss_num('done')
+    counter = dict()
+    statuses = ['new','taken', 'check', 'done']
+    for fltr in statuses:
+        counter[fltr] = len(filter_issues(fltr, request.user))
+    return counter
 
 def get_tomorrow():
     today_dt = datetime.date.today()
@@ -71,7 +66,7 @@ def filter_issues(fltr, request_user):
 
 @login_required
 def index(request, fltr='all', add_task=None):
-    new_num, taken_num, check_num, oncheck_num = count_issues(request)
+    counter = count_issues(request)
     # filter issues according to status
     issues = filter_issues(fltr, request.user)
     if request.method == 'POST':
@@ -90,10 +85,7 @@ def index(request, fltr='all', add_task=None):
                                'form': form,
                                'user': request.user,
                                'tomorrow': get_tomorrow(),
-                               'new_num': new_num,
-                               'taken_num': taken_num,
-                               'check_num': check_num,
-                               'oncheck_num': oncheck_num,
+                               'counter': counter,
                                'page_type': 'index',
                                'add_task': add_task}
     )
@@ -116,7 +108,7 @@ def show_issue(request, related_issue, user_status='group_task_receiver'):
     else:
         issue.count_comments()
         issue.define_condition()
-        new_num, taken_num, check_num, oncheck_num = count_issues(request)
+        counter = count_issues(request)
         comments = comments_gettext_loop(Comment.objects.filter(issue=issue).order_by('date'))
         if request.user in issue.receiver.all():
             user_status = 'receiver'
@@ -129,10 +121,8 @@ def show_issue(request, related_issue, user_status='group_task_receiver'):
                                                   'comments': comments,
                                                   'user_status': user_status,
                                                   'receivers': issue.receiver.all(),
-                                                  'new_num': new_num,
-                                                  'taken_num': taken_num,
-                                                  'check_num': check_num,
-                                                  'oncheck_num': oncheck_num})
+                                                  'counter': counter,
+    })
 
 def edit_issue(request, issue_id):
     if request.method == 'POST':
@@ -165,7 +155,7 @@ def edit_issue(request, issue_id):
             expiration_date = issue.expiration.date().isoformat()
         else:
             expiration_date = expiration_time = None
-        new_num, taken_num, check_num, oncheck_num = count_issues(request)
+        counter = count_issues(request)
         return render_to_response('edit_issue.html', {'form': form,
                                                       'receivers': receivers,
                                                       'user': request.user,
@@ -173,10 +163,7 @@ def edit_issue(request, issue_id):
                                                      'expiration_date': expiration_date,
                                                      'expiration_time': expiration_time,
                                                      'comments': comments,
-                                                     'new_num': new_num,
-                                                     'taken_num': taken_num,
-                                                     'check_num': check_num,
-                                                     'oncheck_num': oncheck_num,
+                                                     'counter': counter,
                                                      'issue_id': issue.id,
                                                      'tomorrow': get_tomorrow()})
 
