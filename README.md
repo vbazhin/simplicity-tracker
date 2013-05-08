@@ -7,7 +7,12 @@ The main idea was to make usage simple.
 - No project support. 
 - No user groups.  
 
+
 User invites can be sent by superusers.
+
+Keyboard shotcuts:
+- `Ctrl + ~` - open new issue form.
+- `Ctrl + N` - submit issue.
 
 You can download it and run on your server. 
 
