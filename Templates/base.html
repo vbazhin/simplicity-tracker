@@ -160,21 +160,68 @@
                 </button>
                 <div class="nav-collapse issue-navigation">
                     <ul class="nav">
-                        <li><a href="/" tabindex="-1">{% trans 'All' %}</a></li>
-                        <li><a href="/current" tabindex="-1">{% trans 'Current' %}</a></li>
-                        <li><a href="/new" tabindex="-1"> {% trans 'New' %} <span class="badge badge-warning">{{ new_num }}</span></a></li>
-                        <li><a href="/taken" tabindex="-1"> {% trans 'In progress' %} <span class="badge badge-info">{{ taken_num }}</span> </a></li>
-                        <li><a href="/check" tabindex="-1"> {% trans 'On check' %} <span class="badge badge-success">{{ check_num }}</span></a></li>
+                        <li>
+                            <a href="/" tabindex="-1">
+                                {% trans 'All' %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/current" tabindex="-1">
+                                {% trans 'Current' %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/new" tabindex="-1">
+                                {% trans 'New' %}
+                                <span class="badge badge-warning">
+                                    {{ counter.new }}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/taken" tabindex="-1">
+                                {% trans 'In progress' %}
+                                <span class="badge badge-info">
+                                    {{ counter.taken }}
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/check" tabindex="-1">
+                                {% trans 'On check' %}
+                                <span class="badge badge-success">
+                                    {{ counter.check }}
+                                </span>
+                            </a>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" tabindex="-1" data-toggle="dropdown">
                                 {% trans 'Other' %}
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="/done"> {% trans 'Sent for check' %} <span class="badge badge-success">{{ oncheck_num }}</span></a></li>
-                                <li><a href="/givenbyme"> {% trans 'Given by me' %} </a></li>
-                                <li><a href="/success"> {% trans 'Done successfully' %} </a></li>
-                                <li><a href="/failed"> {% trans 'Failed' %} </a></li>
+                                <li><a href="/done">
+                                    {% trans 'Sent for check' %}
+                                    <span class="badge badge-success">
+                                        {{ counter.done }}
+                                    </span>
+                                </a>
+                                </li>
+                                <li>
+                                    <a href="/givenbyme">
+                                        {% trans 'Given by me' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/success">
+                                        {% trans 'Done successfully' %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/failed">
+                                        {% trans 'Failed' %}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
